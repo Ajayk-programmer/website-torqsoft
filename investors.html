@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investors - TorqSoft Solutions</title>
+    <link rel="icon" type="image/png" href="logotorq1.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .counter { animation: countUp 2s ease-out; }
+        @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 1s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-white border-radius 50% rounded-lg flex items-center justify-center mr-3">
+                        <img src="logotorq1.png">
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-900">TorqSoft Solutions</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html">home</a>
+                    <a href="#overview" class="text-gray-700 hover:text-blue-600 font-medium">Overview</a>
+                    <a href="#financials" class="text-gray-700 hover:text-blue-600 font-medium">Financials</a>
+                    <a href="#growth" class="text-gray-700 hover:text-blue-600 font-medium">Growth</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                </nav>
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    Invest Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold mb-6 fade-in">Invest in Tamil Nadu's IT Future</h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90 fade-in">
+                TorqSoft Solutions is pioneering innovative software solutions from the heart of Tamil Nadu, 
+                leveraging the state's rich talent pool and strategic advantages in the global IT market.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Download Investor Deck
+                </button>
+                <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Schedule Meeting
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-600 counter">₹1.5Cr</div>
+                    <div class="text-gray-600 mt-2">Annual Revenue</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-600 counter">85%</div>
+                    <div class="text-gray-600 mt-2">YoY Growth</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-purple-600 counter">50+</div>
+                    <div class="text-gray-600 mt-2">Employees</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-orange-600 counter">3+</div>
+                    <div class="text-gray-600 mt-2">Countries Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section id="overview" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why TorqSoft Solutions?</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Positioned at the epicenter of Tamil Nadu's IT revolution, we're transforming businesses globally 
+                    with cutting-edge technology solutions.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">Tamil Nadu Advantage</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Talent Hub</h4>
+                                <p class="text-gray-600">Access to 1.2M+ IT professionals and 400+ engineering colleges</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Cost Efficiency</h4>
+                                <p class="text-gray-600">30-40% lower operational costs compared to Tier-1 cities</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Government Support</h4>
+                                <p class="text-gray-600">IT policy incentives and infrastructure development</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">✓</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Strategic Location</h4>
+                                <p class="text-gray-600">Proximity to major ports and international connectivity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-6">Tamil Nadu IT Ecosystem</h4>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">IT Exports</span>
+                            <span class="font-semibold">₹1.75 Lakh Cr</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">IT Companies</span>
+                            <span class="font-semibold">2,500+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Employment</span>
+                            <span class="font-semibold">12 Lakh+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Growth Rate</span>
+                            <span class="font-semibold text-green-600">15% CAGR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services & Solutions -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Solutions Portfolio</h2>
+                <p class="text-xl text-gray-600">Comprehensive technology solutions driving digital transformation</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-white text-2xl">🚀</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Custom Software Development</h3>
+                    <p class="text-gray-600 mb-6">Enterprise-grade applications tailored to specific business needs with scalable architecture.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Web & Mobile Applications</li>
+                        <li>• Enterprise Software</li>
+                        <li>• API Development</li>
+                        <li>• Legacy Modernization</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-white text-2xl">☁️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Cloud Solutions</h3>
+                    <p class="text-gray-600 mb-6">Complete cloud transformation services helping businesses scale efficiently and securely.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Cloud Migration</li>
+                        <li>• DevOps & CI/CD</li>
+                        <li>• Infrastructure Management</li>
+                        <li>• Security & Compliance</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-white text-2xl">🤖</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI & Data Analytics</h3>
+                    <p class="text-gray-600 mb-6">Intelligent solutions leveraging machine learning and advanced analytics for business insights.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Machine Learning Models</li>
+                        <li>• Business Intelligence</li>
+                        <li>• Predictive Analytics</li>
+                        <li>• Process Automation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Performance -->
+    <section id="financials" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Financial Performance</h2>
+                <p class="text-xl text-gray-600">Consistent growth trajectory with strong fundamentals</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Revenue Growth (₹ Crores)</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">FY 2021</span>
+                            <div class="flex items-center">
+                                <div class="w-32 bg-gray-200 rounded-full h-3 mr-4">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 40%"></div>
+                                </div>
+                                <span class="font-semibold">₹0.2 Cr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">FY 2022</span>
+                            <div class="flex items-center">
+                                <div class="w-32 bg-gray-200 rounded-full h-3 mr-4">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 60%"></div>
+                                </div>
+                                <span class="font-semibold">₹0.7 Cr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">FY 2023</span>
+                            <div class="flex items-center">
+                                <div class="w-32 bg-gray-200 rounded-full h-3 mr-4">
+                                    <div class="bg-blue-600 h-3 rounded-full" style="width: 80%"></div>
+                                </div>
+                                <span class="font-semibold">₹1.6 Cr</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">FY 2024</span>
+                            <div class="flex items-center">
+                                <div class="w-32 bg-gray-200 rounded-full h-3 mr-4">
+                                    <div class="bg-green-600 h-3 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="font-semibold text-green-600">₹2.6 Cr</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Key Financial Metrics</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-blue-50 rounded-xl">
+                            <div class="text-2xl font-bold text-blue-600">28%</div>
+                            <div class="text-sm text-gray-600">EBITDA Margin</div>
+                        </div>
+                        <div class="text-center p-4 bg-green-50 rounded-xl">
+                            <div class="text-2xl font-bold text-green-600">22%</div>
+                            <div class="text-sm text-gray-600">Net Margin</div>
+                        </div>
+                        <div class="text-center p-4 bg-purple-50 rounded-xl">
+                            <div class="text-2xl font-bold text-purple-600">₹1.5Cr</div>
+                            <div class="text-sm text-gray-600">Cash Flow</div>
+                        </div>
+                        <div class="text-center p-4 bg-orange-50 rounded-xl">
+                            <div class="text-2xl font-bold text-orange-600">15%</div>
+                            <div class="text-sm text-gray-600">ROE</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Growth Strategy -->
+    <section id="growth" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Growth Strategy & Vision</h2>
+                <p class="text-xl text-gray-600">Strategic roadmap for sustainable expansion and market leadership</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">5-Year Vision</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Market Expansion</h4>
+                                <p class="text-gray-600">Expand to 25+ countries with focus on APAC and European markets</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Technology Leadership</h4>
+                                <p class="text-gray-600">Become a recognized leader in AI/ML and cloud solutions</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Scale Operations</h4>
+                                <p class="text-gray-600">Grow to 1000+ employees across multiple development centers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Investment Opportunity</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Funding Round</span>
+                            <span class="font-semibold">Series A</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Target Amount</span>
+                            <span class="font-semibold">₹2.5 Crores</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Valuation</span>
+                            <span class="font-semibold">₹3 Crores</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Use of Funds</span>
+                            <span class="font-semibold">Expansion & R&D</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Expected ROI</span>
+                            <span class="font-semibold text-green-600">3-5x in 5 years</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors mt-6">
+                        Request Investment Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Use of Funds -->
+            <div class="bg-gray-50 p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">Use of Investment Funds</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl">🏢</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Infrastructure</h4>
+                        <p class="text-3xl font-bold text-blue-600 mb-2">40%</p>
+                        <p class="text-sm text-gray-600">New development centers and office expansion</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl">👥</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Talent Acquisition</h4>
+                        <p class="text-3xl font-bold text-green-600 mb-2">30%</p>
+                        <p class="text-sm text-gray-600">Hiring top-tier engineers and specialists</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl">🔬</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">R&D</h4>
+                        <p class="text-3xl font-bold text-purple-600 mb-2">20%</p>
+                        <p class="text-sm text-gray-600">Innovation labs and product development</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl">📈</span>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Marketing</h4>
+                        <p class="text-3xl font-bold text-orange-600 mb-2">10%</p>
+                        <p class="text-sm text-gray-600">Global market expansion and brand building</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Leadership Team</h2>
+                <p class="text-xl text-gray-600">Experienced leaders driving innovation and growth</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center card-hover">
+                    <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-3xl font-bold">RK</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Rajesh Kumar</h3>
+                    <p class="text-blue-600 font-semibold mb-4">CEO & Founder</p>
+                    <p class="text-gray-600 text-sm mb-4">15+ years in enterprise software, former VP at Infosys. IIT Madras alumnus.</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs">Strategy</span>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-xs">Leadership</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center card-hover">
+                    <div class="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-3xl font-bold">PS</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Priya Sharma</h3>
+                    <p class="text-green-600 font-semibold mb-4">CTO</p>
+                    <p class="text-gray-600 text-sm mb-4">12+ years in cloud architecture, former Tech Lead at TCS. Anna University graduate.</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs">Cloud</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 rounded-full text-xs">AI/ML</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-lg text-center card-hover">
+                    <div class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span class="text-white text-3xl font-bold">AM</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Arjun Murugan</h3>
+                    <p class="text-purple-600 font-semibold mb-4">CFO</p>
+                    <p class="text-gray-600 text-sm mb-4">10+ years in finance, former Finance Director at Wipro. CA and MBA from IIM Chennai.</p>
+                    <div class="flex justify-center space-x-2">
+                        <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs">Finance</span>
+                        <span class="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs">Operations</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+                <p class="text-xl text-gray-600">Ready to be part of Tamil Nadu's IT success story?</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Investor Relations</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-blue-600 text-xl">📧</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Email</h4>
+                                <p class="text-gray-600">investors@torqsoft.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-blue-600 text-xl">📞</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Phone</h4>
+                                <p class="text-gray-600">+91 89398 65851</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <span class="text-blue-600 text-xl">📍</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Address</h4>
+                                <p class="text-gray-600">No. 387/2, Kandan street, Gokulam colony extn, Karanaipuduchery, Urapakkam, Chennai - 603202<br>Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Schedule a Meeting</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter your name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter your email">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Investment Interest</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option>Select investment range</option>
+                                <option>₹0.5 Crores</option>
+                                <option>₹1.5-2 Crores</option>
+                                <option>₹3+ Crores</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tell us about your investment goals"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                            Schedule Meeting
+                        </button>
+                    </form>
+                    <p class="text-xs text-gray-500 mt-4 text-center">
+                        <strong>Demo Form:</strong> This is a sample contact form for demonstration purposes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-white font-bold">T</span>
+                        </div>
+                        <span class="text-xl font-bold">TorqSoft Solutions</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Pioneering IT solutions from Tamil Nadu for the world.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Services</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                        <li><a href="#" class="hover:text-white">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Investors</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Financial Reports</a></li>
+                        <li><a href="#" class="hover:text-white">Presentations</a></li>
+                        <li><a href="#" class="hover:text-white">Governance</a></li>
+                        <li><a href="#" class="hover:text-white">Contact IR</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-white">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2025 TorqSoft Solutions. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! This is a demo form. In a real application, this would send your information to our investor relations team.');
+        });
+
+        // Button click handlers
+        document.querySelectorAll('button').forEach(button => {
+            if (!button.type || button.type !== 'submit') {
+                button.addEventListener('click', function() {
+                    if (this.textContent.includes('Download')) {
+                        alert('Investor deck download would start here in a real application.');
+                    } else if (this.textContent.includes('Schedule')) {
+                        alert('Meeting scheduling system would open here in a real application.');
+                    } else if (this.textContent.includes('Invest Now')) {
+                        alert('Investment portal would open here in a real application.');
+                    } else if (this.textContent.includes('Request Investment')) {
+                        alert('Detailed investment information would be sent to you in a real application.');
+                    }
+                });
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.card-hover, .counter').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f3c04ab0858022',t:'MTc1NTIwOTEwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

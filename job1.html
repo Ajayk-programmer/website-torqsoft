@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Application - TorqSoft Solutions Pvt Ltd</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            color: #334155;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 168, 232, 0.1);
+        }
+
+        .company-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00A8E8;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0, 168, 232, 0.1);
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e2e8f0;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00A8E8, #0ea5e9);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 10%;
+        }
+
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .step.active {
+            background: #00A8E8;
+            border-color: #00A8E8;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .step-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            text-align: center;
+            width: 80px;
+            font-weight: 500;
+        }
+
+        .step-label.active {
+            color: #00A8E8;
+            font-weight: 600;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 168, 232, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #00A8E8;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 168, 232, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            transition: color 0.3s ease;
+        }
+
+        .input-with-icon input {
+            padding-left: 45px;
+        }
+
+        .input-with-icon input:focus + i {
+            color: #00A8E8;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .radio-item, .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .radio-item:hover, .checkbox-item:hover {
+            background: #f1f5f9;
+        }
+
+        .radio-item input, .checkbox-item input {
+            width: auto;
+            margin: 0;
+        }
+
+        .file-upload {
+            border: 2px dashed #d1d5db;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .file-upload:hover {
+            border-color: #00A8E8;
+            background: #f0f9ff;
+        }
+
+        .file-upload i {
+            font-size: 2rem;
+            color: #00A8E8;
+            margin-bottom: 10px;
+        }
+
+        .add-more-btn {
+            background: #f1f5f9;
+            border: 2px dashed #00A8E8;
+            color: #00A8E8;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-more-btn:hover {
+            background: #00A8E8;
+            color: white;
+        }
+
+        .skill-rating {
+            display: flex;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .star {
+            font-size: 1.2rem;
+            color: #d1d5db;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .star.active {
+            color: #fbbf24;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00A8E8, #0ea5e9);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 168, 232, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f8fafc;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #00A8E8;
+        }
+
+        .error {
+            border-color: #ef4444 !important;
+            background: #fef2f2 !important;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .success-animation {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #10b981;
+            margin-bottom: 20px;
+            animation: bounce 1s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .progress-bar {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .step-labels {
+                display: none;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="company-logo">TorqSoft Solutions</div>
+            <h1>Career Application Portal</h1>
+            <p>Join our innovative team and shape the future of technology</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-line">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="step active" data-step="1">1</div>
+                <div class="step" data-step="2">2</div>
+                <div class="step" data-step="3">3</div>
+                <div class="step" data-step="4">4</div>
+                <div class="step" data-step="5">5</div>
+                <div class="step" data-step="6">6</div>
+                <div class="step" data-step="7">7</div>
+                <div class="step" data-step="8">8</div>
+                <div class="step" data-step="9">9</div>
+                <div class="step" data-step="10">10</div>
+            </div>
+            <div class="step-labels">
+                <div class="step-label active">Personal</div>
+                <div class="step-label">Position</div>
+                <div class="step-label">Education</div>
+                <div class="step-label">Experience</div>
+                <div class="step-label">Skills</div>
+                <div class="step-label">Additional</div>
+                <div class="step-label">Compliance</div>
+                <div class="step-label">Diversity</div>
+                <div class="step-label">References</div>
+                <div class="step-label">Submit</div>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <form id="applicationForm">
+                <!-- Section 1: Personal & Contact Information -->
+                <div class="form-section active" data-section="1">
+                    <h2 class="section-title">Personal & Contact Information</h2>
+                    <p class="section-subtitle">Please provide your personal details and contact information</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="text" id="fullName" name="fullName" required>
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Gender <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="male" name="gender" value="male" required>
+                                    <label for="male">Male</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="female" name="gender" value="female" required>
+                                    <label for="female">Female</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="other" name="gender" value="other" required>
+                                    <label for="other">Other</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nationality">Nationality <span class="required">*</span></label>
+                            <select id="nationality" name="nationality" required>
+                                <option value="">Select Nationality</option>
+                                <option value="indian">Indian</option>
+                                <option value="american">American</option>
+                                <option value="british">British</option>
+                                <option value="canadian">Canadian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactNumber">Contact Number <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="tel" id="contactNumber" name="contactNumber" required>
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="email" id="email" name="email" required>
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="currentAddress">Current Address <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <textarea id="currentAddress" name="currentAddress" rows="3" required></textarea>
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="sameAddress" name="sameAddress">
+                                    <label for="sameAddress">Permanent address same as current</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="permanentAddressGroup">
+                            <label for="permanentAddress">Permanent Address</label>
+                            <div class="input-with-icon">
+                                <textarea id="permanentAddress" name="permanentAddress" rows="3"></textarea>
+                                <i class="fas fa-home"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <div class="input-with-icon">
+                                <input type="url" id="linkedin" name="linkedin">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="portfolio">Portfolio URL</label>
+                            <div class="input-with-icon">
+                                <input type="url" id="portfolio" name="portfolio">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="github">GitHub/Behance/Dribbble</label>
+                            <div class="input-with-icon">
+                                <input type="url" id="github" name="github">
+                                <i class="fab fa-github"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="photograph">Photograph Upload (Passport Size)</label>
+                            <div class="file-upload" onclick="document.getElementById('photograph').click()">
+                                <i class="fas fa-camera"></i>
+                                <p>Click to upload your photograph</p>
+                                <small>JPG, PNG (Max 2MB)</small>
+                            </div>
+                            <input type="file" id="photograph" name="photograph" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Position & Job Details -->
+                <div class="form-section" data-section="2">
+                    <h2 class="section-title">Position & Job Details</h2>
+                    <p class="section-subtitle">Tell us about the position you're applying for</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title Applied For <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="text" id="jobTitle" name="jobTitle" required>
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jobCode">Job Code</label>
+                            <div class="input-with-icon">
+                                <input type="text" id="jobCode" name="jobCode">
+                                <i class="fas fa-code"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="locationPreference">Location Preference <span class="required">*</span></label>
+                            <select id="locationPreference" name="locationPreference" required>
+                                <option value="">Select Location</option>
+                                <option value="bangalore">Bangalore</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="delhi">Delhi</option>
+                                <option value="hyderabad">Hyderabad</option>
+                                <option value="pune">Pune</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="employmentType">Employment Type <span class="required">*</span></label>
+                            <select id="employmentType" name="employmentType" required>
+                                <option value="">Select Type</option>
+                                <option value="full-time">Full Time</option>
+                                <option value="part-time">Part Time</option>
+                                <option value="contract">Contract</option>
+                                <option value="internship">Internship</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="availability">Availability <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="date" id="availability" name="availability" required>
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Willing to Relocate? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="relocateYes" name="relocate" value="yes" required>
+                                    <label for="relocateYes">Yes</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="relocateNo" name="relocate" value="no" required>
+                                    <label for="relocateNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="expectedSalary">Expected Salary (Annual) <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="number" id="expectedSalary" name="expectedSalary" required>
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="currentSalary">Current Salary (Annual)</label>
+                            <div class="input-with-icon">
+                                <input type="number" id="currentSalary" name="currentSalary">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Educational Background -->
+                <div class="form-section" data-section="3">
+                    <h2 class="section-title">Educational Background</h2>
+                    <p class="section-subtitle">Share your educational qualifications and achievements</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="highestDegree">Highest Degree Earned <span class="required">*</span></label>
+                            <select id="highestDegree" name="highestDegree" required>
+                                <option value="">Select Degree</option>
+                                <option value="phd">PhD</option>
+                                <option value="masters">Master's Degree</option>
+                                <option value="bachelors">Bachelor's Degree</option>
+                                <option value="diploma">Diploma</option>
+                                <option value="certificate">Certificate</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="university">University/College <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="text" id="university" name="university" required>
+                                <i class="fas fa-university"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="graduationYear">Graduation Year <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="number" id="graduationYear" name="graduationYear" min="1980" max="2030" required>
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="major">Major/Field of Study <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="text" id="major" name="major" required>
+                                <i class="fas fa-book"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gpa">GPA/Percentage <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <input type="text" id="gpa" name="gpa" required>
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certifications">Certifications</label>
+                            <div class="input-with-icon">
+                                <textarea id="certifications" name="certifications" rows="3" placeholder="List your professional certifications"></textarea>
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="relevantCoursework">Relevant Coursework</label>
+                            <div class="input-with-icon">
+                                <textarea id="relevantCoursework" name="relevantCoursework" rows="3" placeholder="List relevant courses"></textarea>
+                                <i class="fas fa-list"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="awards">Academic Awards</label>
+                            <div class="input-with-icon">
+                                <textarea id="awards" name="awards" rows="3" placeholder="List any academic awards or honors"></textarea>
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Work Experience -->
+                <div class="form-section" data-section="4">
+                    <h2 class="section-title">Work Experience</h2>
+                    <p class="section-subtitle">Tell us about your professional experience</p>
+                    
+                    <div id="experienceContainer">
+                        <div class="experience-entry">
+                            <h3 style="color: #00A8E8; margin-bottom: 20px;">Experience #1</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="employer1">Employer Name <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="employer1" name="employer1" required>
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="jobTitle1">Job Title <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="jobTitle1" name="jobTitle1" required>
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="empType1">Employment Type</label>
+                                    <select id="empType1" name="empType1">
+                                        <option value="">Select Type</option>
+                                        <option value="full-time">Full Time</option>
+                                        <option value="part-time">Part Time</option>
+                                        <option value="contract">Contract</option>
+                                        <option value="internship">Internship</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="startDate1">Start Date <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="date" id="startDate1" name="startDate1" required>
+                                        <i class="fas fa-calendar-plus"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="endDate1">End Date</label>
+                                    <div class="input-with-icon">
+                                        <input type="date" id="endDate1" name="endDate1">
+                                        <i class="fas fa-calendar-minus"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="location1">Location</label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="location1" name="location1">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="responsibilities1">Key Responsibilities <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <textarea id="responsibilities1" name="responsibilities1" rows="4" required placeholder="Describe your key responsibilities"></textarea>
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group full-width">
+                                    <label for="achievements1">Key Achievements</label>
+                                    <div class="input-with-icon">
+                                        <textarea id="achievements1" name="achievements1" rows="3" placeholder="Describe your key achievements"></textarea>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="manager1">Reporting Manager Name</label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="manager1" name="manager1">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="managerContact1">Manager Contact</label>
+                                    <div class="input-with-icon">
+                                        <input type="email" id="managerContact1" name="managerContact1">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="add-more-btn" onclick="addExperience()">
+                        <i class="fas fa-plus"></i> Add Another Experience
+                    </button>
+                </div>
+
+                <!-- Section 5: Skills & Competencies -->
+                <div class="form-section" data-section="5">
+                    <h2 class="section-title">Skills & Competencies</h2>
+                    <p class="section-subtitle">Showcase your technical and soft skills</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="technicalSkills">Technical Skills <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <textarea id="technicalSkills" name="technicalSkills" rows="3" required placeholder="e.g., JavaScript, Python, React, Node.js"></textarea>
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="skill-rating">
+                                <span>Proficiency: </span>
+                                <div class="stars" data-rating="0">
+                                    <i class="fas fa-star star" data-value="1"></i>
+                                    <i class="fas fa-star star" data-value="2"></i>
+                                    <i class="fas fa-star star" data-value="3"></i>
+                                    <i class="fas fa-star star" data-value="4"></i>
+                                    <i class="fas fa-star star" data-value="5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="toolsTech">Tools & Technologies</label>
+                            <div class="input-with-icon">
+                                <textarea id="toolsTech" name="toolsTech" rows="3" placeholder="e.g., Git, Docker, AWS, Figma, Photoshop"></textarea>
+                                <i class="fas fa-tools"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="languages">Languages Known <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <textarea id="languages" name="languages" rows="2" required placeholder="e.g., English (Fluent), Hindi (Native), Spanish (Basic)"></textarea>
+                                <i class="fas fa-language"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="softSkills">Soft Skills <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <textarea id="softSkills" name="softSkills" rows="2" required placeholder="e.g., Leadership, Communication, Problem Solving"></textarea>
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="domainKnowledge">Domain Knowledge</label>
+                            <div class="input-with-icon">
+                                <textarea id="domainKnowledge" name="domainKnowledge" rows="3" placeholder="e.g., E-commerce, Healthcare, Finance, Education"></textarea>
+                                <i class="fas fa-brain"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 6: Additional Information -->
+                <div class="form-section" data-section="6">
+                    <h2 class="section-title">Additional Information</h2>
+                    <p class="section-subtitle">Tell us more about yourself and your aspirations</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="reasonApplying">Reason for Applying <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <textarea id="reasonApplying" name="reasonapplying" rows="4" required placeholder="Why do you want to join TorqSoft Solutions?"></textarea>
+                                <i class="fas fa-heart"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="careerGoals">Career Goals <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <textarea id="careerGoals" name="careerGoals" rows="4" required placeholder="What are your short-term and long-term career goals?"></textarea>
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="projects">Notable Projects</label>
+                            <div class="input-with-icon">
+                                <textarea id="projects" name="projects" rows="4" placeholder="Describe your most significant projects"></textarea>
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="publications">Publications</label>
+                            <div class="input-with-icon">
+                                <textarea id="publications" name="publications" rows="3" placeholder="List any publications or research papers"></textarea>
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="extracurricular">Extracurricular Activities</label>
+                            <div class="input-with-icon">
+                                <textarea id="extracurricular" name="extracurricular" rows="3" placeholder="Sports, volunteering, hobbies, etc."></textarea>
+                                <i class="fas fa-running"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="additionalAwards">Additional Awards & Recognition</label>
+                            <div class="input-with-icon">
+                                <textarea id="additionalAwards" name="additionalAwards" rows="3" placeholder="Professional awards, recognition, etc."></textarea>
+                                <i class="fas fa-medal"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Compliance & Eligibility -->
+                <div class="form-section" data-section="7">
+                    <h2 class="section-title">Compliance & Eligibility</h2>
+                    <p class="section-subtitle">Please answer the following compliance questions</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Are you legally authorized to work in India? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="workAuthYes" name="workAuth" value="yes" required>
+                                    <label for="workAuthYes">Yes</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="workAuthNo" name="workAuth" value="no" required>
+                                    <label for="workAuthNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Have you ever been convicted of a criminal offense? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="criminalYes" name="criminal" value="yes" required>
+                                    <label for="criminalYes">Yes</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="criminalNo" name="criminal" value="no" required>
+                                    <label for="criminalNo">No</label>
+                                </div>
+                            </div>
+                            <div id="criminalExplanation" style="display: none; margin-top: 15px;">
+                                <label for="criminalDetails">Please explain:</label>
+                                <textarea id="criminalDetails" name="criminalDetails" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Do you have any conflicts of interest with TorqSoft Solutions? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="conflictYes" name="conflict" value="yes" required>
+                                    <label for="conflictYes">Yes</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="conflictNo" name="conflict" value="no" required>
+                                    <label for="conflictNo">No</label>
+                                </div>
+                            </div>
+                            <div id="conflictExplanation" style="display: none; margin-top: 15px;">
+                                <label for="conflictDetails">Please explain:</label>
+                                <textarea id="conflictDetails" name="conflictDetails" rows="3"></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label>Are you currently employed or under contract with another company? <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="employedYes" name="employed" value="yes" required>
+                                    <label for="employedYes">Yes</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="employedNo" name="employed" value="no" required>
+                                    <label for="employedNo">No</label>
+                                </div>
+                            </div>
+                            <div id="employedExplanation" style="display: none; margin-top: 15px;">
+                                <label for="employedDetails">Please provide details:</label>
+                                <textarea id="employedDetails" name="employedDetails" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 8: Diversity & Inclusion -->
+                <div class="form-section" data-section="8">
+                    <h2 class="section-title">Diversity & Inclusion (Optional)</h2>
+                    <p class="section-subtitle">This information helps us build a diverse and inclusive workplace</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="ethnicity">Ethnicity</label>
+                            <select id="ethnicity" name="ethnicity">
+                                <option value="">Prefer not to say</option>
+                                <option value="asian">Asian</option>
+                                <option value="black">Black or African</option>
+                                <option value="hispanic">Hispanic or Latino</option>
+                                <option value="white">White</option>
+                                <option value="mixed">Mixed Race</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="disability">Disability Status</label>
+                            <select id="disability" name="disability">
+                                <option value="">Prefer not to say</option>
+                                <option value="none">No disability</option>
+                                <option value="physical">Physical disability</option>
+                                <option value="sensory">Sensory disability</option>
+                                <option value="cognitive">Cognitive disability</option>
+                                <option value="mental">Mental health condition</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="veteran">Veteran Status</label>
+                            <select id="veteran" name="veteran">
+                                <option value="">Prefer not to say</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="genderIdentity">Gender Identity</label>
+                            <select id="genderIdentity" name="genderIdentity">
+                                <option value="">Prefer not to say</option>
+                                <option value="man">Man</option>
+                                <option value="woman">Woman</option>
+                                <option value="non-binary">Non-binary</option>
+                                <option value="transgender">Transgender</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pronouns">Preferred Pronouns</label>
+                            <select id="pronouns" name="pronouns">
+                                <option value="">Prefer not to say</option>
+                                <option value="he/him">He/Him</option>
+                                <option value="she/her">She/Her</option>
+                                <option value="they/them">They/Them</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 9: References -->
+                <div class="form-section" data-section="9">
+                    <h2 class="section-title">References</h2>
+                    <p class="section-subtitle">Please provide professional references</p>
+                    
+                    <div id="referencesContainer">
+                        <div class="reference-entry">
+                            <h3 style="color: #00A8E8; margin-bottom: 20px;">Reference #1</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="refName1">Reference Name <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="refName1" name="refName1" required>
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="refRelation1">Relationship <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="refRelation1" name="refRelation1" required placeholder="e.g., Former Manager, Colleague">
+                                        <i class="fas fa-handshake"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="refCompany1">Company <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="text" id="refCompany1" name="refCompany1" required>
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="refEmail1">Email <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="email" id="refEmail1" name="refEmail1" required>
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="refPhone1">Phone <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="tel" id="refPhone1" name="refPhone1" required>
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="refYears1">Years Known <span class="required">*</span></label>
+                                    <div class="input-with-icon">
+                                        <input type="number" id="refYears1" name="refYears1" min="1" required>
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="add-more-btn" onclick="addReference()">
+                        <i class="fas fa-plus"></i> Add Another Reference
+                    </button>
+                </div>
+
+                <!-- Section 10: Declarations & Attachments -->
+                <div class="form-section" data-section="10">
+                    <h2 class="section-title">Declarations & Attachments</h2>
+                    <p class="section-subtitle">Final step - upload documents and confirm your application</p>
+                    
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="resume">Resume Upload <span class="required">*</span></label>
+                            <div class="file-upload" onclick="document.getElementById('resume').click()">
+                                <i class="fas fa-file-pdf"></i>
+                                <p>Click to upload your resume</p>
+                                <small>PDF, DOC, DOCX (Max 5MB)</small>
+                            </div>
+                            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required style="display: none;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="coverLetter">Cover Letter (Optional)</label>
+                            <div class="file-upload" onclick="document.getElementById('coverLetter').click()">
+                                <i class="fas fa-file-alt"></i>
+                                <p>Click to upload cover letter</p>
+                                <small>PDF, DOC, DOCX (Max 5MB)</small>
+                            </div>
+                            <input type="file" id="coverLetter" name="coverLetter" accept=".pdf,.doc,.docx" style="display: none;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="certificates">Certificates</label>
+                            <div class="file-upload" onclick="document.getElementById('certificates').click()">
+                                <i class="fas fa-certificate"></i>
+                                <p>Click to upload certificates</p>
+                                <small>PDF, JPG, PNG (Max 10MB)</small>
+                            </div>
+                            <input type="file" id="certificates" name="certificates" accept=".pdf,.jpg,.jpeg,.png" multiple style="display: none;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="idProof">ID Proof <span class="required">*</span></label>
+                            <div class="file-upload" onclick="document.getElementById('idProof').click()">
+                                <i class="fas fa-id-card"></i>
+                                <p>Click to upload ID proof</p>
+                                <small>PDF, JPG, PNG (Max 5MB)</small>
+                            </div>
+                            <input type="file" id="idProof" name="idProof" accept=".pdf,.jpg,.jpeg,.png" required style="display: none;">
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <label for="signature">Digital Signature <span class="required">*</span></label>
+                            <div style="border: 2px solid #e5e7eb; border-radius: 10px; padding: 20px; background: #fafafa;">
+                                <canvas id="signatureCanvas" width="400" height="150" style="border: 1px dashed #cbd5e1; background: white; width: 100%; max-width: 400px; cursor: crosshair;"></canvas>
+                                <div style="margin-top: 10px;">
+                                    <button type="button" onclick="clearSignature()" class="btn-secondary" style="padding: 8px 16px; font-size: 0.9rem;">Clear Signature</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="applicationDate">Application Date</label>
+                            <div class="input-with-icon">
+                                <input type="date" id="applicationDate" name="applicationDate" readonly>
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="declaration" name="declaration" required>
+                                    <label for="declaration">
+                                        I hereby declare that all the information provided above is true and accurate to the best of my knowledge. I understand that any false information may result in the rejection of my application or termination of employment. <span class="required">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group full-width">
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="privacy" name="privacy" required>
+                                    <label for="privacy">
+                                        I agree to the processing of my personal data in accordance with TorqSoft Solutions' Privacy Policy and Terms of Service. <span class="required">*</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review & Submit Section -->
+                <div class="form-section" data-section="review" style="display: none;">
+                    <div class="success-animation">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2 class="section-title">Application Submitted Successfully!</h2>
+                        <p class="section-subtitle">Thank you for your interest in TorqSoft Solutions. We will review your application and get back to you within 5-7 business days.</p>
+                        
+                        <div style="margin-top: 30px;">
+                            <p><strong>Application ID:</strong> TS-2024-<span id="applicationId"></span></p>
+                            <p><strong>Submitted on:</strong> <span id="submissionDate"></span></p>
+                        </div>
+                        
+                        <div style="margin-top: 30px;">
+                            <button type="button" class="btn btn-primary" onclick="downloadApplication()">
+                                <i class="fas fa-download"></i> Download Application Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="previousStep()" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    
+                    <div style="flex: 1;"></div>
+                    
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextStep()">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    
+                    <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">
+                        <i class="fas fa-paper-plane"></i> Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#contact">Contact Us</a>
+                <a href="#careers">Careers</a>
+            </div>
+            <p>&copy; 2024 TorqSoft Solutions Pvt Ltd. All rights reserved.</p>
+            <p>Email: careers@torqsoft.com | Phone: +91-80-1234-5678</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        let experienceCount = 1;
+        let referenceCount = 1;
+        let isDrawing = false;
+        let signatureCanvas, signatureCtx;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            document.getElementById('applicationDate').value = new Date().toISOString().split('T')[0];
+            
+            // Initialize signature canvas
+            initializeSignature();
+            
+            // Add event listeners
+            addEventListeners();
+            
+            // Initialize star ratings
+            initializeStarRatings();
+        });
+
+        function initializeSignature() {
+            signatureCanvas = document.getElementById('signatureCanvas');
+            signatureCtx = signatureCanvas.getContext('2d');
+            
+            // Set canvas size
+            const rect = signatureCanvas.getBoundingClientRect();
+            signatureCanvas.width = rect.width;
+            signatureCanvas.height = rect.height;
+            
+            // Mouse events
+            signatureCanvas.addEventListener('mousedown', startDrawing);
+            signatureCanvas.addEventListener('mousemove', draw);
+            signatureCanvas.addEventListener('mouseup', stopDrawing);
+            
+            // Touch events
+            signatureCanvas.addEventListener('touchstart', startDrawing);
+            signatureCanvas.addEventListener('touchmove', draw);
+            signatureCanvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const rect = signatureCanvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            
+            signatureCtx.beginPath();
+            signatureCtx.moveTo(x, y);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            
+            e.preventDefault();
+            const rect = signatureCanvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            
+            signatureCtx.lineWidth = 2;
+            signatureCtx.lineCap = 'round';
+            signatureCtx.strokeStyle = '#1e293b';
+            signatureCtx.lineTo(x, y);
+            signatureCtx.stroke();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function clearSignature() {
+            signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+        }
+
+        function addEventListeners() {
+            // Same address checkbox
+            document.getElementById('sameAddress').addEventListener('change', function() {
+                const permanentGroup = document.getElementById('permanentAddressGroup');
+                const permanentAddress = document.getElementById('permanentAddress');
+                
+                if (this.checked) {
+                    permanentAddress.value = document.getElementById('currentAddress').value;
+                    permanentGroup.style.display = 'none';
+                } else {
+                    permanentGroup.style.display = 'block';
+                }
+            });
+
+            // Compliance conditional fields
+            document.querySelectorAll('input[name="criminal"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const explanation = document.getElementById('criminalExplanation');
+                    explanation.style.display = this.value === 'yes' ? 'block' : 'none';
+                });
+            });
+
+            document.querySelectorAll('input[name="conflict"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const explanation = document.getElementById('conflictExplanation');
+                    explanation.style.display = this.value === 'yes' ? 'block' : 'none';
+                });
+            });
+
+            document.querySelectorAll('input[name="employed"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const explanation = document.getElementById('employedExplanation');
+                    explanation.style.display = this.value === 'yes' ? 'block' : 'none';
+                });
+            });
+
+            // Form submission
+            document.getElementById('applicationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitApplication();
+            });
+
+            // File upload feedback
+            document.querySelectorAll('input[type="file"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    const fileUpload = this.parentElement.querySelector('.file-upload');
+                    if (this.files.length > 0) {
+                        fileUpload.style.borderColor = '#10b981';
+                        fileUpload.style.background = '#f0fdf4';
+                        const fileName = this.files[0].name;
+                        fileUpload.querySelector('p').textContent = `Selected: ${fileName}`;
+                    }
+                });
+            });
+        }
+
+        function initializeStarRatings() {
+            document.querySelectorAll('.stars').forEach(starContainer => {
+                const stars = starContainer.querySelectorAll('.star');
+                
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', function() {
+                        const rating = index + 1;
+                        starContainer.setAttribute('data-rating', rating);
+                        
+                        stars.forEach((s, i) => {
+                            if (i < rating) {
+                                s.classList.add('active');
+                            } else {
+                                s.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            });
+        }
+
+        function nextStep() {
+            if (validateCurrentStep()) {
+                if (currentStep < 10) {
+                    currentStep++;
+                    updateStep();
+                } else {
+                    // Show review section instead of submitting
+                    showReviewSection();
+                }
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        }
+
+        function updateStep() {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show current section
+            document.querySelector(`[data-section="${currentStep}"]`).classList.add('active');
+            
+            // Update progress bar
+            updateProgressBar();
+            
+            // Update navigation buttons
+            updateNavigation();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateProgressBar() {
+            const progressFill = document.getElementById('progressFill');
+            const steps = document.querySelectorAll('.step');
+            const stepLabels = document.querySelectorAll('.step-label');
+            
+            // Update progress fill
+            const progressPercentage = (currentStep / 10) * 100;
+            progressFill.style.width = `${progressPercentage}%`;
+            
+            // Update step indicators
+            steps.forEach((step, index) => {
+                const stepNumber = index + 1;
+                step.classList.remove('active', 'completed');
+                
+                if (stepNumber < currentStep) {
+                    step.classList.add('completed');
+                    step.innerHTML = '<i class="fas fa-check"></i>';
+                } else if (stepNumber === currentStep) {
+                    step.classList.add('active');
+                    step.innerHTML = stepNumber;
+                } else {
+                    step.innerHTML = stepNumber;
+                }
+            });
+            
+            // Update step labels
+            stepLabels.forEach((label, index) => {
+                label.classList.remove('active');
+                if (index + 1 === currentStep) {
+                    label.classList.add('active');
+                }
+            });
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Show/hide previous button
+            prevBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
+            
+            // Update next/submit button
+            if (currentStep === 10) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-flex';
+            } else {
+                nextBtn.style.display = 'inline-flex';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        function validateCurrentStep() {
+            const currentSection = document.querySelector(`[data-section="${currentStep}"]`);
+            const requiredFields = currentSection.querySelectorAll('[required]');
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('.error').forEach(field => {
+                field.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.remove();
+            });
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('error');
+                    showError(field, 'This field is required');
+                    isValid = false;
+                }
+            });
+            
+            // Additional validations
+            if (currentStep === 1) {
+                const email = document.getElementById('email');
+                if (email.value && !isValidEmail(email.value)) {
+                    email.classList.add('error');
+                    showError(email, 'Please enter a valid email address');
+                    isValid = false;
+                }
+            }
+            
+            if (currentStep === 10) {
+                // Check if signature is drawn
+                const imageData = signatureCtx.getImageData(0, 0, signatureCanvas.width, signatureCanvas.height);
+                const hasSignature = imageData.data.some(channel => channel !== 0);
+                
+                if (!hasSignature) {
+                    showError(signatureCanvas, 'Please provide your digital signature');
+                    isValid = false;
+                }
+            }
+            
+            return isValid;
+        }
+
+        function showError(field, message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            
+            if (field.tagName === 'CANVAS') {
+                field.parentElement.appendChild(errorDiv);
+            } else {
+                field.parentElement.appendChild(errorDiv);
+            }
+        }
+
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function addExperience() {
+            experienceCount++;
+            const container = document.getElementById('experienceContainer');
+            const newExperience = document.createElement('div');
+            newExperience.className = 'experience-entry';
+            newExperience.style.marginTop = '40px';
+            newExperience.style.paddingTop = '30px';
+            newExperience.style.borderTop = '2px solid #e5e7eb';
+            
+            newExperience.innerHTML = `
+                <h3 style="color: #00A8E8; margin-bottom: 20px;">Experience #${experienceCount}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="employer${experienceCount}">Employer Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="employer${experienceCount}" name="employer${experienceCount}">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle${experienceCount}">Job Title</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="jobTitle${experienceCount}" name="jobTitle${experienceCount}">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="empType${experienceCount}">Employment Type</label>
+                        <select id="empType${experienceCount}" name="empType${experienceCount}">
+                            <option value="">Select Type</option>
+                            <option value="full-time">Full Time</option>
+                            <option value="part-time">Part Time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="startDate${experienceCount}">Start Date</label>
+                        <div class="input-with-icon">
+                            <input type="date" id="startDate${experienceCount}" name="startDate${experienceCount}">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="endDate${experienceCount}">End Date</label>
+                        <div class="input-with-icon">
+                            <input type="date" id="endDate${experienceCount}" name="endDate${experienceCount}">
+                            <i class="fas fa-calendar-minus"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location${experienceCount}">Location</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="location${experienceCount}" name="location${experienceCount}">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="responsibilities${experienceCount}">Key Responsibilities</label>
+                        <div class="input-with-icon">
+                            <textarea id="responsibilities${experienceCount}" name="responsibilities${experienceCount}" rows="4" placeholder="Describe your key responsibilities"></textarea>
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="achievements${experienceCount}">Key Achievements</label>
+                        <div class="input-with-icon">
+                            <textarea id="achievements${experienceCount}" name="achievements${experienceCount}" rows="3" placeholder="Describe your key achievements"></textarea>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="manager${experienceCount}">Reporting Manager Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="manager${experienceCount}" name="manager${experienceCount}">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="managerContact${experienceCount}">Manager Contact</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="managerContact${experienceCount}" name="managerContact${experienceCount}">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="removeExperience(this)" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">
+                    <i class="fas fa-trash"></i> Remove This Experience
+                </button>
+            `;
+            
+            container.appendChild(newExperience);
+            
+            // Animate the new entry
+            newExperience.style.opacity = '0';
+            newExperience.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                newExperience.style.transition = 'all 0.5s ease';
+                newExperience.style.opacity = '1';
+                newExperience.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        function removeExperience(button) {
+            const experienceEntry = button.closest('.experience-entry');
+            experienceEntry.style.transition = 'all 0.3s ease';
+            experienceEntry.style.opacity = '0';
+            experienceEntry.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                experienceEntry.remove();
+            }, 300);
+        }
+
+        function addReference() {
+            referenceCount++;
+            const container = document.getElementById('referencesContainer');
+            const newReference = document.createElement('div');
+            newReference.className = 'reference-entry';
+            newReference.style.marginTop = '40px';
+            newReference.style.paddingTop = '30px';
+            newReference.style.borderTop = '2px solid #e5e7eb';
+            
+            newReference.innerHTML = `
+                <h3 style="color: #00A8E8; margin-bottom: 20px;">Reference #${referenceCount}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="refName${referenceCount}">Reference Name</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="refName${referenceCount}" name="refName${referenceCount}">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="refRelation${referenceCount}">Relationship</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="refRelation${referenceCount}" name="refRelation${referenceCount}" placeholder="e.g., Former Manager, Colleague">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="refCompany${referenceCount}">Company</label>
+                        <div class="input-with-icon">
+                            <input type="text" id="refCompany${referenceCount}" name="refCompany${referenceCount}">
+                            <i class="fas fa-building"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="refEmail${referenceCount}">Email</label>
+                        <div class="input-with-icon">
+                            <input type="email" id="refEmail${referenceCount}" name="refEmail${referenceCount}">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="refPhone${referenceCount}">Phone</label>
+                        <div class="input-with-icon">
+                            <input type="tel" id="refPhone${referenceCount}" name="refPhone${referenceCount}">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="refYears${referenceCount}">Years Known</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="refYears${referenceCount}" name="refYears${referenceCount}" min="1">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="removeReference(this)" style="margin-top: 15px; padding: 8px 16px; font-size: 0.9rem;">
+                    <i class="fas fa-trash"></i> Remove This Reference
+                </button>
+            `;
+            
+            container.appendChild(newReference);
+            
+            // Animate the new entry
+            newReference.style.opacity = '0';
+            newReference.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                newReference.style.transition = 'all 0.5s ease';
+                newReference.style.opacity = '1';
+                newReference.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        function removeReference(button) {
+            const referenceEntry = button.closest('.reference-entry');
+            referenceEntry.style.transition = 'all 0.3s ease';
+            referenceEntry.style.opacity = '0';
+            referenceEntry.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                referenceEntry.remove();
+            }, 300);
+        }
+
+        function showReviewSection() {
+            // Hide all form sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show review section
+            document.querySelector('[data-section="review"]').style.display = 'block';
+            
+            // Hide navigation
+            document.querySelector('.navigation').style.display = 'none';
+            
+            // Generate application ID
+            const applicationId = Math.random().toString(36).substr(2, 9).toUpperCase();
+            document.getElementById('applicationId').textContent = applicationId;
+            
+            // Set submission date
+            const now = new Date();
+            document.getElementById('submissionDate').textContent = now.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function submitApplication() {
+            if (validateCurrentStep()) {
+                // Simulate form submission
+                setTimeout(() => {
+                    showReviewSection();
+                }, 1000);
+            }
+        }
+
+        function downloadApplication() {
+            // This would typically generate a PDF of the application
+            alert('Application copy download feature would be implemented here. In a real application, this would generate and download a PDF summary of the submitted application.');
+        }
+
+        // Step navigation from progress bar
+        document.querySelectorAll('.step').forEach(step => {
+            step.addEventListener('click', function() {
+                const targetStep = parseInt(this.getAttribute('data-step'));
+                if (targetStep < currentStep) {
+                    currentStep = targetStep;
+                    updateStep();
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e219f263b77f5f',t:'MTc1NTAyNDAyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

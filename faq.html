@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logotorq1.png">
+    <title>Frequently Asked Questions - TorqSoft Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-logo {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: 8px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0056b3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 30px auto 0;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #0056b3;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 86, 179, 0.15);
+            overflow: hidden;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 3px solid #e9ecef;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 20px 30px;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6c757d;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tab:hover {
+            background: #e9ecef;
+            color: #0056b3;
+        }
+
+        .nav-tab.active {
+            color: #0056b3;
+            background: white;
+            border-bottom-color: #0056b3;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 40px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-title {
+            font-size: 2.2rem;
+            color: #0056b3;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #0056b3;
+            border-radius: 2px;
+        }
+
+        .faq-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #0056b3;
+            margin-bottom: 20px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #e6f0ff, #f0f8ff);
+            border-left: 5px solid #0056b3;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #0056b3;
+            box-shadow: 0 5px 20px rgba(0, 86, 179, 0.1);
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            background: #f8f9fa;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #e6f0ff;
+            color: #0056b3;
+        }
+
+        .faq-question.active {
+            background: #0056b3;
+            color: white;
+        }
+
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            padding: 25px;
+            max-height: 1000px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 15px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e6f0ff, #f0f8ff);
+            border-left: 5px solid #0056b3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #0056b3, #003d82);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 86, 179, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .benefit-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #0056b3;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 86, 179, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #0056b3;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .process-timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-number {
+            width: 50px;
+            height: 50px;
+            background: #0056b3;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #0056b3;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .nav-tabs {
+                flex-wrap: wrap;
+            }
+
+            .nav-tab {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+
+            .faq-question {
+                padding: 15px 20px;
+                font-size: 1rem;
+            }
+
+            .faq-answer.active {
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6c757d;
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="company-logo"> <img src="logotorq1.png" 
+             alt="TorqSoft Logo" 
+             style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-right: 8px;"></div>
+                <h1>Frequently Asked Questions</h1>
+                <div class="subtitle">Everything you need to know about TorqSoft Solutions</div>
+                <div class="search-container">
+                    <input type="text" class="search-box" id="searchBox" placeholder="Search for answers...">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navigation Tabs -->
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="general">General</button>
+                <button class="nav-tab" data-tab="careers">Careers & Hiring</button>
+                <button class="nav-tab" data-tab="benefits">Benefits & Culture</button>
+                <button class="nav-tab" data-tab="technical">Technical & Projects</button>
+                <button class="nav-tab" data-tab="policies">Policies & Procedures</button>
+                <button class="nav-tab" data-tab="growth">Growth & Development</button>
+            </div>
+
+            <!-- General Tab -->
+            <div class="tab-content active" id="general">
+                <h2 class="category-title">General Information</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">1+</div>
+                        <div class="stat-label">Years in Business</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">80+</div>
+                        <div class="stat-label">Employees Worldwide</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Clients Served</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Countries Reached</div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">About TorqSoft Solutions</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is TorqSoft Solutions and what do we do?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>TorqSoft Solutions Pvt Ltd is a leading IT consulting and software services company established in 2009. We specialize in delivering innovative technology solutions, enterprise software development, and digital transformation services to clients worldwide.</p>
+                            <p>Our core services include:</p>
+                            <ul>
+                                <li>Custom Software Development</li>
+                                <li>Enterprise Application Integration</li>
+                                <li>Cloud Computing Solutions</li>
+                                <li>Data Analytics and Business Intelligence</li>
+                                <li>Mobile Application Development</li>
+                                <li>AI/ML Solutions</li>
+                                <li>DevOps and Infrastructure Management</li>
+                                <li>Quality Assurance and Testing</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Where are TorqSoft Solutions offices located?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>TorqSoft Solutions has a global presence with offices in multiple locations:</p>
+                            <ul>
+                                <li><strong>Headquarters:</strong> Chennai, India</li>
+                                <li><strong>Development Centers:</strong> Bangalore, Mumbai, Hyderabad</li>
+                                <li><strong>International Offices:</strong> Singapore, Dubai, London</li>
+                                <li><strong>Client Offices:</strong> New York, Toronto, Sydney</li>
+                            </ul>
+                            <p>We also have remote teams working across different time zones to provide 24/7 support to our global clients.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What industries does TorqSoft Solutions serve?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We serve clients across various industries, bringing domain expertise and tailored solutions:</p>
+                            <ul>
+                                <li><strong>Financial Services:</strong> Banking, Insurance, Fintech</li>
+                                <li><strong>Healthcare:</strong> Hospitals, Pharmaceuticals, Medical Devices</li>
+                                <li><strong>Retail & E-commerce:</strong> Online platforms, Supply chain</li>
+                                <li><strong>Manufacturing:</strong> Automotive, Industrial automation</li>
+                                <li><strong>Education:</strong> EdTech, Learning management systems</li>
+                                <li><strong>Government:</strong> Public sector digitization</li>
+                                <li><strong>Telecommunications:</strong> Network solutions, IoT</li>
+                                <li><strong>Energy & Utilities:</strong> Smart grid, Renewable energy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What makes TorqSoft Solutions different from other IT companies?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Several factors set us apart in the competitive IT landscape:</p>
+                            <ul>
+                                <li><strong>Innovation-First Approach:</strong> We invest heavily in R&D and emerging technologies</li>
+                                <li><strong>Client-Centric Solutions:</strong> Customized solutions rather than one-size-fits-all</li>
+                                <li><strong>Agile Methodology:</strong> Rapid development and deployment cycles</li>
+                                <li><strong>Quality Assurance:</strong> ISO 9001:2015 and CMMI Level 5 certified processes</li>
+                                <li><strong>Talent Excellence:</strong> Top 1% of global IT talent</li>
+                                <li><strong>24/7 Support:</strong> Round-the-clock technical support</li>
+                                <li><strong>Competitive Pricing:</strong> Cost-effective solutions without compromising quality</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What certifications and partnerships does TorqSoft Solutions have?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain industry-leading certifications and strategic partnerships:</p>
+                            <ul>
+                                <li><strong>Quality Certifications:</strong> ISO 9001:2015, CMMI Level 5, ISO 27001</li>
+                                <li><strong>Cloud Partnerships:</strong> AWS Advanced Partner, Microsoft Gold Partner, Google Cloud Partner</li>
+                                <li><strong>Technology Partners:</strong> Oracle Platinum Partner, SAP Gold Partner, Salesforce Partner</li>
+                                <li><strong>Security Certifications:</strong> SOC 2 Type II, GDPR Compliant</li>
+                                <li><strong>Industry Recognition:</strong> Deloitte Fast 50, Inc. 5000, Great Place to Work</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Company Values & Mission</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is TorqSoft Solutions' mission and vision?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="highlight-box">
+                                <p><strong>Mission:</strong> To empower businesses worldwide through innovative technology solutions that drive digital transformation, enhance operational efficiency, and create sustainable competitive advantages.</p>
+                                <p><strong>Vision:</strong> To be the global leader in IT consulting and software services, recognized for our innovation, quality, and commitment to client success.</p>
+                            </div>
+                            <p><strong>Core Values:</strong></p>
+                            <ul>
+                                <li><strong>Innovation:</strong> Continuously pushing the boundaries of technology</li>
+                                <li><strong>Excellence:</strong> Delivering superior quality in everything we do</li>
+                                <li><strong>Integrity:</strong> Maintaining the highest ethical standards</li>
+                                <li><strong>Collaboration:</strong> Working together to achieve common goals</li>
+                                <li><strong>Customer Focus:</strong> Putting client success at the center of our efforts</li>
+                                <li><strong>Sustainability:</strong> Building solutions for a better tomorrow</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How does TorqSoft Solutions contribute to the community?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We believe in giving back to the community through various initiatives:</p>
+                            <ul>
+                                <li><strong>Education Support:</strong> Scholarships for underprivileged students in STEM fields</li>
+                                <li><strong>Digital Literacy:</strong> Free coding bootcamps for rural communities</li>
+                                <li><strong>Environmental Initiatives:</strong> Carbon-neutral operations and tree plantation drives</li>
+                                <li><strong>Healthcare Support:</strong> Technology solutions for healthcare NGOs</li>
+                                <li><strong>Disaster Relief:</strong> Emergency response and technology support during natural disasters</li>
+                                <li><strong>Open Source:</strong> Contributing to open source projects and maintaining community libraries</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Careers & Hiring Tab -->
+            <div class="tab-content" id="careers">
+                <h2 class="category-title">Careers & Hiring Process</h2>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Job Opportunities</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What types of positions are available at TorqSoft Solutions?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer diverse career opportunities across multiple domains:</p>
+                            <ul>
+                                <li><strong>Software Development:</strong> Full-stack, Frontend, Backend, Mobile developers</li>
+                                <li><strong>Data & Analytics:</strong> Data Scientists, ML Engineers, Business Analysts</li>
+                                <li><strong>Cloud & DevOps:</strong> Cloud Architects, DevOps Engineers, Site Reliability Engineers</li>
+                                <li><strong>Quality Assurance:</strong> Manual testers, Automation engineers, Performance testers</li>
+                                <li><strong>Design & UX:</strong> UI/UX Designers, Product Designers, Design Researchers</li>
+                                <li><strong>Project Management:</strong> Project Managers, Scrum Masters, Program Managers</li>
+                                <li><strong>Sales & Marketing:</strong> Business Development, Digital Marketing, Content Strategy</li>
+                                <li><strong>Operations:</strong> HR, Finance, Legal, Administration</li>
+                            </ul>
+                            <p>We hire at all levels from fresh graduates to senior leadership positions.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the hiring process at TorqSoft Solutions?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="process-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-number">1</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Application Submission</div>
+                                        <p>Submit your application through our careers portal or job boards. Our HR team reviews all applications within 3-5 business days.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-number">2</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Initial Screening</div>
+                                        <p>Phone/video screening with HR to discuss your background, experience, and interest in the role (30-45 minutes).</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-number">3</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Technical Assessment</div>
+                                        <p>Online coding test, technical quiz, or take-home assignment based on the role requirements.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-number">4</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Technical Interview</div>
+                                        <p>In-depth technical discussion with senior team members, including problem-solving and system design (1-2 hours).</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-number">5</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Final Interview</div>
+                                        <p>Meeting with hiring manager and team leads to assess cultural fit and discuss career goals (45-60 minutes).</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-number">6</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Offer & Onboarding</div>
+                                        <p>Reference checks, offer negotiation, and comprehensive onboarding program for successful candidates.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How long does the hiring process typically take?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our hiring process is designed to be thorough yet efficient:</p>
+                            <ul>
+                                <li><strong>Standard Process:</strong> 2-3 weeks from application to offer</li>
+                                <li><strong>Senior Positions:</strong> 3-4 weeks due to additional stakeholder interviews</li>
+                                <li><strong>Urgent Hiring:</strong> Can be expedited to 1-2 weeks for critical roles</li>
+                                <li><strong>Graduate Programs:</strong> 4-6 weeks including assessment centers</li>
+                            </ul>
+                            <p>We keep candidates informed at every stage and provide feedback regardless of the outcome.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you hire fresh graduates and entry-level candidates?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely! We have several programs for early-career professionals:</p>
+                            <ul>
+                                <li><strong>Graduate Trainee Program:</strong> 12-month structured program with rotations</li>
+                                <li><strong>Campus Recruitment:</strong> Direct hiring from top universities</li>
+                                <li><strong>Internship Programs:</strong> 3-6 month internships with potential for full-time offers</li>
+                                <li><strong>Apprenticeship Programs:</strong> Learn while you earn opportunities</li>
+                            </ul>
+                            <p>We provide comprehensive training, mentorship, and career guidance to help fresh graduates succeed.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What skills and qualifications are you looking for?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We look for a combination of technical skills, soft skills, and cultural fit:</p>
+                            <ul>
+                                <li><strong>Technical Skills:</strong> Relevant programming languages, frameworks, and tools</li>
+                                <li><strong>Problem-Solving:</strong> Analytical thinking and creative problem-solving abilities</li>
+                                <li><strong>Communication:</strong> Strong verbal and written communication skills</li>
+                                <li><strong>Teamwork:</strong> Ability to collaborate effectively in diverse teams</li>
+                                <li><strong>Learning Agility:</strong> Willingness to learn new technologies and adapt</li>
+                                <li><strong>Leadership:</strong> Initiative and ability to guide others (for senior roles)</li>
+                                <li><strong>Cultural Fit:</strong> Alignment with our values and work culture</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Application Tips</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What should I include in my application?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To make your application stand out:</p>
+                            <ul>
+                                <li><strong>Updated Resume:</strong> Highlight relevant experience and achievements</li>
+                                <li><strong>Cover Letter:</strong> Explain why you're interested in TorqSoft and the specific role</li>
+                                <li><strong>Portfolio:</strong> For technical roles, include links to projects, GitHub, or portfolio</li>
+                                <li><strong>Certifications:</strong> List relevant technical certifications</li>
+                                <li><strong>References:</strong> Professional references who can vouch for your work</li>
+                            </ul>
+                            <div class="highlight-box">
+                                <p><strong>Pro Tip:</strong> Tailor your application to the specific role and demonstrate how your skills align with our company values and requirements.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How should I prepare for the technical interview?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Here's how to prepare for success:</p>
+                            <ul>
+                                <li><strong>Review Fundamentals:</strong> Data structures, algorithms, system design basics</li>
+                                <li><strong>Practice Coding:</strong> Use platforms like LeetCode, HackerRank, or CodeSignal</li>
+                                <li><strong>Study Our Tech Stack:</strong> Familiarize yourself with technologies we use</li>
+                                <li><strong>Prepare Examples:</strong> Be ready to discuss your past projects in detail</li>
+                                <li><strong>Mock Interviews:</strong> Practice with friends or use online mock interview platforms</li>
+                                <li><strong>Ask Questions:</strong> Prepare thoughtful questions about the role and company</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits & Culture Tab -->
+            <div class="tab-content" id="benefits">
+                <h2 class="category-title">Benefits & Company Culture</h2>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💰</div>
+                        <div class="benefit-title">Competitive Compensation</div>
+                        <p>Market-leading salaries, performance bonuses, stock options, and annual salary reviews.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🏥</div>
+                        <div class="benefit-title">Health & Wellness</div>
+                        <p>Comprehensive medical insurance, dental, vision, mental health support, and wellness programs.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🏖️</div>
+                        <div class="benefit-title">Time Off</div>
+                        <p>Generous PTO, paid holidays, sabbatical options, and flexible work arrangements.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📚</div>
+                        <div class="benefit-title">Learning & Development</div>
+                        <p>Training budget, conference attendance, certification support, and internal learning platforms.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🏠</div>
+                        <div class="benefit-title">Work-Life Balance</div>
+                        <p>Remote work options, flexible hours, childcare support, and family-friendly policies.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-title">Career Growth</div>
+                        <p>Clear career paths, mentorship programs, leadership development, and internal mobility.</p>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Compensation & Benefits</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the salary range for different positions?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our compensation is competitive and varies by role, experience, and location:</p>
+                            <ul>
+                                <li><strong>Fresh Graduates:</strong> ₹4-8 LPA depending on skills and university</li>
+                                <li><strong>Software Engineers (2-5 years):</strong> ₹8-18 LPA</li>
+                                <li><strong>Senior Engineers (5-8 years):</strong> ₹18-30 LPA</li>
+                                <li><strong>Technical Leads (8+ years):</strong> ₹30-50 LPA</li>
+                                <li><strong>Architects/Managers:</strong> ₹50+ LPA</li>
+                            </ul>
+                            <p>Additional benefits include performance bonuses (10-25% of salary), stock options, and location-based allowances.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What health and insurance benefits do you provide?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer comprehensive health coverage:</p>
+                            <ul>
+                                <li><strong>Medical Insurance:</strong> ₹5-15 lakhs coverage for employee and family</li>
+                                <li><strong>Dental & Vision:</strong> Separate coverage for dental and eye care</li>
+                                <li><strong>Life Insurance:</strong> 4x annual salary coverage</li>
+                                <li><strong>Accident Insurance:</strong> Additional coverage for accidents</li>
+                                <li><strong>Mental Health:</strong> Counseling services and mental wellness programs</li>
+                                <li><strong>Preventive Care:</strong> Annual health checkups and vaccinations</li>
+                                <li><strong>Maternity Benefits:</strong> Extended maternity/paternity leave and support</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you offer remote work and flexible schedules?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We believe in work-life balance and offer flexible arrangements:</p>
+                            <ul>
+                                <li><strong>Remote Work:</strong> Full remote or hybrid options available</li>
+                                <li><strong>Flexible Hours:</strong> Core hours 10 AM - 4 PM, flexible start/end times</li>
+                                <li><strong>Compressed Workweek:</strong> 4-day work week options for some roles</li>
+                                <li><strong>Time Zone Flexibility:</strong> Work with global teams across time zones</li>
+                                <li><strong>Home Office Setup:</strong> Allowance for home office equipment</li>
+                                <li><strong>Co-working Spaces:</strong> Access to co-working spaces when needed</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What additional perks and benefits do you offer?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Beyond standard benefits, we offer many additional perks:</p>
+                            <ul>
+                                <li><strong>Meal Allowances:</strong> Daily meal vouchers or subsidized cafeteria</li>
+                                <li><strong>Transportation:</strong> Shuttle services or transport allowance</li>
+                                <li><strong>Gym Membership:</strong> Fitness center access or gym reimbursement</li>
+                                <li><strong>Phone & Internet:</strong> Mobile and broadband allowances</li>
+                                <li><strong>Books & Subscriptions:</strong> Technical books and online course subscriptions</li>
+                                <li><strong>Team Outings:</strong> Regular team building activities and company trips</li>
+                                <li><strong>Employee Discounts:</strong> Discounts on various products and services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Company Culture</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the work culture like at TorqSoft Solutions?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our culture is built on collaboration, innovation, and mutual respect:</p>
+                            <ul>
+                                <li><strong>Open Communication:</strong> Transparent communication at all levels</li>
+                                <li><strong>Innovation Encouraged:</strong> 20% time for personal projects and innovation</li>
+                                <li><strong>Diverse & Inclusive:</strong> Celebrating diversity and promoting inclusion</li>
+                                <li><strong>Learning Culture:</strong> Continuous learning and knowledge sharing</li>
+                                <li><strong>Work-Life Balance:</strong> Respecting personal time and family commitments</li>
+                                <li><strong>Recognition:</strong> Regular appreciation and recognition programs</li>
+                                <li><strong>Fun Environment:</strong> Team events, celebrations, and recreational activities</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What team events and activities do you organize?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We organize various activities to build team spirit and have fun:</p>
+                            <ul>
+                                <li><strong>Annual Events:</strong> Company retreat, annual day celebrations, awards ceremony</li>
+                                <li><strong>Monthly Activities:</strong> Team lunches, birthday celebrations, achievement recognition</li>
+                                <li><strong>Quarterly Events:</strong> Hackathons, innovation challenges, sports tournaments</li>
+                                <li><strong>Festival Celebrations:</strong> Cultural festivals, holiday parties, themed events</li>
+                                <li><strong>Learning Sessions:</strong> Tech talks, knowledge sharing sessions, guest speakers</li>
+                                <li><strong>Wellness Programs:</strong> Yoga sessions, fitness challenges, mental health workshops</li>
+                                <li><strong>Community Service:</strong> Volunteer activities and social responsibility initiatives</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do you promote diversity and inclusion?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Diversity and inclusion are fundamental to our success:</p>
+                            <ul>
+                                <li><strong>Equal Opportunity:</strong> Fair hiring practices regardless of background</li>
+                                <li><strong>Women in Tech:</strong> Programs to support and advance women in technology</li>
+                                <li><strong>LGBTQ+ Support:</strong> Inclusive policies and employee resource groups</li>
+                                <li><strong>Cultural Celebrations:</strong> Celebrating festivals and traditions from all cultures</li>
+                                <li><strong>Accessibility:</strong> Ensuring our workplace is accessible to people with disabilities</li>
+                                <li><strong>Unconscious Bias Training:</strong> Regular training to address unconscious biases</li>
+                                <li><strong>Diverse Leadership:</strong> Commitment to diverse representation in leadership roles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical & Projects Tab -->
+            <div class="tab-content" id="technical">
+                <h2 class="category-title">Technical Environment & Projects</h2>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Technology Stack</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What technologies and tools does TorqSoft Solutions use?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We work with cutting-edge technologies across various domains:</p>
+                            <ul>
+                                <li><strong>Programming Languages:</strong> Java, Python, JavaScript, C#, Go, Rust, Swift, Kotlin</li>
+                                <li><strong>Frontend:</strong> React, Angular, Vue.js, Next.js, TypeScript, HTML5, CSS3</li>
+                                <li><strong>Backend:</strong> Node.js, Spring Boot, .NET Core, Django, Flask, Express.js</li>
+                                <li><strong>Mobile:</strong> React Native, Flutter, iOS (Swift), Android (Kotlin/Java)</li>
+                                <li><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch, Cassandra</li>
+                                <li><strong>Cloud Platforms:</strong> AWS, Azure, Google Cloud, IBM Cloud</li>
+                                <li><strong>DevOps:</strong> Docker, Kubernetes, Jenkins, GitLab CI/CD, Terraform</li>
+                                <li><strong>AI/ML:</strong> TensorFlow, PyTorch, Scikit-learn, Pandas, NumPy</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What types of projects will I work on?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our projects span various industries and technologies:</p>
+                            <ul>
+                                <li><strong>Enterprise Applications:</strong> Large-scale business applications for Fortune 500 companies</li>
+                                <li><strong>E-commerce Platforms:</strong> Scalable online marketplaces and retail solutions</li>
+                                <li><strong>Financial Systems:</strong> Banking applications, payment gateways, trading platforms</li>
+                                <li><strong>Healthcare Solutions:</strong> Electronic health records, telemedicine platforms</li>
+                                <li><strong>IoT Applications:</strong> Smart city solutions, industrial automation</li>
+                                <li><strong>AI/ML Projects:</strong> Predictive analytics, computer vision, NLP applications</li>
+                                <li><strong>Mobile Apps:</strong> Consumer and enterprise mobile applications</li>
+                                <li><strong>Cloud Migration:</strong> Legacy system modernization and cloud adoption</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do you ensure code quality and best practices?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain high code quality through rigorous processes:</p>
+                            <ul>
+                                <li><strong>Code Reviews:</strong> Mandatory peer reviews for all code changes</li>
+                                <li><strong>Automated Testing:</strong> Unit tests, integration tests, end-to-end testing</li>
+                                <li><strong>Static Analysis:</strong> SonarQube, ESLint, and other code quality tools</li>
+                                <li><strong>CI/CD Pipelines:</strong> Automated build, test, and deployment processes</li>
+                                <li><strong>Documentation:</strong> Comprehensive technical documentation and API docs</li>
+                                <li><strong>Security Scanning:</strong> Regular security audits and vulnerability assessments</li>
+                                <li><strong>Performance Monitoring:</strong> Application performance monitoring and optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What development tools and environments do you provide?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide state-of-the-art development environments:</p>
+                            <ul>
+                                <li><strong>Hardware:</strong> High-performance laptops/desktops with latest specifications</li>
+                                <li><strong>IDEs:</strong> IntelliJ IDEA, Visual Studio Code, Eclipse, Xcode</li>
+                                <li><strong>Version Control:</strong> Git, GitHub Enterprise, GitLab</li>
+                                <li><strong>Project Management:</strong> Jira, Confluence, Trello, Azure DevOps</li>
+                                <li><strong>Communication:</strong> Slack, Microsoft Teams, Zoom</li>
+                                <li><strong>Design Tools:</strong> Figma, Adobe Creative Suite, Sketch</li>
+                                <li><strong>Testing Tools:</strong> Selenium, Postman, JMeter, Cypress</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Development Process</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What development methodology do you follow?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We primarily use Agile methodologies with flexibility based on project needs:</p>
+                            <ul>
+                                <li><strong>Scrum:</strong> 2-week sprints with daily standups, sprint planning, and retrospectives</li>
+                                <li><strong>Kanban:</strong> For maintenance and support projects</li>
+                                <li><strong>SAFe:</strong> Scaled Agile Framework for large enterprise projects</li>
+                                <li><strong>DevOps:</strong> Continuous integration and continuous deployment</li>
+                                <li><strong>Design Thinking:</strong> User-centered design approach</li>
+                                <li><strong>Lean Startup:</strong> For innovation and new product development</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do you handle client communication and project management?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain transparent and regular communication with clients:</p>
+                            <ul>
+                                <li><strong>Daily Updates:</strong> Progress reports and issue escalation</li>
+                                <li><strong>Weekly Reviews:</strong> Sprint demos and stakeholder meetings</li>
+                                <li><strong>Monthly Reports:</strong> Comprehensive project status and metrics</li>
+                                <li><strong>Collaboration Tools:</strong> Slack, Microsoft Teams, Jira, Confluence</li>
+                                <li><strong>Project Dashboards:</strong> Real-time visibility into project progress</li>
+                                <li><strong>Change Management:</strong> Structured process for handling scope changes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is your approach to security and data protection?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Security is paramount in all our development practices:</p>
+                            <ul>
+                                <li><strong>Secure Coding:</strong> Following OWASP guidelines and security best practices</li>
+                                <li><strong>Data Encryption:</strong> End-to-end encryption for data in transit and at rest</li>
+                                <li><strong>Access Control:</strong> Role-based access control and multi-factor authentication</li>
+                                <li><strong>Regular Audits:</strong> Security audits and penetration testing</li>
+                                <li><strong>Compliance:</strong> GDPR, HIPAA, SOX, and other regulatory compliance</li>
+                                <li><strong>Security Training:</strong> Regular security awareness training for all employees</li>
+                                <li><strong>Incident Response:</strong> 24/7 security monitoring and incident response team</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policies & Procedures Tab -->
+            <div class="tab-content" id="policies">
+                <h2 class="category-title">Policies & Procedures</h2>
+
+                <div class="faq-section">
+                    <h3 class="section-title">HR Policies</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the leave policy at TorqSoft Solutions?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer generous leave policies to support work-life balance:</p>
+                            <ul>
+                                <li><strong>Annual Leave:</strong> 25 days per year (increases with tenure)</li>
+                                <li><strong>Sick Leave:</strong> 12 days per year (can be carried forward)</li>
+                                <li><strong>Personal Leave:</strong> 5 days per year for personal matters</li>
+                                <li><strong>Maternity Leave:</strong> 26 weeks paid leave</li>
+                                <li><strong>Paternity Leave:</strong> 4 weeks paid leave</li>
+                                <li><strong>Bereavement Leave:</strong> 5 days for immediate family</li>
+                                <li><strong>Study Leave:</strong> For pursuing higher education or certifications</li>
+                                <li><strong>Sabbatical:</strong> Extended leave options for long-term employees</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the performance review process?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We have a comprehensive performance management system:</p>
+                            <ul>
+                                <li><strong>Quarterly Check-ins:</strong> Regular one-on-ones with managers</li>
+                                <li><strong>Annual Reviews:</strong> Comprehensive performance evaluation</li>
+                                <li><strong>360-Degree Feedback:</strong> Input from peers, subordinates, and managers</li>
+                                <li><strong>Goal Setting:</strong> SMART goals aligned with company objectives</li>
+                                <li><strong>Career Development Plans:</strong> Individual development roadmaps</li>
+                                <li><strong>Performance Improvement:</strong> Support for underperforming employees</li>
+                                <li><strong>Recognition Programs:</strong> Spot awards and annual recognition</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are the working hours and attendance policies?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer flexible working arrangements:</p>
+                            <ul>
+                                <li><strong>Standard Hours:</strong> 40 hours per week, 8 hours per day</li>
+                                <li><strong>Core Hours:</strong> 10 AM - 4 PM (mandatory presence)</li>
+                                <li><strong>Flexible Start:</strong> Between 7 AM - 10 AM</li>
+                                <li><strong>Flexible End:</strong> Between 4 PM - 7 PM</li>
+                                <li><strong>Remote Work:</strong> Up to 3 days per week (role dependent)</li>
+                                <li><strong>Overtime Policy:</strong> Compensatory time off or overtime pay</li>
+                                <li><strong>Break Times:</strong> 1 hour lunch break, 15-minute breaks</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is the dress code policy?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain a flexible dress code that varies by situation:</p>
+                            <ul>
+                                <li><strong>Regular Days:</strong> Smart casual attire</li>
+                                <li><strong>Client Meetings:</strong> Business formal or business casual</li>
+                                <li><strong>Casual Fridays:</strong> Relaxed dress code including jeans</li>
+                                <li><strong>Remote Work:</strong> Comfortable attire (camera-appropriate for meetings)</li>
+                                <li><strong>Special Events:</strong> Dress code specified for each event</li>
+                                <li><strong>Cultural Celebrations:</strong> Traditional attire encouraged</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Code of Conduct</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are the company's ethical standards and code of conduct?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We maintain the highest ethical standards:</p>
+                            <ul>
+                                <li><strong>Integrity:</strong> Honest and transparent in all dealings</li>
+                                <li><strong>Confidentiality:</strong> Protecting client and company information</li>
+                                <li><strong>Non-Discrimination:</strong> Equal opportunity regardless of background</li>
+                                <li><strong>Harassment-Free:</strong> Zero tolerance for harassment or bullying</li>
+                                <li><strong>Conflict of Interest:</strong> Avoiding situations that compromise judgment</li>
+                                <li><strong>Intellectual Property:</strong> Respecting IP rights and avoiding infringement</li>
+                                <li><strong>Compliance:</strong> Adhering to all applicable laws and regulations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do you handle grievances and complaints?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We have multiple channels for addressing concerns:</p>
+                            <ul>
+                                <li><strong>Open Door Policy:</strong> Direct access to management at all levels</li>
+                                <li><strong>HR Support:</strong> Dedicated HR team for employee concerns</li>
+                                <li><strong>Anonymous Reporting:</strong> Confidential reporting system</li>
+                                <li><strong>Ombudsman:</strong> Independent third-party for serious issues</li>
+                                <li><strong>Investigation Process:</strong> Fair and thorough investigation of complaints</li>
+                                <li><strong>Resolution Timeline:</strong> Commitment to resolve issues within 30 days</li>
+                                <li><strong>No Retaliation:</strong> Protection against retaliation for reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What are the policies regarding social media and external communications?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We have clear guidelines for external communications:</p>
+                            <ul>
+                                <li><strong>Personal Social Media:</strong> Guidelines for representing the company</li>
+                                <li><strong>Confidentiality:</strong> No sharing of confidential company or client information</li>
+                                <li><strong>Professional Conduct:</strong> Maintaining professional standards online</li>
+                                <li><strong>Media Inquiries:</strong> All media requests to be directed to PR team</li>
+                                <li><strong>Speaking Engagements:</strong> Approval required for representing company at events</li>
+                                <li><strong>Blogging & Writing:</strong> Guidelines for technical blogs and articles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Security & Compliance</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What security measures are in place for employees?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We implement comprehensive security measures:</p>
+                            <ul>
+                                <li><strong>Access Control:</strong> Badge-based access to offices and secure areas</li>
+                                <li><strong>Device Security:</strong> Encrypted laptops with security software</li>
+                                <li><strong>Network Security:</strong> VPN access and secure Wi-Fi networks</li>
+                                <li><strong>Data Protection:</strong> Regular backups and data loss prevention</li>
+                                <li><strong>Security Training:</strong> Mandatory security awareness training</li>
+                                <li><strong>Incident Reporting:</strong> Clear procedures for security incidents</li>
+                                <li><strong>Background Checks:</strong> Comprehensive background verification</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth & Development Tab -->
+            <div class="tab-content" id="growth">
+                <h2 class="category-title">Growth & Development</h2>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Career Development</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What career growth opportunities are available?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer multiple career progression paths:</p>
+                            <ul>
+                                <li><strong>Technical Track:</strong> Developer → Senior Developer → Tech Lead → Architect</li>
+                                <li><strong>Management Track:</strong> Team Lead → Project Manager → Program Manager → Director</li>
+                                <li><strong>Specialist Track:</strong> Deep expertise in specific domains (AI/ML, Security, etc.)</li>
+                                <li><strong>Consulting Track:</strong> Client-facing roles and business development</li>
+                                <li><strong>Product Track:</strong> Product management and strategy roles</li>
+                                <li><strong>Cross-functional Moves:</strong> Opportunities to switch between departments</li>
+                                <li><strong>International Assignments:</strong> Global mobility opportunities</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What learning and development programs do you offer?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We invest heavily in employee development:</p>
+                            <ul>
+                                <li><strong>TorqSoft University:</strong> Internal learning platform with 500+ courses</li>
+                                <li><strong>External Training:</strong> ₹50,000 annual budget per employee</li>
+                                <li><strong>Conference Attendance:</strong> Sponsorship for industry conferences</li>
+                                <li><strong>Certification Support:</strong> Full reimbursement for relevant certifications</li>
+                                <li><strong>Mentorship Program:</strong> Pairing with senior professionals</li>
+                                <li><strong>Leadership Development:</strong> Programs for emerging leaders</li>
+                                <li><strong>Technical Bootcamps:</strong> Intensive training on new technologies</li>
+                                <li><strong>Lunch & Learn:</strong> Weekly knowledge sharing sessions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you support higher education and advanced degrees?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we actively support continuous education:</p>
+                            <ul>
+                                <li><strong>Tuition Reimbursement:</strong> Up to ₹2 lakhs per year for relevant courses</li>
+                                <li><strong>Study Leave:</strong> Flexible schedules for attending classes</li>
+                                <li><strong>MBA Support:</strong> Sponsorship for executive MBA programs</li>
+                                <li><strong>PhD Programs:</strong> Support for research-oriented roles</li>
+                                <li><strong>Online Degrees:</strong> Flexibility for online learning programs</li>
+                                <li><strong>Professional Certifications:</strong> PMP, AWS, Azure, Google Cloud, etc.</li>
+                                <li><strong>Industry Certifications:</strong> Agile, Six Sigma, ITIL, etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How does the mentorship program work?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our mentorship program connects employees with experienced professionals:</p>
+                            <ul>
+                                <li><strong>Mentor Matching:</strong> Pairing based on career goals and expertise</li>
+                                <li><strong>Regular Meetings:</strong> Monthly one-on-one sessions</li>
+                                <li><strong>Goal Setting:</strong> Collaborative career development planning</li>
+                                <li><strong>Skill Development:</strong> Focus on both technical and soft skills</li>
+                                <li><strong>Network Building:</strong> Introduction to industry contacts</li>
+                                <li><strong>Reverse Mentoring:</strong> Senior leaders learning from junior employees</li>
+                                <li><strong>Group Mentoring:</strong> Small group sessions on specific topics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Innovation & Research</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How does TorqSoft Solutions encourage innovation?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Innovation is at the core of our culture:</p>
+                            <ul>
+                                <li><strong>Innovation Time:</strong> 20% time for personal projects and research</li>
+                                <li><strong>Hackathons:</strong> Quarterly internal hackathons with prizes</li>
+                                <li><strong>Innovation Lab:</strong> Dedicated space and resources for experimentation</li>
+                                <li><strong>Patent Program:</strong> Support for filing patents and IP protection</li>
+                                <li><strong>Research Partnerships:</strong> Collaboration with universities and research institutes</li>
+                                <li><strong>Innovation Awards:</strong> Recognition and rewards for innovative ideas</li>
+                                <li><strong>Startup Incubator:</strong> Support for employee entrepreneurship</li>
+                                <li><strong>Open Source:</strong> Contributing to and maintaining open source projects</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What research and development initiatives are you involved in?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We're actively involved in cutting-edge research:</p>
+                            <ul>
+                                <li><strong>AI/ML Research:</strong> Advanced machine learning algorithms and applications</li>
+                                <li><strong>Blockchain Technology:</strong> Distributed ledger applications and smart contracts</li>
+                                <li><strong>IoT Solutions:</strong> Internet of Things platforms and edge computing</li>
+                                <li><strong>Quantum Computing:</strong> Exploring quantum algorithms and applications</li>
+                                <li><strong>Cybersecurity:</strong> Advanced threat detection and prevention systems</li>
+                                <li><strong>Cloud Technologies:</strong> Next-generation cloud architectures and services</li>
+                                <li><strong>AR/VR Applications:</strong> Immersive technology solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can employees pursue their own startup ideas?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We support entrepreneurial employees through our incubator program:</p>
+                            <ul>
+                                <li><strong>Idea Evaluation:</strong> Assessment of business ideas and market potential</li>
+                                <li><strong>Seed Funding:</strong> Initial funding for promising ventures</li>
+                                <li><strong>Mentorship:</strong> Guidance from successful entrepreneurs and business leaders</li>
+                                <li><strong>Resource Access:</strong> Office space, technology infrastructure, and legal support</li>
+                                <li><strong>Market Connections:</strong> Introduction to potential customers and partners</li>
+                                <li><strong>Flexible Arrangements:</strong> Part-time or sabbatical options</li>
+                                <li><strong>IP Protection:</strong> Support for intellectual property filing and protection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h3 class="section-title">Leadership Development</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What leadership development programs are available?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer comprehensive leadership development at all levels:</p>
+                            <ul>
+                                <li><strong>Emerging Leaders Program:</strong> 6-month program for high-potential employees</li>
+                                <li><strong>Management Bootcamp:</strong> Intensive training for new managers</li>
+                                <li><strong>Executive Leadership:</strong> Advanced programs for senior leaders</li>
+                                <li><strong>Cross-Cultural Leadership:</strong> Managing global and diverse teams</li>
+                                <li><strong>Digital Leadership:</strong> Leading in the digital transformation era</li>
+                                <li><strong>Women in Leadership:</strong> Specialized programs for women leaders</li>
+                                <li><strong>360-Degree Feedback:</strong> Comprehensive leadership assessment</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do you identify and develop high-potential employees?</span>
+                            <span class="faq-icon">▼</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We have a structured approach to talent identification and development:</p>
+                            <ul>
+                                <li><strong>Talent Assessment:</strong> Regular evaluation of performance and potential</li>
+                                <li><strong>High-Potential Pool:</strong> Identification of top talent for accelerated development</li>
+                                <li><strong>Individual Development Plans:</strong> Customized growth plans for each individual</li>
+                                <li><strong>Stretch Assignments:</strong> Challenging projects to develop new skills</li>
+                                <li><strong>Cross-Functional Exposure:</strong> Rotations across different departments</li>
+                                <li><strong>Executive Sponsorship:</strong> Senior leader sponsorship for career advancement</li>
+                                <li><strong>Succession Planning:</strong> Preparing for future leadership roles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h3>Still Have Questions?</h3>
+            <p>Our HR team is here to help! Reach out to us through any of these channels:</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>torqsoft@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>9361141218</span>
+                </div>
+                <div class="contact-item">
+                    <span>💬</span>
+                    <span>Live Chat (9 AM - 6 PM IST)</span>
+                </div>
+                <div class="contact-item">
+                    <span>🏢</span>
+                    <span>Chennai  & Bangalore</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current FAQ item
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Search functionality
+        const searchBox = document.getElementById('searchBox');
+        let searchTimeout;
+
+        searchBox.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const searchTerm = e.target.value.toLowerCase();
+                searchFAQs(searchTerm);
+            }, 300);
+        });
+
+        function searchFAQs(searchTerm) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            let hasResults = false;
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                    
+                    // Highlight search terms
+                    if (searchTerm) {
+                        highlightSearchTerm(item, searchTerm);
+                    }
+                } else {
+                    item.style.display = searchTerm ? 'none' : 'block';
+                }
+            });
+
+            // Show/hide no results message
+            showNoResults(!hasResults && searchTerm);
+        }
+
+        function highlightSearchTerm(element, term) {
+            // Simple highlighting - in a real application, you'd want more sophisticated highlighting
+            const walker = document.createTreeWalker(
+                element,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+
+            const textNodes = [];
+            let node;
+            while (node = walker.nextNode()) {
+                textNodes.push(node);
+            }
+
+            textNodes.forEach(textNode => {
+                const parent = textNode.parentNode;
+                if (parent.tagName !== 'SCRIPT' && parent.tagName !== 'STYLE') {
+                    const text = textNode.textContent;
+                    const regex = new RegExp(`(${term})`, 'gi');
+                    if (regex.test(text)) {
+                        const highlightedText = text.replace(regex, '<mark>$1</mark>');
+                        const span = document.createElement('span');
+                        span.innerHTML = highlightedText;
+                        parent.replaceChild(span, textNode);
+                    }
+                }
+            });
+        }
+
+        function showNoResults(show) {
+            let noResultsDiv = document.querySelector('.no-results');
+            
+            if (show && !noResultsDiv) {
+                noResultsDiv = document.createElement('div');
+                noResultsDiv.className = 'no-results';
+                noResultsDiv.innerHTML = `
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No results found</h3>
+                    <p>Try searching with different keywords or browse through the categories above.</p>
+                `;
+                document.querySelector('.tab-content.active').appendChild(noResultsDiv);
+            } else if (!show && noResultsDiv) {
+                noResultsDiv.remove();
+            }
+        }
+
+        // Clear search when switching tabs
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                searchBox.value = '';
+                searchFAQs('');
+                // Remove any existing highlights
+                document.querySelectorAll('mark').forEach(mark => {
+                    mark.outerHTML = mark.innerHTML;
+                });
+            });
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-expand FAQ if URL contains hash
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const targetFAQ = document.querySelector(window.location.hash);
+                if (targetFAQ && targetFAQ.classList.contains('faq-question')) {
+                    targetFAQ.click();
+                    setTimeout(() => {
+                        targetFAQ.scrollIntoView({ behavior: 'smooth' });
+                    }, 300);
+                }
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e84347450e7fa3',t:'MTc1NTA4ODYzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

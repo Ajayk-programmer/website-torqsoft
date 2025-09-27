@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorqSoft Solutions - Job Application</title>
+     <link rel="icon" type="image/png" href="logotorq1.png">
+    <script src="https://unpkg.com/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        .progress-container {
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .step-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input, select, textarea {
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin: 0;
+            transform: scale(1.2);
+        }
+
+        .checkbox-container label {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .preview-container {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 1px solid #e9ecef;
+            display: none;
+        }
+
+        .preview-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .preview-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .preview-section {
+            margin-bottom: 25px;
+        }
+
+        .preview-section h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .preview-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-label {
+            font-weight: 600;
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .preview-value {
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            display: none;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="logotorq1.png"
+         alt="TorqSoft Logo" 
+         style="width:80px; height:80px; border-radius: 50%; object-fit: cover; margin-right: 10px;">
+            <h1>TorqSoft Solutions Pvt Ltd</h1>
+            <div class="subtitle">Join Our Innovation Journey</div>
+            <div class="intro-text">
+                TorqSoft Solutions Pvt Ltd is a forward-thinking IT services and product company delivering secure, scalable software, AI solutions, and enterprise systems. Join a team that values innovation, collaboration, and impact.
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 33.33%"></div>
+            </div>
+            <div class="step-info">
+                <span id="stepInfo">Step 1 of 3: Personal & Contact Information</span>
+                <span id="completionStatus">33% Complete</span>
+            </div>
+        </div>
+
+        <!-- Form Container -->
+        <div class="form-container">
+            <form id="jobApplicationForm">
+                <!-- Step 1: Personal & Contact Information -->
+                <div class="step active" id="step1">
+                    <h2 class="step-title">Personal & Contact Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        <div class="form-group">
+                            <label for="portfolio">Portfolio Website</label>
+                            <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="address">Address <span class="required">*</span></label>
+                            <textarea id="address" name="address" required placeholder="Enter your complete address"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Job Details & Education -->
+                <div class="step" id="step2">
+                    <h2 class="step-title">Job Details & Education</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="position">Position Applied For <span class="required">*</span></label>
+                            <select id="position" name="position" required>
+                                <option value="">Select Position</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="Senior Software Engineer">Senior Software Engineer</option>
+                                <option value="Full Stack Developer">Full Stack Developer</option>
+                                <option value="Frontend Developer">Frontend Developer</option>
+                                <option value="Backend Developer">Backend Developer</option>
+                                <option value="DevOps Engineer">DevOps Engineer</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="AI/ML Engineer">AI/ML Engineer</option>
+                                <option value="Product Manager">Product Manager</option>
+                                <option value="UI/UX Designer">UI/UX Designer</option>
+                                <option value="Quality Assurance Engineer">Quality Assurance Engineer</option>
+                                <option value="Business Analyst">Business Analyst</option>
+                                <option value="Project Manager">Project Manager</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="employmentType">Employment Type <span class="required">*</span></label>
+                            <select id="employmentType" name="employmentType" required>
+                                <option value="">Select Type</option>
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Internship">Internship</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Preferred Location <span class="required">*</span></label>
+                            <select id="location" name="location" required>
+                                <option value="">Select Location</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Remote">Remote</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="availability">Availability <span class="required">*</span></label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select Availability</option>
+                                <option value="Immediate">Immediate</option>
+                                <option value="1 week notice">1 week notice</option>
+                                <option value="2 weeks notice">2 weeks notice</option>
+                                <option value="1 month notice">1 month notice</option>
+                                <option value="2 months notice">2 months notice</option>
+                                <option value="3+ months notice">3+ months notice</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="expectedSalary">Expected Salary Range <span class="required">*</span></label>
+                            <select id="expectedSalary" name="expectedSalary" required>
+                                <option value="">Select Salary Range</option>
+                                <option value="₹3-5 LPA">₹3-5 LPA</option>
+                                <option value="₹5-8 LPA">₹5-8 LPA</option>
+                                <option value="₹8-12 LPA">₹8-12 LPA</option>
+                                <option value="₹12-18 LPA">₹12-18 LPA</option>
+                                <option value="₹18-25 LPA">₹18-25 LPA</option>
+                                <option value="₹25+ LPA">₹25+ LPA</option>
+                                <option value="Negotiable">Negotiable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="degree">Highest Degree <span class="required">*</span></label>
+                            <select id="degree" name="degree" required>
+                                <option value="">Select Degree</option>
+                                <option value="High School">High School</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="PhD">PhD</option>
+                                <option value="Professional Certification">Professional Certification</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="university">University/Institution <span class="required">*</span></label>
+                            <input type="text" id="university" name="university" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="graduationYear">Graduation Year <span class="required">*</span></label>
+                            <select id="graduationYear" name="graduationYear" required>
+                                <option value="">Select Year</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Skills & Experience -->
+                <div class="step" id="step3">
+                    <h2 class="step-title">Skills & Experience</h2>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label for="skills">Technical Skills <span class="required">*</span></label>
+                            <textarea id="skills" name="skills" required placeholder="List your technical skills (e.g., JavaScript, Python, React, Node.js, SQL, etc.)"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="experience">Work Experience <span class="required">*</span></label>
+                            <textarea id="experience" name="experience" required placeholder="Describe your work experience, including company names, positions, and key responsibilities"></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="projects">Notable Projects</label>
+                            <textarea id="projects" name="projects" placeholder="Describe your notable projects and achievements"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">
+                            I agree to the <a href="#" style="color: #3498db;">Terms & Conditions</a> and confirm that all information provided is accurate and complete. I consent to TorqSoft Solutions processing my personal data for recruitment purposes.
+                        </label>
+                    </div>
+
+                    <!-- Preview Section -->
+                    <div class="preview-container" id="previewContainer">
+                        <h3 class="preview-title">Application Preview</h3>
+                        <div class="preview-content" id="previewContent">
+                            <!-- Preview content will be generated here -->
+                        </div>
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-success" id="downloadBtn">Download PDF</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="button-container">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">Previous</button>
+                    <div style="display: flex; gap: 15px;">
+                        <button type="button" class="btn btn-primary" id="previewBtn" style="display: none;">Preview Application</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+                        <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">Submit Application</button>
+                    </div>
+                </div>
+
+                <!-- Loading and Messages -->
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Submitting your application...</p>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    <h3>Application Submitted Successfully! 🎉</h3>
+                    <p>Thank you for applying to TorqSoft Solutions. You will receive a confirmation email shortly, and our HR team will review your application.</p>
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    <p>There was an error submitting your application. Please try again.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init('R8MbE5sSqHziuW8vg');
+
+        // Application state
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        // Populate graduation years
+        function populateGraduationYears() {
+            const select = document.getElementById('graduationYear');
+            const currentYear = new Date().getFullYear();
+            
+            for (let year = currentYear + 5; year >= 1980; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                select.appendChild(option);
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+            document.getElementById('stepInfo').textContent = `Step ${currentStep} of ${totalSteps}: ${getStepTitle(currentStep)}`;
+            document.getElementById('completionStatus').textContent = `${Math.round(progress)}% Complete`;
+        }
+
+        // Get step title
+        function getStepTitle(step) {
+            const titles = [
+                'Personal & Contact Information',
+                'Job Details & Education',
+                'Skills & Experience'
+            ];
+            return titles[step - 1];
+        }
+
+        // Show specific step
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            
+            // Show current step
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').style.display = step > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').style.display = step < totalSteps ? 'block' : 'none';
+            document.getElementById('previewBtn').style.display = step === totalSteps ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = step === totalSteps ? 'block' : 'none';
+            
+            updateProgress();
+        }
+
+        // Validate current step
+        function validateStep(step) {
+            const stepElement = document.getElementById(`step${step}`);
+            const requiredFields = stepElement.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#e74c3c';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e9ecef';
+                }
+            });
+
+            if (!isValid) {
+                showError('Please fill in all required fields before proceeding.');
+            }
+
+            return isValid;
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.querySelector('p').textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Generate preview
+        function generatePreview() {
+            const formData = new FormData(document.getElementById('jobApplicationForm'));
+            const data = Object.fromEntries(formData.entries());
+
+            const previewHTML = `
+                <div class="preview-section">
+                    <h3>Personal Information</h3>
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <div class="preview-label">Full Name</div>
+                            <div class="preview-value">${data.fullName || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Email</div>
+                            <div class="preview-value">${data.email || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Phone</div>
+                            <div class="preview-value">${data.phone || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Date of Birth</div>
+                            <div class="preview-value">${data.dateOfBirth || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">LinkedIn</div>
+                            <div class="preview-value">${data.linkedin || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Portfolio</div>
+                            <div class="preview-value">${data.portfolio || 'Not provided'}</div>
+                        </div>
+                    </div>
+                    <div class="preview-item" style="margin-top: 15px;">
+                        <div class="preview-label">Address</div>
+                        <div class="preview-value">${data.address || 'Not provided'}</div>
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <h3>Job Details & Education</h3>
+                    <div class="preview-grid">
+                        <div class="preview-item">
+                            <div class="preview-label">Position Applied</div>
+                            <div class="preview-value">${data.position || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Employment Type</div>
+                            <div class="preview-value">${data.employmentType || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Preferred Location</div>
+                            <div class="preview-value">${data.location || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Availability</div>
+                            <div class="preview-value">${data.availability || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Expected Salary</div>
+                            <div class="preview-value">${data.expectedSalary || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Highest Degree</div>
+                            <div class="preview-value">${data.degree || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">University</div>
+                            <div class="preview-value">${data.university || 'Not provided'}</div>
+                        </div>
+                        <div class="preview-item">
+                            <div class="preview-label">Graduation Year</div>
+                            <div class="preview-value">${data.graduationYear || 'Not provided'}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <h3>Skills & Experience</h3>
+                    <div class="preview-item" style="margin-bottom: 15px;">
+                        <div class="preview-label">Technical Skills</div>
+                        <div class="preview-value">${data.skills || 'Not provided'}</div>
+                    </div>
+                    <div class="preview-item" style="margin-bottom: 15px;">
+                        <div class="preview-label">Work Experience</div>
+                        <div class="preview-value">${data.experience || 'Not provided'}</div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-label">Notable Projects</div>
+                        <div class="preview-value">${data.projects || 'Not provided'}</div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #3498db; color: #6c757d;">
+                    <p><strong>TorqSoft Solutions Pvt Ltd</strong></p>
+                    <p>Application submitted on ${new Date().toLocaleDateString()}</p>
+                </div>
+            `;
+
+            document.getElementById('previewContent').innerHTML = previewHTML;
+            document.getElementById('previewContainer').style.display = 'block';
+        }
+
+        // Download PDF
+        function downloadPDF() {
+            const element = document.getElementById('previewContent');
+            const opt = {
+                margin: 1,
+                filename: `TorqSoft_Application_${document.getElementById('fullName').value.replace(/\s+/g, '_')}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Submit form
+        async function submitForm() {
+            const form = document.getElementById('jobApplicationForm');
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+
+            try {
+                // Submit to Formspree
+                const formspreeResponse = await fetch('https://formspree.io/f/xkgzyvnj', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!formspreeResponse.ok) {
+                    throw new Error('Formspree submission failed');
+                }
+
+                // Send confirmation email to applicant via EmailJS
+                const emailParams = {
+                    to_name: data.fullName,
+                    to_email: data.email,
+                    position: data.position,
+                    company: 'TorqSoft Solutions Pvt Ltd'
+                };
+
+                await emailjs.send('service_3y3csda', 'template_stma97u', emailParams);
+
+                // Hide loading and show success
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Submission error:', error);
+                document.getElementById('loading').style.display = 'none';
+                showError('There was an error submitting your application. Please try again or contact us directly.');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentStep--;
+            showStep(currentStep);
+        });
+
+        document.getElementById('previewBtn').addEventListener('click', () => {
+            if (validateStep(currentStep)) {
+                generatePreview();
+            }
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', downloadPDF);
+
+        document.getElementById('jobApplicationForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (validateStep(currentStep) && document.getElementById('terms').checked) {
+                submitForm();
+            } else if (!document.getElementById('terms').checked) {
+                showError('Please accept the Terms & Conditions to submit your application.');
+            }
+        });
+
+        // Initialize
+        populateGraduationYears();
+        showStep(1);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e59a1c64998555',t:'MTc1NTA2MDczNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Life at TorqSoft Solutions</title>
+        <link rel="icon" type="image/png" href="logotorq1.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(147, 51, 234, 0.9)),
+                        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+        
+        .culture-bg {
+            background: linear-gradient(45deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400"><defs><linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:rgba(59,130,246,0.1)"/><stop offset="100%" style="stop-color:rgba(16,185,129,0.1)"/></linearGradient></defs><path d="M0,200 Q250,100 500,200 T1000,200 L1000,400 L0,400 Z" fill="url(%23wave)"/></svg>');
+        }
+        
+        .office-bg {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        @media (max-width: 768px) {
+            .office-bg {
+                background-attachment: scroll;
+            }
+        }
+        
+        .card-hover { 
+            transition: all 0.3s ease; 
+        }
+        .card-hover:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+        }
+        
+        .fade-in { 
+            animation: fadeInUp 0.8s ease-out; 
+        }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(30px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        .pulse-slow { animation: pulse 3s infinite; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .team-photo-1 {
+            background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-photo-2 {
+            background: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-photo-3 {
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-photo-4 {
+            background: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-photo-5 {
+            background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .team-photo-6 {
+            background: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                        <img src="logotorq1.png">
+                    </div>
+                    
+                    <a href=index.html><h1 class="text-lg sm:text-2xl font-bold text-gray-900">TorqSoft Solutions</h1></a>
+                    <a href="index.html" style="padding-left: 100px;">home</a>
+                </div>
+                <nav class="hidden lg:flex space-x-8">
+                    <a href="#culture" class="text-gray-700 hover:text-blue-600 font-medium">Culture</a>
+                    <a href="#benefits" class="text-gray-700 hover:text-blue-600 font-medium">Benefits</a>
+                    <a href="#life" class="text-gray-700 hover:text-blue-600 font-medium">Life at TorqSoft</a>
+                    <a href="#openings" class="text-gray-700 hover:text-blue-600 font-medium">Open Positions</a>
+                </nav>
+                <button class="bg-blue-600 text-white px-3 py-2 sm:px-6 sm:py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base">
+                    Apply Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 sm:py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 fade-in">Build Your Future with Us</h1>
+            <p class="text-base sm:text-lg md:text-xl mb-8 max-w-3xl mx-auto opacity-90 fade-in stagger-1">
+                Join Tamil Nadu's fastest-growing IT company where innovation meets opportunity. 
+                Shape the future of technology while building an extraordinary career.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in stagger-2">
+                <button class="bg-white text-blue-600 px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-base sm:text-lg">
+                    🚀 Explore Opportunities
+                </button>
+                <button class="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors text-base sm:text-lg">
+                    📖 Our Story
+                </button>
+            </div>
+            
+            <!-- Floating Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16 fade-in stagger-3">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+                    <div class="text-2xl sm:text-3xl font-bold">250+</div>
+                    <div class="text-xs sm:text-sm opacity-80">Team Members</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+                    <div class="text-2xl sm:text-3xl font-bold">4.8/5</div>
+                    <div class="text-xs sm:text-sm opacity-80">Employee Rating</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+                    <div class="text-2xl sm:text-3xl font-bold">15+</div>
+                    <div class="text-xs sm:text-sm opacity-80">Countries</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20">
+                    <div class="text-2xl sm:text-3xl font-bold">95%</div>
+                    <div class="text-xs sm:text-sm opacity-80">Retention Rate</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute top-20 left-4 sm:left-10 w-12 h-12 sm:w-20 sm:h-20 bg-white/10 rounded-full pulse-slow"></div>
+        <div class="absolute bottom-20 right-4 sm:right-10 w-10 h-10 sm:w-16 sm:h-16 bg-white/10 rounded-full pulse-slow" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-8 h-8 sm:w-12 sm:h-12 bg-white/10 rounded-full pulse-slow" style="animation-delay: 2s;"></div>
+    </section>
+
+    <!-- Why TorqSoft -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Why Choose <span class="gradient-text">TorqSoft?</span></h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    We're not just building software; we're building careers, communities, and the future of technology in Tamil Nadu.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-white text-2xl">🚀</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Innovation First</h3>
+                    <p class="text-gray-600 mb-6">Work with cutting-edge technologies like AI, ML, and cloud computing. Lead projects that shape industries.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Latest tech stack and tools</li>
+                        <li>• R&D time allocation</li>
+                        <li>• Patent filing support</li>
+                        <li>• Innovation challenges</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-white text-2xl">🌱</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Growth Mindset</h3>
+                    <p class="text-gray-600 mb-6">Continuous learning and development opportunities to accelerate your career trajectory.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Personalized learning paths</li>
+                        <li>• Conference sponsorships</li>
+                        <li>• Mentorship programs</li>
+                        <li>• Leadership development</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl card-hover">
+                    <div class="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <span class="text-white text-2xl">🤝</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">People First</h3>
+                    <p class="text-gray-600 mb-6">A culture that values work-life balance, diversity, and individual contributions.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Flexible working hours</li>
+                        <li>• Mental health support</li>
+                        <li>• Diversity & inclusion</li>
+                        <li>• Open communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Culture -->
+    <section id="culture" class="py-20 culture-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Work Culture</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600">Built on trust, collaboration, and shared success</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-8">Core Values That Drive Us</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">💡</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Innovation & Creativity</h4>
+                                <p class="text-gray-600">We encourage bold ideas and creative problem-solving. Every voice matters in shaping our solutions.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">🎯</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Excellence & Quality</h4>
+                                <p class="text-gray-600">We strive for excellence in everything we do, from code quality to client relationships.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">🤝</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Collaboration & Respect</h4>
+                                <p class="text-gray-600">We believe in the power of teamwork and treat everyone with dignity and respect.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center mr-4">
+                                <span class="text-white text-xl">⚡</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-gray-900 mb-2">Agility & Adaptability</h4>
+                                <p class="text-gray-600">We embrace change and adapt quickly to new technologies and market demands.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl">
+                    <h4 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Our Company Values</h4>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-blue-600 pl-6">
+                            <h5 class="font-semibold text-gray-900 mb-2">Innovation & Growth</h5>
+                            <p class="text-gray-600 text-sm sm:text-base">We foster an environment where creativity thrives and every team member has the opportunity to contribute to groundbreaking solutions.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-green-600 pl-6">
+                            <h5 class="font-semibold text-gray-900 mb-2">Work-Life Balance</h5>
+                            <p class="text-gray-600 text-sm sm:text-base">We believe that happy employees create exceptional work. Our flexible policies support both professional success and personal well-being.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-purple-600 pl-6">
+                            <h5 class="font-semibold text-gray-900 mb-2">Continuous Learning</h5>
+                            <p class="text-gray-600 text-sm sm:text-base">From day one, we invest in your growth with comprehensive training programs, mentorship opportunities, and skill development initiatives.</p>
+                        </div>
+                        
+                        <div class="border-l-4 border-orange-600 pl-6">
+                            <h5 class="font-semibold text-gray-900 mb-2">Inclusive Culture</h5>
+                            <p class="text-gray-600 text-sm sm:text-base">We celebrate diversity and create an inclusive workplace where everyone feels valued, heard, and empowered to do their best work.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits & Perks -->
+    <section id="benefits" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Benefits & Perks</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600">Comprehensive benefits designed for your well-being and growth</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">💰</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Competitive Salary</h3>
+                    <p class="text-sm text-gray-600">Market-leading compensation with performance bonuses and equity options</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">🏥</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Health & Wellness</h3>
+                    <p class="text-sm text-gray-600">Comprehensive medical insurance, wellness programs, and mental health support</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">🎓</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Learning & Development</h3>
+                    <p class="text-sm text-gray-600">Training budgets, certifications, conferences, and skill development programs</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">⏰</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Flexible Work</h3>
+                    <p class="text-sm text-gray-600">Hybrid work options, flexible hours, and unlimited PTO policy</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">🍕</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Food & Snacks</h3>
+                    <p class="text-sm text-gray-600">Free meals, snacks, beverages, and special dietary accommodations</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">🎉</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Team Events</h3>
+                    <p class="text-sm text-gray-600">Regular team outings, celebrations, hackathons, and cultural events</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">👶</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Family Support</h3>
+                    <p class="text-sm text-gray-600">Parental leave, childcare support, and family health coverage</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-xl card-hover text-center">
+                    <div class="w-16 h-16 bg-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white text-2xl">🚗</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Transportation</h3>
+                    <p class="text-sm text-gray-600">Shuttle services, parking facilities, and commute allowances</p>
+                </div>
+            </div>
+
+            <!-- Detailed Benefits -->
+            <div class="bg-gray-50 p-8 rounded-2xl">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Complete Benefits Package</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <span class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">💼</span>
+                            </span>
+                            Professional Growth
+                        </h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Annual learning budget of ₹50,000</li>
+                            <li>• Conference and workshop sponsorship</li>
+                            <li>• Internal mentorship programs</li>
+                            <li>• Cross-functional project opportunities</li>
+                            <li>• Leadership development tracks</li>
+                            <li>• Technical certification support</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <span class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">❤️</span>
+                            </span>
+                            Health & Wellness
+                        </h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Premium health insurance (₹10L coverage)</li>
+                            <li>• Annual health check-ups</li>
+                            <li>• On-site gym and fitness classes</li>
+                            <li>• Mental health counseling</li>
+                            <li>• Ergonomic workstations</li>
+                            <li>• Wellness challenges and rewards</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                            <span class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-3">
+                                <span class="text-white text-sm">🏖️</span>
+                            </span>
+                            Work-Life Balance
+                        </h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Unlimited paid time off</li>
+                            <li>• Flexible working hours (7 AM - 10 PM)</li>
+                            <li>• Work from home options</li>
+                            <li>• Sabbatical leave programs</li>
+                            <li>• Birthday and anniversary leaves</li>
+                            <li>• No weekend work policy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life at TorqSoft -->
+    <section id="life" class="py-20 office-bg text-white relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-purple-900/90"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold mb-4">Life at TorqSoft</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    Experience a workplace where innovation thrives, friendships flourish, and every day brings new opportunities to grow.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20 card-hover">
+                    <div class="team-photo-1 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Collaborative Spaces</h3>
+                    <p class="text-sm opacity-80">Open workspaces designed to foster collaboration and creativity among teams.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20 card-hover">
+                    <div class="team-photo-2 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Recreation Areas</h3>
+                    <p class="text-sm opacity-80">Gaming zones, relaxation areas, and entertainment spaces for work-life balance.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20 card-hover">
+                    <div class="team-photo-3 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Cafeteria & Kitchen</h3>
+                    <p class="text-sm opacity-80">Fully equipped kitchen with diverse meal options and comfortable dining areas.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20 card-hover">
+                    <div class="team-photo-4 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Learning Spaces</h3>
+                    <p class="text-sm opacity-80">Dedicated areas for training, workshops, and knowledge sharing sessions.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20 card-hover">
+                    <div class="team-photo-5 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Event Celebrations</h3>
+                    <p class="text-sm opacity-80">Regular celebrations, festivals, and team building activities throughout the year.</p>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20 card-hover">
+                    <div class="team-photo-6 h-40 sm:h-48 rounded-lg mb-4"></div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Tech Infrastructure</h3>
+                    <p class="text-sm opacity-80">State-of-the-art technology setup with latest hardware and software tools.</p>
+                </div>
+            </div>
+
+            <!-- Culture Highlights -->
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6">Our Culture in Action</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">🚀</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Innovation Fridays</h4>
+                                <p class="text-sm opacity-80">Dedicated time for personal projects and creative exploration</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">🏆</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Monthly Hackathons</h4>
+                                <p class="text-sm opacity-80">Company-wide competitions to solve real-world problems</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">🎓</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Tech Talks</h4>
+                                <p class="text-sm opacity-80">Weekly knowledge sharing sessions by internal and external experts</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center mr-4 mt-1">
+                                <span class="text-white text-sm">🌟</span>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold mb-1">Recognition Programs</h4>
+                                <p class="text-sm opacity-80">Peer nominations and leadership recognition for outstanding contributions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-6">Career Development</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                            <h4 class="font-semibold mb-2 text-blue-300">Professional Growth Paths</h4>
+                            <p class="text-sm sm:text-base opacity-80">Clear career progression with defined milestones, regular performance reviews, and opportunities to advance into leadership roles.</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                            <h4 class="font-semibold mb-2 text-green-300">Skill Enhancement Programs</h4>
+                            <p class="text-sm sm:text-base opacity-80">Access to online courses, workshops, certifications, and conferences to keep your skills current with industry trends.</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-xl border border-white/20">
+                            <h4 class="font-semibold mb-2 text-purple-300">Mentorship & Guidance</h4>
+                            <p class="text-sm sm:text-base opacity-80">Paired mentorship programs connecting you with senior professionals who guide your career development journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions -->
+    <section id="openings" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">Open Positions</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600">Join our growing team and make an impact from day one</p>
+            </div>
+
+            <div class="grid gap-6 mb-12">
+                <!-- Job Card 1 -->
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg card-hover border-l-4 border-blue-600">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center mb-2">
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-0 sm:mr-4">Senior Full Stack Developer</h3>
+                                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium w-fit">Full-time</span>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Lead development of scalable web applications using React, Node.js, and cloud technologies. Work with cross-functional teams to deliver innovative solutions.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">React</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Node.js</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">AWS</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center text-sm text-gray-500 space-y-1 sm:space-y-0">
+                                <span class="sm:mr-4">📍 Chennai, Tamil Nadu</span>
+                                <span class="sm:mr-4">💰 ₹12-18 LPA</span>
+                                <span>⏰ 3-5 years experience</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6">
+                            <button class="bg-blue-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold w-full lg:w-auto">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg card-hover border-l-4 border-green-600">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center mb-2">
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-0 sm:mr-4">DevOps Engineer</h3>
+                                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium w-fit">Full-time</span>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Build and maintain CI/CD pipelines, manage cloud infrastructure, and ensure system reliability and scalability across our platform.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Docker</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Kubernetes</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Jenkins</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Terraform</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center text-sm text-gray-500 space-y-1 sm:space-y-0">
+                                <span class="sm:mr-4">📍 Chennai, Tamil Nadu</span>
+                                <span class="sm:mr-4">💰 ₹10-15 LPA</span>
+                                <span>⏰ 2-4 years experience</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6">
+                            <button class="bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold w-full lg:w-auto">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg card-hover border-l-4 border-purple-600">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center mb-2">
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-0 sm:mr-4">Data Scientist</h3>
+                                <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium w-fit">Full-time</span>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Develop machine learning models and analytics solutions to drive business insights and product improvements using advanced statistical methods.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Python</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">TensorFlow</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">SQL</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Tableau</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center text-sm text-gray-500 space-y-1 sm:space-y-0">
+                                <span class="sm:mr-4">📍 Chennai, Tamil Nadu</span>
+                                <span class="sm:mr-4">💰 ₹15-22 LPA</span>
+                                <span>⏰ 3-6 years experience</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6">
+                            <button class="bg-purple-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold w-full lg:w-auto">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 4 -->
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg card-hover border-l-4 border-orange-600">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center mb-2">
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-0 sm:mr-4">Product Manager</h3>
+                                <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm font-medium w-fit">Full-time</span>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Drive product strategy and roadmap, collaborate with engineering and design teams to deliver exceptional user experiences and business value.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Product Strategy</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Agile</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Analytics</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">User Research</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center text-sm text-gray-500 space-y-1 sm:space-y-0">
+                                <span class="sm:mr-4">📍 Chennai, Tamil Nadu</span>
+                                <span class="sm:mr-4">💰 ₹18-25 LPA</span>
+                                <span>⏰ 4-7 years experience</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6">
+                            <button class="bg-orange-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-orange-700 transition-colors font-semibold w-full lg:w-auto">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Card 5 -->
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg card-hover border-l-4 border-red-600">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between">
+                        <div class="flex-1">
+                            <div class="flex flex-col sm:flex-row sm:items-center mb-2">
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2 sm:mb-0 sm:mr-4">UX/UI Designer</h3>
+                                <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm font-medium w-fit">Full-time</span>
+                            </div>
+                            <p class="text-gray-600 mb-4 text-sm sm:text-base">Create intuitive and beautiful user experiences, conduct user research, and collaborate with product teams to design innovative digital solutions.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Figma</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Adobe Creative Suite</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">Prototyping</span>
+                                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">User Research</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center text-sm text-gray-500 space-y-1 sm:space-y-0">
+                                <span class="sm:mr-4">📍 Chennai, Tamil Nadu</span>
+                                <span class="sm:mr-4">💰 ₹8-14 LPA</span>
+                                <span>⏰ 2-5 years experience</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 lg:mt-0 lg:ml-6">
+                            <button class="bg-red-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg hover:bg-red-700 transition-colors font-semibold w-full lg:w-auto">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Process -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Our Hiring Process</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">1</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Application Review</h4>
+                        <p class="text-sm text-gray-600">We review your application and portfolio within 48 hours</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">2</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Technical Assessment</h4>
+                        <p class="text-sm text-gray-600">Complete a relevant technical challenge or coding test</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">3</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Team Interview</h4>
+                        <p class="text-sm text-gray-600">Meet with your potential team members and manager</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-white text-2xl font-bold">4</span>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Welcome Aboard</h4>
+                        <p class="text-sm text-gray-600">Join our onboarding program and start your journey</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-5xl font-bold mb-6">Ready to Join Our Team?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+                Take the next step in your career journey. Be part of something extraordinary at TorqSoft Solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
+                    🚀 Browse All Positions
+                </button>
+                <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors text-lg">
+                    📧 Get Job Alerts
+                </button>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">250+</div>
+                    <div class="text-sm opacity-80">Happy Employees</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">4.8/5</div>
+                    <div class="text-sm opacity-80">Glassdoor Rating</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-2">95%</div>
+                    <div class="text-sm opacity-80">Employee Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-white font-bold">T</span>
+                        </div>
+                        <span class="text-xl font-bold">TorqSoft Solutions</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">Building the future of technology from Tamil Nadu.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://in.linkedin.com/company/torqsoft" class="text-gray-400 hover:text-white">LinkedIn</a>
+                        <a href="https://www.instagram.com/torqsoft_solutions/" class="text-gray-400 hover:text-white">Instagram</a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Our Mission</a></li>
+                        <li><a href="#" class="hover:text-white">Leadership</a></li>
+                        <li><a href="#" class="hover:text-white">News & Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Careers</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">Open Positions</a></li>
+                        <li><a href="#" class="hover:text-white">Internships</a></li>
+                        <li><a href="#" class="hover:text-white">Campus Hiring</a></li>
+                        <li><a href="#" class="hover:text-white">Referral Program</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li>📧 careers@torqsoft.com</li>
+                        <li>📞 +91 89398 65851</li>
+                        <li>📍 Chennai, Tamil Nadu</li>
+                        <li>🌐 www.torqsoft.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2025 TorqSoft Solutions. All rights reserved. | Privacy Policy | Terms of Service | Equal Opportunity Employer</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Button click handlers
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (this.textContent.includes('Apply Now') || this.textContent.includes('Browse All Positions')) {
+                    window.location.href = 'job2.html';
+                } else if (this.textContent.includes('Get Job Alerts')) {
+                    alert('Job alert subscription would be set up here. You would receive notifications about new openings matching your profile.');
+                } else if (this.textContent.includes('Explore Opportunities')) {
+                    document.querySelector('#openings').scrollIntoView({ behavior: 'smooth' });
+                } else if (this.textContent.includes('Our Story')) {
+                    document.querySelector('#culture').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.card-hover').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add staggered animation delays
+        document.querySelectorAll('.fade-in').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Dynamic background animation
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.className = 'absolute w-2 h-2 bg-white/20 rounded-full';
+            element.style.left = Math.random() * 100 + '%';
+            element.style.top = '100%';
+            element.style.animation = `float ${5 + Math.random() * 5}s linear infinite`;
+            
+            document.querySelector('.hero-bg').appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 10000);
+        }
+
+        // Add floating elements periodically
+        setInterval(createFloatingElement, 2000);
+
+        // Add CSS for floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f3e750563c9374',t:'MTc1NTIxMDcwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

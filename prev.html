@@ -1,0 +1,4182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorqSoft Solutions - Innovating the Future of Technology</title>
+    <link rel="icon" type="image/png" href="logotorq1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight:600; letter-spacing:0.5px;
+            font-size: 0.9 rem;
+            font-weight: 800;
+            color: #00A8E8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        /* Navigation Controls */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Search Container */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 0.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-container:focus-within {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #00A8E8;
+            box-shadow: 0 0 20px rgba(0, 168, 232, 0.3);
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #333;
+            padding: 0.5rem;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+
+        .search-input::placeholder {
+            color: rgba(51, 51, 51, 0.6);
+        }
+
+        .search-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #333;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .search-btn:hover {
+            background: rgba(0, 168, 232, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Hamburger Menu - Always Visible */
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1002;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Menu - Floating Panel */
+        .mobile-menu {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            width: 280px;
+            max-height: 500px;
+            background: rgba(10, 31, 68, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .mobile-menu-items {
+            list-style: none;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-menu-item {
+            margin: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active .mobile-menu-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu.active .mobile-menu-item:nth-child(1) { transition-delay: 0.05s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(2) { transition-delay: 0.1s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(4) { transition-delay: 0.2s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(6) { transition-delay: 0.3s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(7) { transition-delay: 0.35s; }
+        .mobile-menu.active .mobile-menu-item:nth-child(8) { transition-delay: 0.4s; }
+
+        /* Careers link only visible in mobile menu */
+        .careers-mobile-only {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+        }
+
+        /* Hide careers on desktop, show on mobile */
+        @media (min-width: 769px) {
+            .careers-mobile-only {
+                display: none;
+            }
+        }
+
+        .mobile-menu-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-menu-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 168, 232, 0.2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .mobile-menu-link:hover::before {
+            left: 0;
+        }
+
+        .mobile-menu-link:hover {
+            color: #00A8E8;
+            transform: translateX(5px);
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: #00A8E8;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9fa;
+            color: #00A8E8;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            border-color: #00A8E8;
+            color: #00A8E8;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 800px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) rotateX(-15deg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            padding: 2rem;
+            transform-origin: top center;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) rotateX(0deg);
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .language-column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .language-item:hover {
+            background: #f8f9fa;
+        }
+
+        .flag {
+            width: 24px;
+            height: 18px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 3D Geometric Background */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(0, 168, 232, 0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(102, 126, 234, 0.1) 50%, transparent 70%);
+            animation: geometricMove 20s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 168, 232, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 30%);
+            animation: pulseGlow 8s ease-in-out infinite;
+        }
+
+        /* 3D Floating Elements */
+        .floating-3d-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-cube {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, rgba(0, 168, 232, 0.2), rgba(102, 126, 234, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: float3D 15s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+
+        .floating-cube:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            transform: rotateX(45deg) rotateY(45deg);
+        }
+
+        .floating-cube:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+            transform: rotateX(-30deg) rotateY(60deg);
+            width: 40px;
+            height: 40px;
+        }
+
+        .floating-cube:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -10s;
+            transform: rotateX(60deg) rotateY(-45deg);
+            width: 80px;
+            height: 80px;
+        }
+
+        .floating-sphere {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 168, 232, 0.2));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            animation: floatSphere 12s ease-in-out infinite;
+        }
+
+        .floating-sphere:nth-child(4) {
+            top: 15%;
+            right: 25%;
+            width: 100px;
+            height: 100px;
+            animation-delay: -2s;
+        }
+
+        .floating-sphere:nth-child(5) {
+            bottom: 20%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            animation-delay: -7s;
+        }
+
+        .floating-sphere:nth-child(6) {
+            top: 50%;
+            left: 5%;
+            width: 40px;
+            height: 40px;
+            animation-delay: -12s;
+        }
+
+        /* Hexagonal Grid Pattern */
+        .hex-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(30deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%),
+                linear-gradient(-30deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%);
+            background-size: 100px 58px;
+            animation: hexMove 25s linear infinite;
+        }
+
+        /* Particle System */
+        .particle-system {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 20s linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: -2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: -4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: -6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: -8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: -10s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: -12s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: -14s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: -16s; }
+
+        /* 3D Animations */
+        @keyframes geometricMove {
+            0%, 100% { 
+                transform: translateX(0) translateY(0) rotateZ(0deg);
+                opacity: 0.8;
+            }
+            25% { 
+                transform: translateX(20px) translateY(-10px) rotateZ(90deg);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateX(0) translateY(-20px) rotateZ(180deg);
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translateX(-20px) translateY(-10px) rotateZ(270deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { 
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes float3D {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+                opacity: 0.7;
+            }
+            33% { 
+                transform: translateY(-20px) rotateX(60deg) rotateY(90deg) rotateZ(120deg);
+                opacity: 1;
+            }
+            66% { 
+                transform: translateY(10px) rotateX(30deg) rotateY(180deg) rotateZ(240deg);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes floatSphere {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.8;
+            }
+            25% { 
+                transform: translateY(-15px) translateX(10px) scale(1.1);
+                opacity: 1;
+            }
+            50% { 
+                transform: translateY(-5px) translateX(-5px) scale(0.9);
+                opacity: 0.6;
+            }
+            75% { 
+                transform: translateY(10px) translateX(15px) scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes hexMove {
+            0% { 
+                transform: translateX(0) translateY(0);
+            }
+            100% { 
+                transform: translateX(100px) translateY(58px);
+            }
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 1;
+            }
+            90% { 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+
+
+        .hero-content {
+            text-align: center;
+            z-index: 3;
+            max-width: 900px;
+            padding: 0 2rem;
+            color: white;
+        }
+
+        .hero-headline {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 2px 10px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .hero-subheadline {
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00A8E8, #0066CC);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,168,232,0.3), 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,168,232,0.4), 0 0 30px rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { 
+                opacity: 0.8;
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateY(-10px) rotate(180deg);
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.2)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.4)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.2)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mission Vision */
+        .mission-vision {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .mv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mv-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .mv-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Values Grid */
+        .values-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .values-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .values-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .value-card:hover {
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.2) rotateY(360deg);
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .services-hero {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .services-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .services-hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-category {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .category-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,168,232,0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Insights Section */
+        .insights-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .insights-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .insights-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .insights-hero p {
+            font-size: 1.3rem;
+            color: #666;
+        }
+
+        .insights-filter {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f8f9fa;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #00A8E8;
+            color: white;
+        }
+
+        .insights-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .insight-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .insight-image {
+            height: 200px;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .insight-content {
+            padding: 2rem;
+        }
+
+        .insight-category {
+            font-size: 0.9rem;
+            color: #00A8E8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .insight-excerpt {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .floating-object {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: float 3s ease-in-out infinite;
+            z-index: 100;
+        }
+
+        /* Careers Section */
+        .careers-section {
+            padding: 8rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .careers-hero {
+            background: linear-gradient(135deg, rgba(10,31,68,0.9), rgba(0,168,232,0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23333"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 6rem;
+            border-radius: 20px;
+        }
+
+        .careers-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .careers-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .why-work-section {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+        }
+
+        .why-work-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .why-work-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .why-work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-work-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .why-work-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .why-work-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .jobs-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .jobs-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .jobs-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .jobs-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .job-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 2rem;
+            padding: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .job-row:hover {
+            background: #f8f9fa;
+        }
+
+        .job-row:last-child {
+            border-bottom: none;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .job-department {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .job-location,
+        .job-type {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .apply-btn {
+            background: #00A8E8;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: #0066CC;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0A1F44;
+            color: white;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00A8E8, #667eea);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #00A8E8;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00A8E8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #00A8E8;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-headline {
+                font-size: 1.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+            
+            .mv-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .nav-controls {
+                gap: 0.5rem;
+            }
+
+            .mobile-menu {
+                right: 10px;
+                width: calc(100vw - 20px);
+                max-width: 300px;
+            }
+        }
+            
+            .hero-headline {
+                font-size: 1.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-hero h1,
+            .services-hero h1,
+            .insights-hero h1,
+            .careers-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .job-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .language-dropdown {
+                min-width: 350px;
+                right: -50px;
+                transform: translateY(-10px) rotateX(0deg);
+            }
+            
+            .language-selector:hover .language-dropdown {
+                transform: translateY(0) rotateX(0deg);
+            }
+            
+            .language-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline {
+                font-size: 4.5 rem;
+            }
+            
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-results-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            color: white;
+        }
+
+        .search-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .close-search {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .close-search:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .search-results {
+            padding: 2rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-result-item:hover {
+            background: #f8f9fa;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-result-content {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .search-result-page {
+            font-size: 0.9rem;
+            color: #00A8E8;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        .no-results h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Section Container */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Home Services Section */
+        .home-services-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .home-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .home-service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .home-service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,168,232,0.2);
+            border-color: #00A8E8;
+        }
+
+        .service-icon-large {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .home-service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .home-service-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            color: #00A8E8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: #0066CC;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #00A8E8;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,168,232,0.2);
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            color: #00A8E8;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .news-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .know-more-btn {
+            background: #00A8E8;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .know-more-btn:hover {
+            background: #0066CC;
+            transform: translateY(-2px);
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .testimonial-photo {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-content p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author strong {
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author span {
+            color: #666;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .partners-carousel {
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .partners-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 3rem;
+        }
+
+        .partner-logo {
+            flex-shrink: 0;
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            transition: transform 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Awards Section */
+        .awards-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .award-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .award-card:hover {
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .award-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-card p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00A8E8;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-card span {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Career Preview Section */
+        .career-preview-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            color: white;
+        }
+
+        .career-preview-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .career-preview-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .career-preview-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .career-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .career-stat {
+            text-align: center;
+        }
+
+        .career-stat strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .career-stat span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .career-preview-visual {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .career-visual-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .career-visual-text h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .career-visual-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .career-visual-text li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .career-visual-text li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #666;
+            margin: 0;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: #f8f9fa;
+            padding: 2.5rem;
+            border-radius: 15px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00A8E8;
+        }
+
+        .checkbox-group {
+            margin: 2rem 0;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+            background: #00A8E8;
+            border-color: #00A8E8;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .submit-btn {
+            background: #00A8E8;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #0066CC;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design for New Sections */
+        @media (max-width: 768px) {
+            .home-services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .awards-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .career-preview-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .career-stats {
+                justify-content: center;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .partners-track {
+                gap: 2rem;
+            }
+            
+            .partner-logo {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <img src="logotorq.jpg" alt="Company Logo" style="width:50px; height:50px; border-radius:50%; object-fit:cover;">
+            <a href="#" class="logo" onclick="showPage('home')">TorqSoft Solutions</a>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" onclick="showPage('about')">Who We Are ▼</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link" onclick="showPage('services')">What We Do ▼</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#insights" class="nav-link" onclick="showPage('insights')">What We Think ▼</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#careers" class="nav-link" onclick="showPage('careers')">Careers</a>
+                    <div class="dropdown-content">
+                        <a href="#jobs" onclick="showPage('careers')">Job Openings</a>
+                        <a href="#internships" onclick="showPage('careers')">Internships</a>
+                    </div>
+                </li>
+                <li class="nav-item language-selector">
+                    <button class="language-btn">
+                        🌐 EN ▼
+                    </button>
+                    <div class="language-dropdown">
+                        <div class="language-grid">
+                            <div class="language-column">
+                                <h4>Americas</h4>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'United States')">
+                                    <span class="flag">🇺🇸</span>
+                                    <span>United States</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'Canada')">
+                                    <span class="flag">🇨🇦</span>
+                                    <span>Canada</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('es', 'Brazil')">
+                                    <span class="flag">🇧🇷</span>
+                                    <span>Brazil</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('es', 'Mexico')">
+                                    <span class="flag">🇲🇽</span>
+                                    <span>Mexico</span>
+                                </a>
+                            </div>
+                            <div class="language-column">
+                                <h4>Europe</h4>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'United Kingdom')">
+                                    <span class="flag">🇬🇧</span>
+                                    <span>United Kingdom</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('de', 'Germany')">
+                                    <span class="flag">🇩🇪</span>
+                                    <span>Germany</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('fr', 'France')">
+                                    <span class="flag">🇫🇷</span>
+                                    <span>France</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('es', 'Spain')">
+                                    <span class="flag">🇪🇸</span>
+                                    <span>Spain</span>
+                                </a>
+                            </div>
+                            <div class="language-column">
+                                <h4>Asia Pacific</h4>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'India')">
+                                    <span class="flag">🇮🇳</span>
+                                    <span>India</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'Japan')">
+                                    <span class="flag">🇯🇵</span>
+                                    <span>Japan</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'Australia')">
+                                    <span class="flag">🇦🇺</span>
+                                    <span>Australia</span>
+                                </a>
+                                <a href="#" class="language-item" onclick="changeLanguage('en', 'Singapore')">
+                                    <span class="flag">🇸🇬</span>
+                                    <span>Singapore</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Right Side Controls -->
+            <div class="nav-controls">
+                <!-- Search Box -->
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+                    <button class="search-btn" onclick="performSearch()">🔍</button>
+                </div>
+
+                <!-- Hamburger Menu Button (Always Visible) -->
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul class="mobile-menu-items">
+            <li class="mobile-menu-item">
+                <a href="#home" class="mobile-menu-link" onclick="showPage('home'); closeMobileMenu();">Home</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#services" class="mobile-menu-link" onclick="showPage('services'); closeMobileMenu();">Services</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="faq.html" class="mobile-menu-link" onclick="showPage('faqs'); closeMobileMenu();">FAQs</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#investors" class="mobile-menu-link" onclick="showPage('investors'); closeMobileMenu();">Investors</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="testimonials.html" class="mobile-menu-link" onclick="showPage('testimonials'); closeMobileMenu();">Testimonials</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="employees.html" class="mobile-menu-link" onclick="showPage('employees'); closeMobileMenu();">Employees</a>
+            </li>
+            <li class="mobile-menu-item">
+                <a href="#history" class="mobile-menu-link" onclick="showPage('history'); closeMobileMenu();">History</a>
+            </li>
+            <li class="mobile-menu-item careers-mobile-only">
+                <a href="#careers" class="mobile-menu-link" onclick="showPage('careers'); closeMobileMenu();">Careers</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Search Results Overlay -->
+    <div id="searchOverlay" class="search-overlay">
+        <div class="search-results-container">
+            <div class="search-header">
+                <h3 id="searchTitle">Search Results</h3>
+                <button class="close-search" onclick="closeSearch()">✕</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <!-- 3D Background Elements -->
+            <div class="floating-3d-elements">
+                <div class="floating-cube"></div>
+                <div class="floating-cube"></div>
+                <div class="floating-cube"></div>
+                <div class="floating-sphere"></div>
+                <div class="floating-sphere"></div>
+                <div class="floating-sphere"></div>
+            </div>
+            
+            <!-- Hexagonal Grid Pattern -->
+            <div class="hex-grid"></div>
+            
+            <!-- Particle System -->
+            <div class="particle-system">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-headline">Innovating the Future of Technology</h1>
+                <p class="hero-subheadline">From student-led vision to industry-ready solutions.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary" onclick="showPage('services')">Explore Our Services</a>
+                    <a href="#careers" class="btn-secondary" onclick="showPage('careers')">Work With Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Services Section -->
+        <section class="home-services-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Our Core Services</h2>
+                    <p>Comprehensive technology solutions for modern businesses</p>
+                </div>
+                
+                <div class="home-services-grid">
+                    <div class="home-service-card fade-in">
+                        <div class="service-icon-large">☁️</div>
+                        <h3>Cloud Solutions</h3>
+                        <p>Scalable cloud infrastructure and migration services to optimize your business operations and reduce costs.</p>
+                        <a href="#services" class="service-link" onclick="showPage('services')">Learn More →</a>
+                    </div>
+                    
+                    <div class="home-service-card fade-in">
+                        <div class="service-icon-large">🤖</div>
+                        <h3>AI Development</h3>
+                        <p>Custom artificial intelligence solutions including machine learning models and intelligent automation systems.</p>
+                        <a href="#services" class="service-link" onclick="showPage('services')">Learn More →</a>
+                    </div>
+                    
+                    <div class="home-service-card fade-in">
+                        <div class="service-icon-large">⚙️</div>
+                        <h3>Software Engineering</h3>
+                        <p>Full-stack development services from web applications to mobile apps with modern frameworks and technologies.</p>
+                        <a href="#services" class="service-link" onclick="showPage('services')">Learn More →</a>
+                    </div>
+                    
+                    <div class="home-service-card fade-in">
+                        <div class="service-icon-large">🛡️</div>
+                        <h3>Cybersecurity</h3>
+                        <p>Comprehensive security solutions to protect your digital assets and ensure compliance with industry standards.</p>
+                        <a href="#services" class="service-link" onclick="showPage('services')">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News & Press Releases -->
+        <section class="news-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Latest News & Press Releases</h2>
+                    <p>Stay updated with our latest developments and industry insights</p>
+                </div>
+                
+                <div class="news-grid">
+                    <article class="news-card fade-in">
+                        <div class="news-date">March 15, 2025</div>
+                        <h3 class="news-title">TorqSoft Solutions Receives MSME Excellence Award</h3>
+                        <p class="news-description">Our company has been recognized for outstanding innovation in technology consulting and student entrepreneurship initiatives.</p>
+                        <button class="know-more-btn" onclick="showNewsDetail('news1')">Know More</button>
+                    </article>
+                    
+                    <article class="news-card fade-in">
+                        <div class="news-date">March 10, 2025</div>
+                        <h3 class="news-title">Partnership with Leading Cloud Infrastructure Provider</h3>
+                        <p class="news-description">We've announced a strategic partnership to enhance our cloud solutions and provide better services to our clients.</p>
+                        <button class="know-more-btn" onclick="showNewsDetail('news2')">Know More</button>
+                    </article>
+                    
+                    <article class="news-card fade-in">
+                        <div class="news-date">March 5, 2025</div>
+                        <h3 class="news-title">New AI Development Center Opens in Chennai</h3>
+                        <p class="news-description">Our expanded facility will focus on cutting-edge artificial intelligence research and development projects.</p>
+                        <button class="know-more-btn" onclick="showNewsDetail('news3')">Know More</button>
+                    </article>
+                    
+                    <article class="news-card fade-in">
+                        <div class="news-date">February 28, 2025</div>
+                        <h3 class="news-title">Student Internship Program Launches Successfully</h3>
+                        <p class="news-description">Over 50 students from top engineering colleges have joined our comprehensive internship program this semester.</p>
+                        <button class="know-more-btn" onclick="showNewsDetail('news4')">Know More</button>
+                    </article>
+                    
+                    <article class="news-card fade-in">
+                        <div class="news-date">February 20, 2025</div>
+                        <h3 class="news-title">Cybersecurity Division Expands Operations</h3>
+                        <p class="news-description">New team of security experts joins to strengthen our cybersecurity offerings and threat detection capabilities.</p>
+                        <button class="know-more-btn" onclick="showNewsDetail('news5')">Know More</button>
+                    </article>
+                    
+                    <article class="news-card fade-in">
+                        <div class="news-date">February 15, 2025</div>
+                        <h3 class="news-title">Industry Recognition for Innovation Excellence</h3>
+                        <p class="news-description">TorqSoft Solutions featured in Tech Innovation Magazine as one of the top emerging technology companies.</p>
+                        <button class="know-more-btn" onclick="showNewsDetail('news6')">Know More</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client Testimonials -->
+        <section class="testimonials-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>What Our Clients Say</h2>
+                    <p>Trusted by businesses worldwide for exceptional results</p>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-photo">👨‍💼</div>
+                        <div class="testimonial-content">
+                            <p>"TorqSoft Solutions transformed our digital infrastructure completely. Their cloud migration services saved us 40% in operational costs while improving performance significantly."</p>
+                            <div class="testimonial-author">
+                                <strong>Rajesh Kumar</strong>
+                                <span>CTO, TechCorp Industries</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-photo">👩‍💼</div>
+                        <div class="testimonial-content">
+                            <p>"The AI solutions developed by TorqSoft have revolutionized our customer service operations. Response times improved by 60% and customer satisfaction is at an all-time high."</p>
+                            <div class="testimonial-author">
+                                <strong>Priya Sharma</strong>
+                                <span>Operations Director, ServiceMax Ltd</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-photo">👨‍💻</div>
+                        <div class="testimonial-content">
+                            <p>"Working with TorqSoft's cybersecurity team gave us peace of mind. Their comprehensive security audit and implementation protected us from multiple threats."</p>
+                            <div class="testimonial-author">
+                                <strong>Michael Chen</strong>
+                                <span>IT Manager, Global Finance Corp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Logos Carousel -->
+        <section class="partners-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Trusted Partners</h2>
+                    <p>Collaborating with industry leaders to deliver excellence</p>
+                </div>
+                
+                <div class="partners-carousel">
+                    <div class="partners-track">
+                        <div class="partner-logo">🏢 Microsoft</div>
+                        <div class="partner-logo">☁️ AWS</div>
+                        <div class="partner-logo">🔵 IBM</div>
+                        <div class="partner-logo">🟦 Google Cloud</div>
+                        <div class="partner-logo">🔷 Oracle</div>
+                        <div class="partner-logo">⚡ Salesforce</div>
+                        <div class="partner-logo">🔶 Adobe</div>
+                        <div class="partner-logo">🟨 SAP</div>
+                        <!-- Duplicate for seamless loop -->
+                        <div class="partner-logo">🏢 Microsoft</div>
+                        <div class="partner-logo">☁️ AWS</div>
+                        <div class="partner-logo">🔵 IBM</div>
+                        <div class="partner-logo">🟦 Google Cloud</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                <section style="background: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed; background-size: cover; padding: 50px 20px; color: white;">
+        <div style="background-color: rgba(0,0,0,0.7); padding: 40px; border-radius: 15px; max-width: 1200px; margin: auto;">
+            
+            <h1 style="text-align: center; font-size: 36px; margin-bottom: 20px;">Our Journey</h1>
+            <p style="text-align: center; font-size: 16px; line-height: 1.6; max-width: 900px; margin: auto; margin-bottom: 40px;">
+            Founded in 2025, TorqSoft Solutions Pvt Ltd began as a small tech start-up with a passion for solving complex business challenges through innovation. Over the years, we have grown into a trusted technology partner for leading MNCs, delivering cutting-edge solutions in AI, cloud computing, and enterprise software. Our culture blends innovation with integrity, empowering teams to push the boundaries of what technology can achieve.
+            </p>
+
+            <h2 style="text-align: center; font-size: 30px; margin-bottom: 30px;">Our Founders</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 50px;">
+            
+            <div style="background-color: #fff; color: #2b2b2b; border-radius: 12px; padding: 20px; text-align: center; width: 220px; box-shadow: 0px 2px 8px rgba(0,0,0,0.05); border-left: 4px solid #00aaff;">
+                <img src="me.jpg" alt="Ajay" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #00aaff;">
+                <h3 style="margin: 0; font-weight: 600; font-size: 18px;">Ajay</h3>
+                <p style="font-size: 14px; color: #555;">Co-Founder & CEO</p>
+            </div>
+
+            <div style="background-color: #fff; color: #2b2b2b; border-radius: 12px; padding: 20px; text-align: center; width: 220px; box-shadow: 0px 2px 8px rgba(0,0,0,0.05); border-left: 4px solid #00aaff;">
+                <img src="prem.jpg" alt="Prem" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #00aaff;">
+                <h3 style="margin: 0; font-weight: 600; font-size: 18px;">Prem</h3>
+                <p style="font-size: 14px; color: #555;">Co-Founder & CTO</p>
+            </div>
+
+            <div style="background-color: #fff; color: #2b2b2b; border-radius: 12px; padding: 20px; text-align: center; width: 220px; box-shadow: 0px 2px 8px rgba(0,0,0,0.05); border-left: 4px solid #00aaff;">
+                <img src="aprajith.jpg" alt="Aparajith" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #00aaff;">
+                <h3 style="margin: 0; font-weight: 600; font-size: 18px;">Aparajith</h3>
+                <p style="font-size: 14px; color: #555;">Co-Founder & Head of Design</p>
+            </div>
+
+            <div style="background-color: #fff; color: #2b2b2b; border-radius: 12px; padding: 20px; text-align: center; width: 220px; box-shadow: 0px 2px 8px rgba(0,0,0,0.05); border-left: 4px solid #00aaff;">
+                <img src="shakthi.jpg" alt="Shakthi Sundar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #00aaff;">
+                <h3 style="margin: 0; font-weight: 600; font-size: 18px;">Shakthi Sundar</h3>
+                <p style="font-size: 14px; color: #555;">Co-Founder & AI Solutions Architect</p>
+            </div>
+
+            </div>
+        </div>
+        </section>
+
+        <!-- Awards & Recognition -->
+        <section class="awards-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Awards & Recognition</h2>
+                    <p>Celebrating our achievements and industry recognition</p>
+                </div>
+                
+                <div class="awards-grid">
+                    <div class="award-card fade-in">
+                        <div class="award-icon">🏆</div>
+                        <h4>MSME Excellence Award</h4>
+                        <p>2025</p>
+                        <span>Outstanding Innovation in Technology</span>
+                    </div>
+                    
+                    <div class="award-card fade-in">
+                        <div class="award-icon">⭐</div>
+                        <h4>Best Emerging Tech Company</h4>
+                        <p>2025</p>
+                        <span>Tech Innovation Magazine</span>
+                    </div>
+                    
+                    <div class="award-card fade-in">
+                        <div class="award-icon">🎖️</div>
+                        <h4>Student Entrepreneur of the Year</h4>
+                        <p>2025</p>
+                        <span>National Entrepreneurship Awards</span>
+                    </div>
+                    
+                    <div class="award-card fade-in">
+                        <div class="award-icon">🥇</div>
+                        <h4>Innovation Excellence</h4>
+                        <p>2025</p>
+                        <span>Chennai Tech Summit</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Opportunities Preview -->
+        <section class="career-preview-section">
+            <div class="section-container">
+                <div class="career-preview-content">
+                    <div class="career-preview-text">
+                        <h2>Join Our Growing Team</h2>
+                        <p>Be part of an innovative company that's shaping the future of technology. We offer exciting opportunities for growth, learning, and making a real impact.</p>
+                        <div class="career-stats">
+                            <div class="career-stat">
+                                <strong>50+</strong>
+                                <span>Team Members</span>
+                            </div>
+                            <div class="career-stat">
+                                <strong>15+</strong>
+                                <span>Open Positions</span>
+                            </div>
+                            <div class="career-stat">
+                                <strong>100%</strong>
+                                <span>Remote Friendly</span>
+                            </div>
+                        </div>
+                        <a href="#careers" class="btn-primary" onclick="showPage('careers')">View All Opportunities</a>
+                    </div>
+                    <div class="career-preview-visual">
+                        <div class="career-visual-icon">🚀</div>
+                        <div class="career-visual-text">
+                            <h3>Current Openings</h3>
+                            <ul>
+                                <li>Senior Full Stack Developer</li>
+                                <li>AI/ML Engineer</li>
+                                <li>Cloud Solutions Architect</li>
+                                <li>Cybersecurity Specialist</li>
+                                <li>3D Design Engineer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Get In Touch</h2>
+                    <p>Ready to start your next project? Let's discuss how we can help you achieve your goals.</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <p>torqsoft@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <p>+91 98765 43210</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4>Visit Us</h4>
+                                <p>Chennai, Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">🕒</div>
+                            <div>
+                                <h4>Business Hours</h4>
+                                <p>Mon - Fri: 9:00 AM - 6:00 PM IST</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" action="https://formspree.io/f/xkgzyvnj" method="POST" onsubmit="handleContactSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="organization">Organization</label>
+                                <input type="text" id="organization" name="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Contact Number</label>
+                                <input type="tel" id="contact" name="contact">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="region">Region</label>
+                                <select id="region" name="region">
+                                    <option value="">Select Region</option>
+                                    <option value="india">India</option>
+                                    <option value="asia-pacific">Asia Pacific</option>
+                                    <option value="north-america">North America</option>
+                                    <option value="europe">Europe</option>
+                                    <option value="middle-east">Middle East</option>
+                                    <option value="africa">Africa</option>
+                                    <option value="south-america">South America</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inquiry-type">Inquiry Type *</label>
+                                <select id="inquiry-type" name="inquiry-type" required>
+                                    <option value="">Select Inquiry Type</option>
+                                    <option value="web-development">Web Development</option>
+                                    <option value="mobile-development">Mobile App Development</option>
+                                    <option value="cloud-solutions">Cloud Solutions</option>
+                                    <option value="ai-development">AI Development</option>
+                                    <option value="cybersecurity">Cybersecurity</option>
+                                    <option value="3d-modeling">3D Modeling & Design</option>
+                                    <option value="consulting">Consulting Services</option>
+                                    <option value="internship">Internship Program</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project requirements or inquiry..."></textarea>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="consent" name="consent" required>
+                                <span class="checkmark"></span>
+                                I consent to TorqSoft Solutions processing my personal data for the purpose of responding to my inquiry. I understand that I can withdraw this consent at any time.
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div class="about-hero">
+            <h1>Who We Are</h1>
+            <p>MSME-approved innovators driving the future of technology and consulting</p>
+        </div>
+
+        <section class="about-section">
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2025 by Sakthi Sundar, Aprajith, Ajay, and Prem from Saveetha Engineering College, TorqSoft Solutions Pvt Ltd represents the perfect blend of academic excellence and entrepreneurial spirit.</p>
+                    <p>We are a cutting-edge technology and consulting firm that helps businesses, organizations, and individuals adapt to the future through innovative solutions and strategic insights.</p>
+                    <p>Our team combines fresh perspectives with proven methodologies to deliver technology services, design & engineering, and strategic consulting tailored to your unique needs.</p>
+                </div>
+                <div class="about-image">
+                    🚀
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-vision">
+            <div class="mv-container">
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To empower organizations with innovative technology solutions and strategic insights that drive sustainable growth, operational excellence, and competitive advantage in an ever-evolving digital landscape.</p>
+                </div>
+                
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">🌟</div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading catalyst for digital transformation, recognized globally for our ability to turn complex challenges into breakthrough opportunities through cutting-edge technology and human-centered design.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="values-header">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card fade-in">
+                    <span class="value-icon">💡</span>
+                    <h4>Innovation</h4>
+                    <p>We constantly push boundaries, embracing new technologies and creative solutions to solve complex challenges.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <span class="value-icon">⭐</span>
+                    <h4>Quality</h4>
+                    <p>Excellence is our standard. We deliver superior results through meticulous attention to detail and rigorous processes.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <span class="value-icon">🤝</span>
+                    <h4>Collaboration</h4>
+                    <p>We believe in the power of partnership, working closely with clients and teams to achieve shared success.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <span class="value-icon">🛡️</span>
+                    <h4>Integrity</h4>
+                    <p>Trust is the foundation of our relationships. We operate with transparency, honesty, and ethical principles.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <div class="services-hero">
+            <h1>What We Do</h1>
+            <p>Comprehensive solutions across technology, design, and consulting</p>
+        </div>
+
+        <section class="services-section">
+            <!-- Technology Services -->
+            <div class="services-category fade-in">
+                <div class="category-header">
+                    <h2 class="category-title">Technology Services</h2>
+                    <p class="category-subtitle">Cutting-edge digital solutions for the modern world</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💻</div>
+                        <h3>Web Development</h3>
+                        <p>Custom web applications and responsive websites built with modern frameworks and technologies.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>Mobile App Development</h3>
+                        <p>Native and cross-platform mobile applications for iOS and Android with exceptional user experiences.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🧪</div>
+                        <h3>Testing & QA</h3>
+                        <p>Comprehensive testing services including automated testing, performance testing, and quality assurance.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Data Analysis</h3>
+                        <p>Transform raw data into actionable insights with advanced analytics and machine learning solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design & Engineering -->
+            <div class="services-category fade-in">
+                <div class="category-header">
+                    <h2 class="category-title">Design & Engineering</h2>
+                    <p class="category-subtitle">Innovative engineering solutions for complex challenges</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>3D Modelling</h3>
+                        <p>Professional 3D modeling and visualization services for product design and engineering applications.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⚙️</div>
+                        <h3>Mechanical Design</h3>
+                        <p>Complete mechanical design solutions from concept development to detailed engineering drawings.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔬</div>
+                        <h3>Analysis & Automation</h3>
+                        <p>Advanced engineering analysis including FEA, CFD, and process automation solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consulting Services -->
+            <div class="services-category fade-in">
+                <div class="category-header">
+                    <h2 class="category-title">Consulting Services</h2>
+                    <p class="category-subtitle">Strategic guidance for sustainable growth</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏛️</div>
+                        <h3>Political Strategy</h3>
+                        <p>Strategic political consulting services including campaign management and policy analysis.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🎓</div>
+                        <h3>Internships</h3>
+                        <p>Comprehensive internship programs providing hands-on experience in technology and consulting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="category-header" style="margin-top: 6rem;">
+                <h2 class="category-title">Let's Build Together</h2>
+                <p class="category-subtitle">Ready to transform your vision into reality?</p>
+                <div style="margin-top: 2rem;">
+                    <a href="#contact" class="btn-primary">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Insights Page -->
+    <div id="insights" class="page">
+        <div class="insights-hero">
+            <h1>What We Think</h1>
+            <p>Insights, trends, and thought leadership from our experts</p>
+        </div>
+
+        <section class="insights-section">
+            <div class="insights-filter">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Technology</button>
+                <button class="filter-btn">Design</button>
+                <button class="filter-btn">Strategy</button>
+                <button class="filter-btn">Innovation</button>
+            </div>
+
+            <div class="insights-grid">
+                <article class="insight-card fade-in">
+                    <div class="insight-image">💡</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Technology</div>
+                        <h3 class="insight-title">The Future of Web Development: Trends to Watch in 2025</h3>
+                        <p class="insight-excerpt">Exploring the latest trends in web development, from AI integration to progressive web apps and their impact on user experience.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">🎨</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Design</div>
+                        <h3 class="insight-title">3D Design Revolution: How Immersive Experiences Shape Modern Products</h3>
+                        <p class="insight-excerpt">Understanding the role of 3D modeling and visualization in creating products that resonate with today's consumers.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">📈</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Strategy</div>
+                        <h3 class="insight-title">Digital Transformation: A Strategic Approach for SMEs</h3>
+                        <p class="insight-excerpt">How small and medium enterprises can leverage digital transformation to compete with larger organizations.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">🚀</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Innovation</div>
+                        <h3 class="insight-title">From Campus to Corporate: The Student Entrepreneur Journey</h3>
+                        <p class="insight-excerpt">Insights from our founders on building a successful tech company while transitioning from student life to entrepreneurship.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">🔬</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Technology</div>
+                        <h3 class="insight-title">Data Analytics in Decision Making: Beyond the Numbers</h3>
+                        <p class="insight-excerpt">How advanced data analytics can transform business decision-making processes and drive sustainable growth.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">⚙️</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Design</div>
+                        <h3 class="insight-title">Engineering Excellence: The Art of Mechanical Design</h3>
+                        <p class="insight-excerpt">Exploring the intersection of creativity and precision in mechanical design and engineering solutions.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="floating-object">
+            🧠
+        </div>
+    </div>
+
+    <!-- Careers Page -->
+    <div id="careers" class="page">
+        <div class="careers-hero">
+            <h1>Join Our Team</h1>
+            <p>Build the future of technology with passionate innovators</p>
+        </div>
+
+        <section class="careers-section">
+            <div class="why-work-section fade-in">
+                <div class="why-work-header">
+                    <h2>Why Work With Us</h2>
+                    <p>Discover what makes TorqSoft Solutions a great place to grow your career</p>
+                </div>
+                
+                <div class="why-work-grid">
+                    <div class="why-work-card">
+                        <div class="why-work-icon">🚀</div>
+                        <h4>Innovation First</h4>
+                        <p>Work on cutting-edge projects that push the boundaries of technology and creativity.</p>
+                    </div>
+                    
+                    <div class="why-work-card">
+                        <div class="why-work-icon">🌱</div>
+                        <h4>Growth Opportunities</h4>
+                        <p>Continuous learning and development programs to advance your skills and career.</p>
+                    </div>
+                    
+                    <div class="why-work-card">
+                        <div class="why-work-icon">🤝</div>
+                        <h4>Collaborative Culture</h4>
+                        <p>Work with passionate professionals in a supportive and inclusive environment.</p>
+                    </div>
+                    
+                    <div class="why-work-card">
+                        <div class="why-work-icon">⚖️</div>
+                        <h4>Work-Life Balance</h4>
+                        <p>Flexible working arrangements that support your personal and professional goals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jobs-section fade-in">
+                <div class="jobs-header">
+                    <h2>Current Openings</h2>
+                    <p>Join our growing team of innovators and problem solvers</p>
+                </div>
+                
+                <div class="jobs-table">
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Senior Full Stack Developer</div>
+                            <div class="job-department">Technology Services</div>
+                        </div>
+                        <div class="job-location">Remote/Hybrid</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html"><a href="job2.html"><button class="apply-btn" onclick="alert('Application form would open here')">Apply</button></a> </a> 
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">3D Design Specialist</div>
+                            <div class="job-department">Design & Engineering</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html"><button class="apply-btn" onclick="alert('Application form would open here')">Apply</button></a> 
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Data Analyst</div>
+                            <div class="job-department">Technology Services</div>
+                        </div>
+                        <div class="job-location">Remote</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html"><button class="apply-btn" onclick="alert('Application form would open here')">Apply</button></a> 
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Strategy Consultant</div>
+                            <div class="job-department">Consulting Services</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html"><button class="apply-btn" onclick="alert('Application form would open here')">Apply</button></a> 
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Software Engineering Intern</div>
+                            <div class="job-department">Technology Services</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Internship</div>
+                        <a href="job2.html"><button class="apply-btn" onclick="alert('Application form would open here')">Apply</button></a> 
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Design Engineering Intern</div>
+                            <div class="job-department">Design & Engineering</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Internship</div>
+                        <a href="job2.html"><button class="apply-btn" onclick="alert('Application form would open here')">Apply</button></a> 
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 torqsoft@gmail.com</p>
+                <p>📞 +91 98765 43210</p>
+                <p>📍 Chennai, Tamil Nadu, India</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">💼</a>
+                    <a href="#" class="social-icon">📷</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#about" onclick="showPage('about')">Who We Are</a></p>
+                <p><a href="#services" onclick="showPage('services')">What We Do</a></p>
+                <p><a href="#insights" onclick="showPage('insights')">What We Think</a></p>
+                <p><a href="#careers" onclick="showPage('careers')">Careers</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p><a href="#services" onclick="showPage('services')">Web Development</a></p>
+                <p><a href="#services" onclick="showPage('services')">Mobile Apps</a></p>
+                <p><a href="#services" onclick="showPage('services')">3D Modeling</a></p>
+                <p><a href="#services" onclick="showPage('services')">Consulting</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <p>MSME Registered</p>
+                <p>Founded in 2025</p>
+                <p>Chennai, India</p>
+                <p>Student-led Innovation</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 TorqSoft Solutions Pvt Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Trigger animations for the new page
+            setTimeout(() => {
+                handleScrollAnimations();
+            }, 100);
+        }
+
+
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }
+
+        // Filter functionality for insights
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.textContent.toLowerCase();
+                const cards = document.querySelectorAll('.insight-card');
+                
+                cards.forEach(card => {
+                    const category = card.querySelector('.insight-category').textContent.toLowerCase();
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255,255,255,0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255,255,255,0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            handleScrollAnimations();
+        });
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (mobileMenu.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(event.target) && 
+                !hamburger.contains(event.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close mobile menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+
+        // Search functionality with content search
+        function performSearch() {
+            const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (searchTerm) {
+                const results = searchWebsiteContent(searchTerm);
+                displaySearchResults(searchTerm, results);
+                
+                // Clear search input
+                document.getElementById('searchInput').value = '';
+            }
+        }
+
+        function searchWebsiteContent(searchTerm) {
+            const searchableContent = [
+                {
+                    page: 'Home',
+                    title: 'TorqSoft Solutions - Innovation',
+                    content: 'Innovating the Future of Technology. From student-led vision to industry-ready solutions. MSME-approved innovators driving the future of technology and consulting.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'About',
+                    title: 'Who We Are - Our Story',
+                    content: 'Founded in 2025 by Sakthi Sundar, Aprajith, Ajay, and Prem from Saveetha Engineering College. Cutting-edge technology and consulting firm. Mission: empower organizations with innovative technology solutions.',
+                    action: () => showPage('about')
+                },
+                {
+                    page: 'About',
+                    title: 'Our Mission & Vision',
+                    content: 'Mission: To empower organizations with innovative technology solutions and strategic insights. Vision: To be the leading catalyst for digital transformation through cutting-edge technology.',
+                    action: () => showPage('about')
+                },
+                {
+                    page: 'About',
+                    title: 'Core Values',
+                    content: 'Innovation: constantly push boundaries. Quality: excellence is our standard. Collaboration: power of partnership. Integrity: trust is the foundation.',
+                    action: () => showPage('about')
+                },
+                {
+                    page: 'Services',
+                    title: 'Web Development Services',
+                    content: 'Custom web applications and responsive websites built with modern frameworks and technologies. Professional web development solutions.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Mobile App Development',
+                    content: 'Native and cross-platform mobile applications for iOS and Android with exceptional user experiences. Mobile app development services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Testing & Quality Assurance',
+                    content: 'Comprehensive testing services including automated testing, performance testing, and quality assurance. QA services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Data Analysis Services',
+                    content: 'Transform raw data into actionable insights with advanced analytics and machine learning solutions. Data analytics services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: '3D Modelling & Design',
+                    content: 'Professional 3D modeling and visualization services for product design and engineering applications. 3D design services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Mechanical Design',
+                    content: 'Complete mechanical design solutions from concept development to detailed engineering drawings. Engineering design services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Analysis & Automation',
+                    content: 'Advanced engineering analysis including FEA, CFD, and process automation solutions. Engineering analysis services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Political Strategy Consulting',
+                    content: 'Strategic political consulting services including campaign management and policy analysis. Political consulting services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Internship Programs',
+                    content: 'Comprehensive internship programs providing hands-on experience in technology and consulting. Student internships.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Future of Web Development',
+                    content: 'Exploring the latest trends in web development, from AI integration to progressive web apps and their impact on user experience.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: '3D Design Revolution',
+                    content: 'Understanding the role of 3D modeling and visualization in creating products that resonate with today\'s consumers.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Digital Transformation Strategy',
+                    content: 'How small and medium enterprises can leverage digital transformation to compete with larger organizations.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Student Entrepreneur Journey',
+                    content: 'Insights from our founders on building a successful tech company while transitioning from student life to entrepreneurship.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Data Analytics in Decision Making',
+                    content: 'How advanced data analytics can transform business decision-making processes and drive sustainable growth.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Join Our Team',
+                    content: 'Build the future of technology with passionate innovators. Innovation first, growth opportunities, collaborative culture, work-life balance.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Senior Full Stack Developer',
+                    content: 'Technology Services position. Remote/Hybrid work. Full-time developer role. Apply for senior full stack developer position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: '3D Design Specialist',
+                    content: 'Design & Engineering position. Chennai location. Full-time design role. Apply for 3D design specialist position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Data Analyst Position',
+                    content: 'Technology Services position. Remote work. Full-time analyst role. Apply for data analyst position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Strategy Consultant',
+                    content: 'Consulting Services position. Chennai location. Full-time consultant role. Apply for strategy consultant position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Software Engineering Intern',
+                    content: 'Technology Services internship. Chennai location. Internship program. Apply for software engineering intern position.',
+                    action: () => showPage('careers')
+                }
+            ];
+
+            return searchableContent.filter(item => 
+                item.title.toLowerCase().includes(searchTerm) || 
+                item.content.toLowerCase().includes(searchTerm) ||
+                item.page.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        function displaySearchResults(searchTerm, results) {
+            const overlay = document.getElementById('searchOverlay');
+            const resultsContainer = document.getElementById('searchResults');
+            const searchTitle = document.getElementById('searchTitle');
+
+            searchTitle.textContent = `Search Results for "${searchTerm}"`;
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h4>No results found</h4>
+                        <p>Try searching for different keywords like "web development", "3D design", "careers", "consulting", or "data analysis".</p>
+                    </div>
+                `;
+            } else {
+                resultsContainer.innerHTML = results.map(result => `
+                    <div class="search-result-item" onclick="navigateToResult('${result.page.toLowerCase()}', closeSearch)">
+                        <div class="search-result-title">${result.title}</div>
+                        <div class="search-result-content">${result.content}</div>
+                        <div class="search-result-page">Found in: ${result.page}</div>
+                    </div>
+                `).join('');
+            }
+
+            overlay.classList.add('active');
+        }
+
+        function navigateToResult(page, callback) {
+            showPage(page);
+            if (callback) callback();
+        }
+
+        function closeSearch() {
+            const overlay = document.getElementById('searchOverlay');
+            overlay.classList.remove('active');
+        }
+
+        // Allow Enter key to trigger search
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+        });
+
+        // Language switching functionality
+        const translations = {
+            en: {
+                // Navigation
+                'nav-who-we-are': 'Who We Are',
+                'nav-what-we-do': 'What We Do',
+                'nav-what-we-think': 'What We Think',
+                'nav-careers': 'Careers',
+                'nav-job-openings': 'Job Openings',
+                'nav-internships': 'Internships',
+                'search-placeholder': 'Search...',
+                
+                // Hero Section
+                'hero-headline': 'Innovating the Future of Technology',
+                'hero-subheadline': 'From student-led vision to industry-ready solutions.',
+                'hero-btn-services': 'Explore Our Services',
+                'hero-btn-careers': 'Work With Us',
+                
+                // About Page
+                'about-hero-title': 'Who We Are',
+                'about-hero-subtitle': 'MSME-approved innovators driving the future of technology and consulting',
+                'about-story-title': 'Our Story',
+                'about-story-p1': 'Founded in 2025 by Sakthi Sundar, Aprajith, Ajay, and Prem from Saveetha Engineering College, TorqSoft Solutions Pvt Ltd represents the perfect blend of academic excellence and entrepreneurial spirit.',
+                'about-story-p2': 'We are a cutting-edge technology and consulting firm that helps businesses, organizations, and individuals adapt to the future through innovative solutions and strategic insights.',
+                'about-story-p3': 'Our team combines fresh perspectives with proven methodologies to deliver technology services, design & engineering, and strategic consulting tailored to your unique needs.',
+                'mission-title': 'Our Mission',
+                'mission-text': 'To empower organizations with innovative technology solutions and strategic insights that drive sustainable growth, operational excellence, and competitive advantage in an ever-evolving digital landscape.',
+                'vision-title': 'Our Vision',
+                'vision-text': 'To be the leading catalyst for digital transformation, recognized globally for our ability to turn complex challenges into breakthrough opportunities through cutting-edge technology and human-centered design.',
+                'values-title': 'Our Core Values',
+                'values-subtitle': 'The principles that guide everything we do',
+                
+                // Services Page
+                'services-hero-title': 'What We Do',
+                'services-hero-subtitle': 'Comprehensive solutions across technology, design, and consulting',
+                'tech-services-title': 'Technology Services',
+                'tech-services-subtitle': 'Cutting-edge digital solutions for the modern world',
+                'web-dev-title': 'Web Development',
+                'web-dev-desc': 'Custom web applications and responsive websites built with modern frameworks and technologies.',
+                'mobile-dev-title': 'Mobile App Development',
+                'mobile-dev-desc': 'Native and cross-platform mobile applications for iOS and Android with exceptional user experiences.',
+                
+                // Insights Page
+                'insights-hero-title': 'What We Think',
+                'insights-hero-subtitle': 'Insights, trends, and thought leadership from our experts',
+                
+                // Careers Page
+                'careers-hero-title': 'Join Our Team',
+                'careers-hero-subtitle': 'Build the future of technology with passionate innovators',
+                'why-work-title': 'Why Work With Us',
+                'why-work-subtitle': 'Discover what makes TorqSoft Solutions a great place to grow your career',
+                'current-openings-title': 'Current Openings',
+                'current-openings-subtitle': 'Join our growing team of innovators and problem solvers',
+                
+                // Footer
+                'footer-contact': 'Contact Info',
+                'footer-quick-links': 'Quick Links',
+                'footer-services': 'Services',
+                'footer-company': 'Company',
+                'footer-copyright': '© 2025 TorqSoft Solutions Pvt Ltd. All rights reserved.'
+            },
+            es: {
+                // Navigation
+                'nav-who-we-are': 'Quiénes Somos',
+                'nav-what-we-do': 'Qué Hacemos',
+                'nav-what-we-think': 'Qué Pensamos',
+                'nav-careers': 'Carreras',
+                'nav-job-openings': 'Ofertas de Trabajo',
+                'nav-internships': 'Prácticas',
+                'search-placeholder': 'Buscar...',
+                
+                // Hero Section
+                'hero-headline': 'Innovando el Futuro de la Tecnología',
+                'hero-subheadline': 'De la visión estudiantil a soluciones listas para la industria.',
+                'hero-btn-services': 'Explorar Nuestros Servicios',
+                'hero-btn-careers': 'Trabaja Con Nosotros',
+                
+                // About Page
+                'about-hero-title': 'Quiénes Somos',
+                'about-hero-subtitle': 'Innovadores aprobados por MSME impulsando el futuro de la tecnología y consultoría',
+                'about-story-title': 'Nuestra Historia',
+                'about-story-p1': 'Fundada en 2025 por Sakthi Sundar, Aprajith, Ajay y Prem del Saveetha Engineering College, TorqSoft Solutions Pvt Ltd representa la combinación perfecta de excelencia académica y espíritu empresarial.',
+                'about-story-p2': 'Somos una empresa de tecnología y consultoría de vanguardia que ayuda a empresas, organizaciones e individuos a adaptarse al futuro a través de soluciones innovadoras y conocimientos estratégicos.',
+                'about-story-p3': 'Nuestro equipo combina perspectivas frescas con metodologías probadas para ofrecer servicios tecnológicos, diseño e ingeniería, y consultoría estratégica adaptada a sus necesidades únicas.',
+                'mission-title': 'Nuestra Misión',
+                'mission-text': 'Empoderar a las organizaciones con soluciones tecnológicas innovadoras y conocimientos estratégicos que impulsen el crecimiento sostenible, la excelencia operativa y la ventaja competitiva en un panorama digital en constante evolución.',
+                'vision-title': 'Nuestra Visión',
+                'vision-text': 'Ser el catalizador líder para la transformación digital, reconocido globalmente por nuestra capacidad de convertir desafíos complejos en oportunidades revolucionarias a través de tecnología de vanguardia y diseño centrado en el ser humano.',
+                'values-title': 'Nuestros Valores Fundamentales',
+                'values-subtitle': 'Los principios que guían todo lo que hacemos',
+                
+                // Services Page
+                'services-hero-title': 'Qué Hacemos',
+                'services-hero-subtitle': 'Soluciones integrales en tecnología, diseño y consultoría',
+                'tech-services-title': 'Servicios Tecnológicos',
+                'tech-services-subtitle': 'Soluciones digitales de vanguardia para el mundo moderno',
+                'web-dev-title': 'Desarrollo Web',
+                'web-dev-desc': 'Aplicaciones web personalizadas y sitios web responsivos construidos con marcos y tecnologías modernas.',
+                'mobile-dev-title': 'Desarrollo de Aplicaciones Móviles',
+                'mobile-dev-desc': 'Aplicaciones móviles nativas y multiplataforma para iOS y Android con experiencias de usuario excepcionales.',
+                
+                // Insights Page
+                'insights-hero-title': 'Qué Pensamos',
+                'insights-hero-subtitle': 'Perspectivas, tendencias y liderazgo intelectual de nuestros expertos',
+                
+                // Careers Page
+                'careers-hero-title': 'Únete a Nuestro Equipo',
+                'careers-hero-subtitle': 'Construye el futuro de la tecnología con innovadores apasionados',
+                'why-work-title': 'Por Qué Trabajar Con Nosotros',
+                'why-work-subtitle': 'Descubre qué hace de TorqSoft Solutions un gran lugar para hacer crecer tu carrera',
+                'current-openings-title': 'Vacantes Actuales',
+                'current-openings-subtitle': 'Únete a nuestro creciente equipo de innovadores y solucionadores de problemas',
+                
+                // Footer
+                'footer-contact': 'Información de Contacto',
+                'footer-quick-links': 'Enlaces Rápidos',
+                'footer-services': 'Servicios',
+                'footer-company': 'Empresa',
+                'footer-copyright': '© 2025 TorqSoft Solutions Pvt Ltd. Todos los derechos reservados.'
+            },
+            fr: {
+                // Navigation
+                'nav-who-we-are': 'Qui Nous Sommes',
+                'nav-what-we-do': 'Ce Que Nous Faisons',
+                'nav-what-we-think': 'Ce Que Nous Pensons',
+                'nav-careers': 'Carrières',
+                'nav-job-openings': 'Offres d\'Emploi',
+                'nav-internships': 'Stages',
+                'search-placeholder': 'Rechercher...',
+                
+                // Hero Section
+                'hero-headline': 'Innover l\'Avenir de la Technologie',
+                'hero-subheadline': 'De la vision étudiante aux solutions prêtes pour l\'industrie.',
+                'hero-btn-services': 'Explorer Nos Services',
+                'hero-btn-careers': 'Travaillez Avec Nous',
+                
+                // About Page
+                'about-hero-title': 'Qui Nous Sommes',
+                'about-hero-subtitle': 'Innovateurs approuvés MSME qui façonnent l\'avenir de la technologie et du conseil',
+                'about-story-title': 'Notre Histoire',
+                'about-story-p1': 'Fondée en 2025 par Sakthi Sundar, Aprajith, Ajay et Prem du Saveetha Engineering College, TorqSoft Solutions Pvt Ltd représente le mélange parfait d\'excellence académique et d\'esprit entrepreneurial.',
+                'about-story-p2': 'Nous sommes une entreprise de technologie et de conseil de pointe qui aide les entreprises, organisations et individus à s\'adapter à l\'avenir grâce à des solutions innovantes et des insights stratégiques.',
+                'about-story-p3': 'Notre équipe combine des perspectives fraîches avec des méthodologies éprouvées pour fournir des services technologiques, de conception et d\'ingénierie, et de conseil stratégique adaptés à vos besoins uniques.',
+                'mission-title': 'Notre Mission',
+                'mission-text': 'Autonomiser les organisations avec des solutions technologiques innovantes et des insights stratégiques qui favorisent la croissance durable, l\'excellence opérationnelle et l\'avantage concurrentiel dans un paysage numérique en constante évolution.',
+                'vision-title': 'Notre Vision',
+                'vision-text': 'Être le catalyseur leader de la transformation numérique, reconnu mondialement pour notre capacité à transformer des défis complexes en opportunités révolutionnaires grâce à une technologie de pointe et un design centré sur l\'humain.',
+                'values-title': 'Nos Valeurs Fondamentales',
+                'values-subtitle': 'Les principes qui guident tout ce que nous faisons',
+                
+                // Services Page
+                'services-hero-title': 'Ce Que Nous Faisons',
+                'services-hero-subtitle': 'Solutions complètes en technologie, design et conseil',
+                'tech-services-title': 'Services Technologiques',
+                'tech-services-subtitle': 'Solutions numériques de pointe pour le monde moderne',
+                'web-dev-title': 'Développement Web',
+                'web-dev-desc': 'Applications web personnalisées et sites web réactifs construits avec des frameworks et technologies modernes.',
+                'mobile-dev-title': 'Développement d\'Applications Mobiles',
+                'mobile-dev-desc': 'Applications mobiles natives et multiplateformes pour iOS et Android avec des expériences utilisateur exceptionnelles.',
+                
+                // Insights Page
+                'insights-hero-title': 'Ce Que Nous Pensons',
+                'insights-hero-subtitle': 'Perspectives, tendances et leadership intellectuel de nos experts',
+                
+                // Careers Page
+                'careers-hero-title': 'Rejoignez Notre Équipe',
+                'careers-hero-subtitle': 'Construisez l\'avenir de la technologie avec des innovateurs passionnés',
+                'why-work-title': 'Pourquoi Travailler Avec Nous',
+                'why-work-subtitle': 'Découvrez ce qui fait de TorqSoft Solutions un excellent endroit pour développer votre carrière',
+                'current-openings-title': 'Postes Actuels',
+                'current-openings-subtitle': 'Rejoignez notre équipe grandissante d\'innovateurs et de résolveurs de problèmes',
+                
+                // Footer
+                'footer-contact': 'Informations de Contact',
+                'footer-quick-links': 'Liens Rapides',
+                'footer-services': 'Services',
+                'footer-company': 'Entreprise',
+                'footer-copyright': '© 2025 TorqSoft Solutions Pvt Ltd. Tous droits réservés.'
+            },
+            de: {
+                // Navigation
+                'nav-who-we-are': 'Wer Wir Sind',
+                'nav-what-we-do': 'Was Wir Tun',
+                'nav-what-we-think': 'Was Wir Denken',
+                'nav-careers': 'Karrieren',
+                'nav-job-openings': 'Stellenangebote',
+                'nav-internships': 'Praktika',
+                'search-placeholder': 'Suchen...',
+                
+                // Hero Section
+                'hero-headline': 'Die Zukunft der Technologie Innovieren',
+                'hero-subheadline': 'Von der studentischen Vision zu industrietauglichen Lösungen.',
+                'hero-btn-services': 'Unsere Services Erkunden',
+                'hero-btn-careers': 'Arbeiten Sie Mit Uns',
+                
+                // About Page
+                'about-hero-title': 'Wer Wir Sind',
+                'about-hero-subtitle': 'MSME-genehmigte Innovatoren, die die Zukunft von Technologie und Beratung vorantreiben',
+                'about-story-title': 'Unsere Geschichte',
+                'about-story-p1': 'Gegründet 2025 von Sakthi Sundar, Aprajith, Ajay und Prem vom Saveetha Engineering College, repräsentiert TorqSoft Solutions Pvt Ltd die perfekte Mischung aus akademischer Exzellenz und unternehmerischem Geist.',
+                'about-story-p2': 'Wir sind ein hochmodernes Technologie- und Beratungsunternehmen, das Unternehmen, Organisationen und Einzelpersonen dabei hilft, sich durch innovative Lösungen und strategische Einblicke an die Zukunft anzupassen.',
+                'about-story-p3': 'Unser Team kombiniert frische Perspektiven mit bewährten Methoden, um Technologiedienste, Design & Engineering und strategische Beratung zu liefern, die auf Ihre einzigartigen Bedürfnisse zugeschnitten sind.',
+                'mission-title': 'Unsere Mission',
+                'mission-text': 'Organisationen mit innovativen Technologielösungen und strategischen Einblicken zu stärken, die nachhaltiges Wachstum, operative Exzellenz und Wettbewerbsvorteile in einer sich ständig weiterentwickelnden digitalen Landschaft fördern.',
+                'vision-title': 'Unsere Vision',
+                'vision-text': 'Der führende Katalysator für die digitale Transformation zu sein, weltweit anerkannt für unsere Fähigkeit, komplexe Herausforderungen durch modernste Technologie und menschenzentriertes Design in bahnbrechende Möglichkeiten zu verwandeln.',
+                'values-title': 'Unsere Grundwerte',
+                'values-subtitle': 'Die Prinzipien, die alles leiten, was wir tun',
+                
+                // Services Page
+                'services-hero-title': 'Was Wir Tun',
+                'services-hero-subtitle': 'Umfassende Lösungen in Technologie, Design und Beratung',
+                'tech-services-title': 'Technologie-Services',
+                'tech-services-subtitle': 'Hochmoderne digitale Lösungen für die moderne Welt',
+                'web-dev-title': 'Webentwicklung',
+                'web-dev-desc': 'Maßgeschneiderte Webanwendungen und responsive Websites, die mit modernen Frameworks und Technologien erstellt wurden.',
+                'mobile-dev-title': 'Mobile App-Entwicklung',
+                'mobile-dev-desc': 'Native und plattformübergreifende mobile Anwendungen für iOS und Android mit außergewöhnlichen Benutzererfahrungen.',
+                
+                // Insights Page
+                'insights-hero-title': 'Was Wir Denken',
+                'insights-hero-subtitle': 'Einblicke, Trends und Thought Leadership von unseren Experten',
+                
+                // Careers Page
+                'careers-hero-title': 'Treten Sie Unserem Team Bei',
+                'careers-hero-subtitle': 'Bauen Sie die Zukunft der Technologie mit leidenschaftlichen Innovatoren',
+                'why-work-title': 'Warum Bei Uns Arbeiten',
+                'why-work-subtitle': 'Entdecken Sie, was TorqSoft Solutions zu einem großartigen Ort macht, um Ihre Karriere zu entwickeln',
+                'current-openings-title': 'Aktuelle Stellenausschreibungen',
+                'current-openings-subtitle': 'Treten Sie unserem wachsenden Team von Innovatoren und Problemlösern bei',
+                
+                // Footer
+                'footer-contact': 'Kontaktinformationen',
+                'footer-quick-links': 'Schnelle Links',
+                'footer-services': 'Services',
+                'footer-company': 'Unternehmen',
+                'footer-copyright': '© 2025 TorqSoft Solutions Pvt Ltd. Alle Rechte vorbehalten.'
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function changeLanguage(langCode, countryName) {
+            currentLanguage = langCode;
+            
+            // Update language button text
+            const languageBtn = document.querySelector('.language-btn');
+            const flagMap = {
+                'en': '🇺🇸',
+                'es': '🇪🇸', 
+                'fr': '🇫🇷',
+                'de': '🇩🇪'
+            };
+            
+            languageBtn.innerHTML = `${flagMap[langCode] || '🌐'} ${langCode.toUpperCase()} ▼`;
+            
+            // Apply translations
+            const translation = translations[langCode] || translations['en'];
+            
+            // Update all translatable elements
+            Object.keys(translation).forEach(key => {
+                const elements = document.querySelectorAll(`[data-translate="${key}"]`);
+                elements.forEach(element => {
+                    if (element.tagName === 'INPUT') {
+                        element.placeholder = translation[key];
+                    } else {
+                        element.textContent = translation[key];
+                    }
+                });
+            });
+            
+            // Show language change notification
+            showLanguageNotification(countryName, langCode);
+        }
+
+        function showLanguageNotification(countryName, langCode) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #00A8E8, #667eea);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                z-index: 2000;
+                font-weight: 600;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            
+            const messages = {
+                'en': `Language changed to English (${countryName})`,
+                'es': `Idioma cambiado a Español (${countryName})`,
+                'fr': `Langue changée en Français (${countryName})`,
+                'de': `Sprache geändert zu Deutsch (${countryName})`
+            };
+            
+            notification.textContent = messages[langCode] || messages['en'];
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // News Detail Functions
+        function showNewsDetail(newsId) {
+            const newsDetails = {
+                'news1': {
+                    title: 'TorqSoft Solutions Receives MSME Excellence Award',
+                    date: 'March 15, 2025',
+                    content: 'TorqSoft Solutions Pvt Ltd has been honored with the prestigious MSME Excellence Award for outstanding innovation in technology consulting and student entrepreneurship initiatives. This recognition highlights our commitment to bridging the gap between academic excellence and industry-ready solutions. The award ceremony, held in New Delhi, celebrated our unique approach to fostering young talent while delivering cutting-edge technology services to clients across various sectors.'
+                },
+                'news2': {
+                    title: 'Partnership with Leading Cloud Infrastructure Provider',
+                    date: 'March 10, 2025',
+                    content: 'We are excited to announce our strategic partnership with a leading cloud infrastructure provider to enhance our cloud solutions portfolio. This collaboration will enable us to offer more robust, scalable, and cost-effective cloud migration and management services to our clients. The partnership includes access to advanced cloud technologies, dedicated support resources, and specialized training for our technical team.'
+                },
+                'news3': {
+                    title: 'New AI Development Center Opens in Chennai',
+                    date: 'March 5, 2025',
+                    content: 'TorqSoft Solutions has inaugurated its new AI Development Center in Chennai, expanding our research and development capabilities in artificial intelligence and machine learning. The 5,000 square foot facility is equipped with state-of-the-art hardware and software resources, providing our team with the tools needed to develop cutting-edge AI solutions for our clients across various industries.'
+                },
+                'news4': {
+                    title: 'Student Internship Program Launches Successfully',
+                    date: 'February 28, 2025',
+                    content: 'Our comprehensive internship program has successfully launched with over 50 students from top engineering colleges across Tamil Nadu. The program offers hands-on experience in web development, mobile app development, AI/ML, cybersecurity, and 3D design. Participants will work on real client projects under the mentorship of our experienced professionals, gaining valuable industry experience while contributing to meaningful projects.'
+                },
+                'news5': {
+                    title: 'Cybersecurity Division Expands Operations',
+                    date: 'February 20, 2025',
+                    content: 'In response to growing demand for cybersecurity services, TorqSoft Solutions has expanded its cybersecurity division with the addition of five new security experts. The team brings extensive experience in threat detection, vulnerability assessment, and security compliance. This expansion enables us to offer comprehensive security audits, penetration testing, and 24/7 security monitoring services to our clients.'
+                },
+                'news6': {
+                    title: 'Industry Recognition for Innovation Excellence',
+                    date: 'February 15, 2025',
+                    content: 'TorqSoft Solutions has been featured in Tech Innovation Magazine as one of the top emerging technology companies to watch in 2025. The article highlights our unique student-led approach to technology consulting and our rapid growth in the competitive tech services market. This recognition further establishes our position as a leading innovator in the technology consulting space.'
+                }
+            };
+
+            const news = newsDetails[newsId];
+            if (news) {
+                alert(`${news.title}\n\n${news.date}\n\n${news.content}\n\n[This would normally open a detailed news page]`);
+            }
+        }
+
+        // Contact Form Handler
+        function handleContactSubmit(event) {
+            // Get form data for validation
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Validate required fields
+            if (!data.name || !data.email || !data['inquiry-type'] || !data.message || !data.consent) {
+                event.preventDefault();
+                alert('Please fill in all required fields and accept the consent checkbox.');
+                return false;
+            }
+            
+            // Show loading state
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Let the form submit naturally to Formspree
+            // The success/error handling will be done by Formspree's redirect or AJAX response
+            
+            // Show success message after a brief delay (Formspree will handle the actual submission)
+            setTimeout(() => {
+                alert(`Thank you, ${data.name}! Your message has been sent successfully. We'll get back to you within 24 hours at ${data.email}.`);
+                
+                // Reset form
+                event.target.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1000);
+            
+            return true;
+        }
+
+        // Enhanced search functionality with new content
+        function searchWebsiteContent(searchTerm) {
+            const searchableContent = [
+                {
+                    page: 'Home',
+                    title: 'TorqSoft Solutions - Innovation',
+                    content: 'Innovating the Future of Technology. From student-led vision to industry-ready solutions. MSME-approved innovators driving the future of technology and consulting.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Cloud Solutions Services',
+                    content: 'Scalable cloud infrastructure and migration services to optimize your business operations and reduce costs. Cloud computing solutions.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'AI Development Services',
+                    content: 'Custom artificial intelligence solutions including machine learning models and intelligent automation systems. AI development.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Software Engineering Services',
+                    content: 'Full-stack development services from web applications to mobile apps with modern frameworks and technologies. Software development.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Cybersecurity Services',
+                    content: 'Comprehensive security solutions to protect your digital assets and ensure compliance with industry standards. Cybersecurity.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Latest News - MSME Excellence Award',
+                    content: 'TorqSoft Solutions receives MSME Excellence Award for outstanding innovation in technology consulting and student entrepreneurship.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Client Testimonials',
+                    content: 'Trusted by businesses worldwide. Cloud migration services, AI solutions, cybersecurity implementation. Customer reviews and feedback.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Trusted Partners',
+                    content: 'Microsoft, AWS, IBM, Google Cloud, Oracle, Salesforce, Adobe, SAP. Industry partnerships and collaborations.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Awards & Recognition',
+                    content: 'MSME Excellence Award, Best Emerging Tech Company, Student Entrepreneur of the Year, Innovation Excellence. Industry recognition.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'Home',
+                    title: 'Contact Form',
+                    content: 'Get in touch with TorqSoft Solutions. Contact form with name, email, organization, inquiry type, message. Business hours and contact information.',
+                    action: () => showPage('home')
+                },
+                {
+                    page: 'About',
+                    title: 'Who We Are - Our Story',
+                    content: 'Founded in 2025 by Sakthi Sundar, Aprajith, Ajay, and Prem from Saveetha Engineering College. Cutting-edge technology and consulting firm. Mission: empower organizations with innovative technology solutions.',
+                    action: () => showPage('about')
+                },
+                {
+                    page: 'About',
+                    title: 'Our Mission & Vision',
+                    content: 'Mission: To empower organizations with innovative technology solutions and strategic insights. Vision: To be the leading catalyst for digital transformation through cutting-edge technology.',
+                    action: () => showPage('about')
+                },
+                {
+                    page: 'About',
+                    title: 'Core Values',
+                    content: 'Innovation: constantly push boundaries. Quality: excellence is our standard. Collaboration: power of partnership. Integrity: trust is the foundation.',
+                    action: () => showPage('about')
+                },
+                {
+                    page: 'Services',
+                    title: 'Web Development Services',
+                    content: 'Custom web applications and responsive websites built with modern frameworks and technologies. Professional web development solutions.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Mobile App Development',
+                    content: 'Native and cross-platform mobile applications for iOS and Android with exceptional user experiences. Mobile app development services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Testing & Quality Assurance',
+                    content: 'Comprehensive testing services including automated testing, performance testing, and quality assurance. QA services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Data Analysis Services',
+                    content: 'Transform raw data into actionable insights with advanced analytics and machine learning solutions. Data analytics services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: '3D Modelling & Design',
+                    content: 'Professional 3D modeling and visualization services for product design and engineering applications. 3D design services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Mechanical Design',
+                    content: 'Complete mechanical design solutions from concept development to detailed engineering drawings. Engineering design services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Analysis & Automation',
+                    content: 'Advanced engineering analysis including FEA, CFD, and process automation solutions. Engineering analysis services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Political Strategy Consulting',
+                    content: 'Strategic political consulting services including campaign management and policy analysis. Political consulting services.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Services',
+                    title: 'Internship Programs',
+                    content: 'Comprehensive internship programs providing hands-on experience in technology and consulting. Student internships.',
+                    action: () => showPage('services')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Future of Web Development',
+                    content: 'Exploring the latest trends in web development, from AI integration to progressive web apps and their impact on user experience.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: '3D Design Revolution',
+                    content: 'Understanding the role of 3D modeling and visualization in creating products that resonate with today\'s consumers.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Digital Transformation Strategy',
+                    content: 'How small and medium enterprises can leverage digital transformation to compete with larger organizations.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Student Entrepreneur Journey',
+                    content: 'Insights from our founders on building a successful tech company while transitioning from student life to entrepreneurship.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Insights',
+                    title: 'Data Analytics in Decision Making',
+                    content: 'How advanced data analytics can transform business decision-making processes and drive sustainable growth.',
+                    action: () => showPage('insights')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Join Our Team',
+                    content: 'Build the future of technology with passionate innovators. Innovation first, growth opportunities, collaborative culture, work-life balance.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Senior Full Stack Developer',
+                    content: 'Technology Services position. Remote/Hybrid work. Full-time developer role. Apply for senior full stack developer position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: '3D Design Specialist',
+                    content: 'Design & Engineering position. Chennai location. Full-time design role. Apply for 3D design specialist position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Data Analyst Position',
+                    content: 'Technology Services position. Remote work. Full-time analyst role. Apply for data analyst position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Strategy Consultant',
+                    content: 'Consulting Services position. Chennai location. Full-time consultant role. Apply for strategy consultant position.',
+                    action: () => showPage('careers')
+                },
+                {
+                    page: 'Careers',
+                    title: 'Software Engineering Intern',
+                    content: 'Technology Services internship. Chennai location. Internship program. Apply for software engineering intern position.',
+                    action: () => showPage('careers')
+                }
+            ];
+
+            return searchableContent.filter(item => 
+                item.title.toLowerCase().includes(searchTerm) || 
+                item.content.toLowerCase().includes(searchTerm) ||
+                item.page.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            handleScrollAnimations();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e7a5aed358ffa1',t:'MTc1NTA4MjE4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

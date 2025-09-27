@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorqSoft Solutions - Innovating the Future of Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #00A8E8;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '⚡';
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: #00A8E8;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9fa;
+            color: #00A8E8;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+
+        .language-btn {
+            background: none;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            border-color: #00A8E8;
+            color: #00A8E8;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            padding: 2rem;
+        }
+
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .language-column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .language-item:hover {
+            background: #f8f9fa;
+        }
+
+        .flag {
+            width: 24px;
+            height: 18px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(135deg, #0A1F44 0%, #1a3a5c 30%, #00A8E8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+            color: white;
+        }
+
+        .hero-headline {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subheadline {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00A8E8, #0066CC);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,168,232,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,168,232,0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #00A8E8;
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .about-hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.2)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.4)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.2)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mission Vision */
+        .mission-vision {
+            padding: 6rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .mv-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .mv-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+
+        .mv-card p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Values Grid */
+        .values-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .values-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .values-header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .value-card:hover {
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.2) rotateY(360deg);
+        }
+
+        .value-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .services-hero {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .services-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .services-hero p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-category {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .category-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,168,232,0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Insights Section */
+        .insights-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .insights-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .insights-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .insights-hero p {
+            font-size: 1.3rem;
+            color: #666;
+        }
+
+        .insights-filter {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f8f9fa;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: #00A8E8;
+            color: white;
+        }
+
+        .insights-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .insight-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .insight-image {
+            height: 200px;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .insight-content {
+            padding: 2rem;
+        }
+
+        .insight-category {
+            font-size: 0.9rem;
+            color: #00A8E8;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .insight-excerpt {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .floating-object {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            animation: float 3s ease-in-out infinite;
+            z-index: 100;
+        }
+
+        /* Careers Section */
+        .careers-section {
+            padding: 8rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .careers-hero {
+            background: linear-gradient(135deg, rgba(10,31,68,0.9), rgba(0,168,232,0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23333"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 6rem;
+            border-radius: 20px;
+        }
+
+        .careers-hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .careers-hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .why-work-section {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+        }
+
+        .why-work-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .why-work-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .why-work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-work-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .why-work-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .why-work-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #00A8E8, #667eea);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .jobs-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .jobs-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .jobs-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .jobs-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .job-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 2rem;
+            padding: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .job-row:hover {
+            background: #f8f9fa;
+        }
+
+        .job-row:last-child {
+            border-bottom: none;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .job-department {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .job-location,
+        .job-type {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .apply-btn {
+            background: #00A8E8;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background: #0066CC;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0A1F44;
+            color: white;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00A8E8, #667eea);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #00A8E8;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00A8E8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #00A8E8;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-headline {
+                font-size: 3.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+            
+            .mv-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-headline {
+                font-size: 2.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-hero h1,
+            .services-hero h1,
+            .insights-hero h1,
+            .careers-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .job-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .language-dropdown {
+                min-width: 300px;
+                right: -100px;
+            }
+            
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-headline {
+                font-size: 2.2rem;
+            }
+            
+            .nav-container {
+                padding: 1rem;
+            }
+            
+            .hero-content {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')">TorqSoft Solutions</a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" onclick="showPage('about')">Who We Are</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link" onclick="showPage('services')">What We Do</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#insights" class="nav-link" onclick="showPage('insights')">What We Think</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#careers" class="nav-link" onclick="showPage('careers')">Careers</a>
+                    <div class="dropdown-content">
+                        <a href="#jobs" onclick="showPage('careers')">Job Openings</a>
+                        <a href="#internships" onclick="showPage('careers')">Internships</a>
+                    </div>
+                </li>
+                <li class="nav-item language-selector">
+                    <button class="language-btn">
+                        🌐 EN ▼
+                    </button>
+                    <div class="language-dropdown">
+                        <div class="language-grid">
+                            <div class="language-column">
+                                <h4>Americas</h4>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇺🇸</span>
+                                    <span>United States</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇨🇦</span>
+                                    <span>Canada</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇧🇷</span>
+                                    <span>Brazil</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇲🇽</span>
+                                    <span>Mexico</span>
+                                </a>
+                            </div>
+                            <div class="language-column">
+                                <h4>Europe</h4>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇬🇧</span>
+                                    <span>United Kingdom</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇩🇪</span>
+                                    <span>Germany</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇫🇷</span>
+                                    <span>France</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇪🇸</span>
+                                    <span>Spain</span>
+                                </a>
+                            </div>
+                            <div class="language-column">
+                                <h4>Asia Pacific</h4>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇮🇳</span>
+                                    <span>India</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇯🇵</span>
+                                    <span>Japan</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇦🇺</span>
+                                    <span>Australia</span>
+                                </a>
+                                <a href="#" class="language-item">
+                                    <span class="flag">🇸🇬</span>
+                                    <span>Singapore</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <canvas class="particle-canvas" id="particleCanvas"></canvas>
+            
+            <div class="hero-content">
+                <h1 class="hero-headline">Innovating the Future of Technology</h1>
+                <p class="hero-subheadline">From student-led vision to industry-ready solutions.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary" onclick="showPage('services')">Explore Our Services</a>
+                    <a href="#careers" class="btn-secondary" onclick="showPage('careers')">Work With Us</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div class="about-hero">
+            <h1>Who We Are</h1>
+            <p>MSME-approved innovators driving the future of technology and consulting</p>
+        </div>
+
+        <section class="about-section">
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2025 by Sakthi Sundar, Aprajith, Ajay, and Prem from Saveetha Engineering College, TorqSoft Solutions Pvt Ltd represents the perfect blend of academic excellence and entrepreneurial spirit.</p>
+                    <p>We are a cutting-edge technology and consulting firm that helps businesses, organizations, and individuals adapt to the future through innovative solutions and strategic insights.</p>
+                    <p>Our team combines fresh perspectives with proven methodologies to deliver technology services, design & engineering, and strategic consulting tailored to your unique needs.</p>
+                </div>
+                <div class="about-image">
+                    🚀
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-vision">
+            <div class="mv-container">
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">🎯</div>
+                    <h3>Our Mission</h3>
+                    <p>To empower organizations with innovative technology solutions and strategic insights that drive sustainable growth, operational excellence, and competitive advantage in an ever-evolving digital landscape.</p>
+                </div>
+                
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">🌟</div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading catalyst for digital transformation, recognized globally for our ability to turn complex challenges into breakthrough opportunities through cutting-edge technology and human-centered design.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="values-header">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            
+            <div class="values-grid">
+                <div class="value-card fade-in">
+                    <span class="value-icon">💡</span>
+                    <h4>Innovation</h4>
+                    <p>We constantly push boundaries, embracing new technologies and creative solutions to solve complex challenges.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <span class="value-icon">⭐</span>
+                    <h4>Quality</h4>
+                    <p>Excellence is our standard. We deliver superior results through meticulous attention to detail and rigorous processes.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <span class="value-icon">🤝</span>
+                    <h4>Collaboration</h4>
+                    <p>We believe in the power of partnership, working closely with clients and teams to achieve shared success.</p>
+                </div>
+                
+                <div class="value-card fade-in">
+                    <span class="value-icon">🛡️</span>
+                    <h4>Integrity</h4>
+                    <p>Trust is the foundation of our relationships. We operate with transparency, honesty, and ethical principles.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Services Page -->
+    <div id="services" class="page">
+        <div class="services-hero">
+            <h1>What We Do</h1>
+            <p>Comprehensive solutions across technology, design, and consulting</p>
+        </div>
+
+        <section class="services-section">
+            <!-- Technology Services -->
+            <div class="services-category fade-in">
+                <div class="category-header">
+                    <h2 class="category-title">Technology Services</h2>
+                    <p class="category-subtitle">Cutting-edge digital solutions for the modern world</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">💻</div>
+                        <h3>Web Development</h3>
+                        <p>Custom web applications and responsive websites built with modern frameworks and technologies.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📱</div>
+                        <h3>Mobile App Development</h3>
+                        <p>Native and cross-platform mobile applications for iOS and Android with exceptional user experiences.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🧪</div>
+                        <h3>Testing & QA</h3>
+                        <p>Comprehensive testing services including automated testing, performance testing, and quality assurance.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Data Analysis</h3>
+                        <p>Transform raw data into actionable insights with advanced analytics and machine learning solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design & Engineering -->
+            <div class="services-category fade-in">
+                <div class="category-header">
+                    <h2 class="category-title">Design & Engineering</h2>
+                    <p class="category-subtitle">Innovative engineering solutions for complex challenges</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎯</div>
+                        <h3>3D Modelling</h3>
+                        <p>Professional 3D modeling and visualization services for product design and engineering applications.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">⚙️</div>
+                        <h3>Mechanical Design</h3>
+                        <p>Complete mechanical design solutions from concept development to detailed engineering drawings.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🔬</div>
+                        <h3>Analysis & Automation</h3>
+                        <p>Advanced engineering analysis including FEA, CFD, and process automation solutions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consulting Services -->
+            <div class="services-category fade-in">
+                <div class="category-header">
+                    <h2 class="category-title">Consulting Services</h2>
+                    <p class="category-subtitle">Strategic guidance for sustainable growth</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🏛️</div>
+                        <h3>Political Strategy</h3>
+                        <p>Strategic political consulting services including campaign management and policy analysis.</p>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">🎓</div>
+                        <h3>Internships</h3>
+                        <p>Comprehensive internship programs providing hands-on experience in technology and consulting.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="category-header" style="margin-top: 6rem;">
+                <h2 class="category-title">Let's Build Together</h2>
+                <p class="category-subtitle">Ready to transform your vision into reality?</p>
+                <div style="margin-top: 2rem;">
+                    <a href="#contact" class="btn-primary">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Insights Page -->
+    <div id="insights" class="page">
+        <div class="insights-hero">
+            <h1>What We Think</h1>
+            <p>Insights, trends, and thought leadership from our experts</p>
+        </div>
+
+        <section class="insights-section">
+            <div class="insights-filter">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Technology</button>
+                <button class="filter-btn">Design</button>
+                <button class="filter-btn">Strategy</button>
+                <button class="filter-btn">Innovation</button>
+            </div>
+
+            <div class="insights-grid">
+                <article class="insight-card fade-in">
+                    <div class="insight-image">💡</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Technology</div>
+                        <h3 class="insight-title">The Future of Web Development: Trends to Watch in 2025</h3>
+                        <p class="insight-excerpt">Exploring the latest trends in web development, from AI integration to progressive web apps and their impact on user experience.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">🎨</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Design</div>
+                        <h3 class="insight-title">3D Design Revolution: How Immersive Experiences Shape Modern Products</h3>
+                        <p class="insight-excerpt">Understanding the role of 3D modeling and visualization in creating products that resonate with today's consumers.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">📈</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Strategy</div>
+                        <h3 class="insight-title">Digital Transformation: A Strategic Approach for SMEs</h3>
+                        <p class="insight-excerpt">How small and medium enterprises can leverage digital transformation to compete with larger organizations.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">🚀</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Innovation</div>
+                        <h3 class="insight-title">From Campus to Corporate: The Student Entrepreneur Journey</h3>
+                        <p class="insight-excerpt">Insights from our founders on building a successful tech company while transitioning from student life to entrepreneurship.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">🔬</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Technology</div>
+                        <h3 class="insight-title">Data Analytics in Decision Making: Beyond the Numbers</h3>
+                        <p class="insight-excerpt">How advanced data analytics can transform business decision-making processes and drive sustainable growth.</p>
+                    </div>
+                </article>
+
+                <article class="insight-card fade-in">
+                    <div class="insight-image">⚙️</div>
+                    <div class="insight-content">
+                        <div class="insight-category">Design</div>
+                        <h3 class="insight-title">Engineering Excellence: The Art of Mechanical Design</h3>
+                        <p class="insight-excerpt">Exploring the intersection of creativity and precision in mechanical design and engineering solutions.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="floating-object">
+            🧠
+        </div>
+    </div>
+
+    <!-- Careers Page -->
+    <div id="careers" class="page">
+        <div class="careers-hero">
+            <h1>Join Our Team</h1>
+            <p>Build the future of technology with passionate innovators</p>
+        </div>
+
+        <section class="careers-section">
+            <div class="why-work-section fade-in">
+                <div class="why-work-header">
+                    <h2>Why Work With Us</h2>
+                    <p>Discover what makes TorqSoft Solutions a great place to grow your career</p>
+                </div>
+                
+                <div class="why-work-grid">
+                    <div class="why-work-card">
+                        <div class="why-work-icon">🚀</div>
+                        <h4>Innovation First</h4>
+                        <p>Work on cutting-edge projects that push the boundaries of technology and creativity.</p>
+                    </div>
+                    
+                    <div class="why-work-card">
+                        <div class="why-work-icon">🌱</div>
+                        <h4>Growth Opportunities</h4>
+                        <p>Continuous learning and development programs to advance your skills and career.</p>
+                    </div>
+                    
+                    <div class="why-work-card">
+                        <div class="why-work-icon">🤝</div>
+                        <h4>Collaborative Culture</h4>
+                        <p>Work with passionate professionals in a supportive and inclusive environment.</p>
+                    </div>
+                    
+                    <div class="why-work-card">
+                        <div class="why-work-icon">⚖️</div>
+                        <h4>Work-Life Balance</h4>
+                        <p>Flexible working arrangements that support your personal and professional goals.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jobs-section fade-in">
+                <div class="jobs-header">
+                    <h2>Current Openings</h2>
+                    <p>Join our growing team of innovators and problem solvers</p>
+                </div>
+                
+                <div class="jobs-table">
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Senior Full Stack Developer</div>
+                            <div class="job-department">Technology Services</div>
+                        </div>
+                        <div class="job-location">Remote/Hybrid</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html" ><button class="apply-btn">Apply</button></a>
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">3D Design Specialist</div>
+                            <div class="job-department">Design & Engineering</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html" ><button class="apply-btn">Apply</button></a>
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Data Analyst</div>
+                            <div class="job-department">Technology Services</div>
+                        </div>
+                        <div class="job-location">Remote</div>
+                        <div class="job-type">Full-time</div>
+                        <button class="apply-btn" href="job2.html" onclick="alert('Application form would open here')">Apply</button>
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Strategy Consultant</div>
+                            <div class="job-department">Consulting Services</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Full-time</div>
+                        <a href="job2.html" ><button class="apply-btn">Apply</button></a>
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Software Engineering Intern</div>
+                            <div class="job-department">Technology Services</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Internship</div>
+                        <a href="job2.html" ><button class="apply-btn">Apply</button></a>
+                    </div>
+                    
+                    <div class="job-row">
+                        <div>
+                            <div class="job-title">Design Engineering Intern</div>
+                            <div class="job-department">Design & Engineering</div>
+                        </div>
+                        <div class="job-location">Chennai</div>
+                        <div class="job-type">Internship</div>
+                        <button class="apply-btn" href="job2.html" onclick="alert('Application form would open here')">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 hello@torqsoft.com</p>
+                <p>📞 +91 98765 43210</p>
+                <p>📍 Chennai, Tamil Nadu, India</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">💼</a>
+                    <a href="#" class="social-icon">📷</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#about" onclick="showPage('about')">Who We Are</a></p>
+                <p><a href="#services" onclick="showPage('services')">What We Do</a></p>
+                <p><a href="#insights" onclick="showPage('insights')">What We Think</a></p>
+                <p><a href="#careers" onclick="showPage('careers')">Careers</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Services</h3>
+                <p><a href="#services" onclick="showPage('services')">Web Development</a></p>
+                <p><a href="#services" onclick="showPage('services')">Mobile Apps</a></p>
+                <p><a href="#services" onclick="showPage('services')">3D Modeling</a></p>
+                <p><a href="#services" onclick="showPage('services')">Consulting</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <p>MSME Registered</p>
+                <p>Founded in 2025</p>
+                <p>Chennai, India</p>
+                <p>Student-led Innovation</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 TorqSoft Solutions Pvt Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Trigger animations for the new page
+            setTimeout(() => {
+                handleScrollAnimations();
+            }, 100);
+        }
+
+        // Particle Animation for Hero Section
+        class ParticleSystem {
+            constructor(canvas) {
+                this.canvas = canvas;
+                this.ctx = canvas.getContext('2d');
+                this.particles = [];
+                this.connections = [];
+                this.mouse = { x: 0, y: 0 };
+                
+                this.resize();
+                this.init();
+                this.animate();
+                
+                window.addEventListener('resize', () => this.resize());
+                canvas.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+            
+            resize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+            }
+            
+            init() {
+                this.particles = [];
+                const particleCount = Math.min(100, Math.floor((this.canvas.width * this.canvas.height) / 15000));
+                
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        size: Math.random() * 3 + 1,
+                        opacity: Math.random() * 0.5 + 0.3
+                    });
+                }
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Update particles
+                this.particles.forEach(particle => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    
+                    // Bounce off edges
+                    if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
+                    
+                    // Mouse interaction
+                    const dx = this.mouse.x - particle.x;
+                    const dy = this.mouse.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        particle.x -= dx * 0.01;
+                        particle.y -= dy * 0.01;
+                    }
+                });
+                
+                // Draw connections
+                this.ctx.strokeStyle = 'rgba(0, 168, 232, 0.2)';
+                this.ctx.lineWidth = 1;
+                
+                for (let i = 0; i < this.particles.length; i++) {
+                    for (let j = i + 1; j < this.particles.length; j++) {
+                        const dx = this.particles[i].x - this.particles[j].x;
+                        const dy = this.particles[i].y - this.particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 120) {
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                            this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                            this.ctx.globalAlpha = (120 - distance) / 120 * 0.3;
+                            this.ctx.stroke();
+                        }
+                    }
+                }
+                
+                // Draw particles
+                this.particles.forEach(particle => {
+                    this.ctx.beginPath();
+                    this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+                    this.ctx.globalAlpha = 1;
+                    this.ctx.fill();
+                });
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize particle system when home page is active
+        let particleSystem;
+        function initParticles() {
+            const canvas = document.getElementById('particleCanvas');
+            if (canvas && document.getElementById('home').classList.contains('active')) {
+                particleSystem = new ParticleSystem(canvas);
+            }
+        }
+
+        // Scroll animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }
+
+        // Filter functionality for insights
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.textContent.toLowerCase();
+                const cards = document.querySelectorAll('.insight-card');
+                
+                cards.forEach(card => {
+                    const category = card.querySelector('.insight-category').textContent.toLowerCase();
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255,255,255,0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255,255,255,0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            handleScrollAnimations();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+            handleScrollAnimations();
+        });
+
+        // Reinitialize particles when returning to home
+        const originalShowPage = showPage;
+        showPage = function(pageId) {
+            originalShowPage(pageId);
+            if (pageId === 'home') {
+                setTimeout(initParticles, 100);
+            }
+        };
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e2034e11db4f15',t:'MTc1NTAyMzEwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
