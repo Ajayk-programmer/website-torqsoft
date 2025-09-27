@@ -8,6 +8,8 @@ This project is a **static website** built using **HTML, CSS, and JavaScript**, 
 ## 📖 About Torqsoft
 Torqsoft Solutions is an IT and consulting company focused on delivering **innovative technology solutions**.  
 We specialize in **web development, mobile applications, cloud services, AI, and business process automation**, ensuring businesses can adapt to the future with ease.
+<img width="1848" height="779" alt="image" src="https://github.com/user-attachments/assets/731b1fdb-b12c-491c-9288-685015b68672" />
+
 
 ---
 
@@ -27,7 +29,9 @@ We specialize in **web development, mobile applications, cloud services, AI, and
 
 ### 🕰️ History
 - Timeline-based design showing milestones from company inception to the present  
-- Highlights of projects, growth, and partnerships  
+- Highlights of projects, growth, and partnerships
+- <img width="1697" height="896" alt="image" src="https://github.com/user-attachments/assets/817b85a5-b4ce-465c-a884-66eec414556a" />
+
 
 ### 👨‍💻 Career
 - Job listings with categories (Engineering, Design, Consulting, etc.)  
